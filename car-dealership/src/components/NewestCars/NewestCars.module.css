@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Raleway', 'sans-serif';
+}
+
+.section-new-cars {
+    background: #f8f8f8;
+    padding-top: 80px;
+    padding-bottom: 80px;
+   
+}
+
+.list {
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+    /* width: 750px; */
+    /* margin: 15px auto; */
+    list-style-type: none;
+}
+
+.item {
+    /* flex: 1 0 25%; */
+    flex: 0 0 33.333333%;
+    /* flex-basis: 33.333333%; */
+    /* margin: 15px auto; */
+    /* height: 100px; */
+}
+
+.wrapper {
+    /* width: 33.33333333%; */
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.featured-car {
+    margin-bottom: 30px;
+}
+
+.thumb {
+    position: relative;
+    z-index: 1;
+}
+
+.thumb-img {
+    position: relative;
+}
+
+img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
+}
+
+.overlay-content {
+    position: absolute;
+    z-index: 9;
+    top: 30px;
+    left: 30px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.down-content{
+    background-color: #fff;
+    box-shadow: 0px 5px 15px rgb(0 0 0 / 10%);
+    padding: 20px 20px 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.text-button {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    border-top: 1px solid #ddd;
+    margin: 0px -20px;
+}
+
+span {
+    display: block;
+    font-size: 14px;
+    color: #4883ff;
+    margin-bottom: 15px;
+}
+
+strong {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #7a7a7a;
+    line-height: 24px;
+    left: 0.25px;
+    margin: 0 0 10px;
+}
