@@ -48,7 +48,7 @@ function NewestCars() {
                 </p>
 
                 <div className={styles['text-button']}>
-                  <a href="car-details.html">Details</a>
+                  <a href="car-details.html" className={styles.details}>Details</a>
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@ function NewestCars() {
                 </p>
 
                 <div className={styles['text-button']}>
-                  <a href="car-details.html">Details</a>
+                  <a href="car-details.html" className={styles.details}>Details</a>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ function NewestCars() {
                 </p>
 
                 <div className={styles['text-button']}>
-                  <a href="car-details.html">Details</a>
+                  <a href="car-details.html" className={styles.details}>Details</a>
                 </div>
               </div>
             </div>

@@ -14,11 +14,11 @@ function Navigation() {
 
         {/* right side */}
         <div className={styles['right-side']}>
-          <p>Sign In</p>
+          <a className={styles.element}>Sign In</a>
           {/* <p>My Listings</p> */}
           {/* <p>All Listings </p> */}
-          <p>Register</p>
-          <p>Logout</p>
+          <a className={styles.element}>Register</a>
+          <a className={styles.element}>Logout</a>
         </div>
     </div>
   </header>;

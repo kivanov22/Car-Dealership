@@ -106,3 +106,14 @@ p {
     left: 0.25px;
     margin: 0 0 10px;
 }
+
+.details {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #7a7a7a;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    transition: all 0.5s;
+}

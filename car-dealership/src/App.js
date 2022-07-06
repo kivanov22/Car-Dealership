@@ -4,6 +4,7 @@ import Filter from './components/Filter/Filter.js';
 import Navigation from './components/Navigation/Navigation.js';
 import NewestCars from './components/NewestCars/NewestCars.js';
 import {Route} from 'react-router-dom';
+import LowerBanner from './components/LowerBanner/LowerBanner.js';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Banner />
         <Filter />
         <NewestCars/>
+        <LowerBanner />
+        {/* <Footer /> */}
     </div>
   );
 }
