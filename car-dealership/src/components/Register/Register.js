@@ -1,8 +1,9 @@
 import React from "react";
+import styles from '../Register/Register.module.css';
 
 function Register() {
   return (
-    <section>
+    <section className={styles.wrapper}>
       <form>
         <div>
           <label htmlFor="email">Email</label>
@@ -17,7 +18,7 @@ function Register() {
           <input type="password" name="password" id="" />
 
           <label htmlFor="">Confirm Password</label>
-          <input type="password" name="confirm-password" id="" />
+          <input type="password" name="confirm-password"  id="" />
 
           <input type="submit" value="Register"/>
 

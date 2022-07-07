@@ -5,6 +5,8 @@ import Navigation from './components/Navigation/Navigation.js';
 import NewestCars from './components/NewestCars/NewestCars.js';
 import {Route} from 'react-router-dom';
 import LowerBanner from './components/LowerBanner/LowerBanner.js';
+import Footer from './components/Footer/Footer.js';
+import SubFooter from './components/SubFooter/SubFooter.js';
 
 function App() {
   return (
@@ -14,7 +16,8 @@ function App() {
         <Filter />
         <NewestCars/>
         <LowerBanner />
-        {/* <Footer /> */}
+        <Footer />
+        <SubFooter />
     </div>
   );
 }

@@ -10,7 +10,7 @@ function LowerBanner() {
            <img src={bmw} alt="" className={styles.lower}/>
          </div>
            <div className={styles.contact}>
-           <span>Contact Us</span>
+           <span className={styles['contact-span']}>Contact Us</span>
            <h2>Drive with passion !</h2>
            <a href="" className={styles.talk}>Talk to us</a>
           </div>

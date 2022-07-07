@@ -47,6 +47,7 @@ align-items: center;
     font-size: 15px;
     font-weight: 400;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 

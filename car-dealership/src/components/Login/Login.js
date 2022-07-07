@@ -11,7 +11,7 @@ function Login() {
         <input type="email" name="email" placeholder='kristian.ivanov@abv.bg'/>
 
         <label htmlFor="password"></label>
-        <input type="password" />
+        <input type="password" placeholder="Type your password" />
         <input type="submit" value="Login" />
 
         <p>
