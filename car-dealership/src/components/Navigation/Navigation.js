@@ -5,7 +5,7 @@ import logo from '../../assets/cars.png'
 function Navigation() {
 
  
-  return <header>
+  return <header className={styles.wrapper}>
     <div className={styles.container}>
       {/* left side */}
         <div className={styles['container-logo']}>
@@ -14,11 +14,13 @@ function Navigation() {
 
         {/* right side */}
         <div className={styles['right-side']}>
-          <a className={styles.element}>Sign In</a>
-          {/* <p>My Listings</p> */}
-          {/* <p>All Listings </p> */}
-          <a className={styles.element}>Register</a>
-          <a className={styles.element}>Logout</a>
+          <ul className={styles.navList}>
+            <li className={styles.listItem}><a href="/login" className={styles.element}>Sign In</a></li>
+            <li className={styles.listItem}><a href="/register" className={styles.element}>Register</a></li>
+            <li className={styles.listItem}><a href="/logout" className={styles.element}>Logout</a></li>
+            <li className={styles.listItem}><a href="/catalogCars" className={styles.element}>All Cars</a></li>
+            <li className={styles.listItem}><a href="/myCars" className={styles.element}>My Cars</a></li>
+          </ul>
         </div>
     </div>
   </header>;
@@ -26,8 +28,3 @@ function Navigation() {
 
 export default Navigation;
 
-// navigation
-// 1.logo left
-// 2.login/register
-// 3.logged in user can edit car for sale
-// 4.can add a new car for sale

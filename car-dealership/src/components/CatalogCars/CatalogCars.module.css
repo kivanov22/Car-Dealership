@@ -1,0 +1,55 @@
+
+.catalog {
+
+}
+
+.column {
+    
+}
+
+.row {
+    
+}
+
+.list-cars {
+    list-style-type: none;
+}
+
+.cars-desc {
+    
+}
+
+.container{
+    display: flex;
+}
+
+.form-control {
+
+}
+
+.cars-container {
+    position: relative;
+    top: 30px;
+    left: 550px;
+    display: flex;
+    border: 2px solid black;
+    width: 750px;
+    height: 50vh;
+    /* justify-content: center;
+    align-items: center; */
+    align-content: center;
+}
+
+.car-img {
+
+}
+
+.carImage {
+    object-fit: contain;
+    height: 20rem;
+    width: 20rem;
+}
+
+.desc {
+    display: flex;
+}
