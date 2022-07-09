@@ -119,10 +119,3 @@ function Filter() {
 export default Filter;
 
 
-{/* <form name='search' action="" method='post'>
-            <table>
-                <tbody>
-                  
-                </tbody>
-            </table>
-        </form> */}

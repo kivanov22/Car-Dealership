@@ -1,56 +1,166 @@
-import React from 'react'
-import styles from '../CatalogCars/CatalogCars.module.css';
-// import carsParameters from '../../scripts/carsParameters.js';
-import bmw from '../../assets/img/product-3-720x480.jpg';
-
+import React from "react";
+import styles from "../CatalogCars/CatalogCars.module.css";
+import bmw from "../../assets/img/product-3-720x480.jpg";
+import { Link} from 'react-router-dom';
 
 function CatalogCars() {
   return (
-    <div className={styles.catalog}>
-        <div className={styles.column}>
-            <div className={styles.row}>
+    <section className={styles.catalog}>
+      <div className={styles.row}>
+        <form action="">
+          <div className={styles.container}>
+            <label htmlFor="">New/Used</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
 
-                <form action="">
-                  <ul className={styles['list-cars']}>
-                    <li className={styles['cars-desc']}>
-                    <div className={styles.container}>
-                      {/* {carsParameters.map(()=>)} */}
-                      <label htmlFor="">New/Used</label>
-                    <select className={styles['form-control']}>
-                     <option value="">All</option>
-                     <option value="new">New vehicle</option>
-                     <option value="used">Used vehicle</option>
-                      </select>
-                    </div>
-                    </li>
-                    <li className={styles['cars-desc']}>
-                    <div className={styles.container}>
-                      {/* {carsParameters.map(()=>)} */}
-                      <label htmlFor="">Make</label>
-                    <select className={styles['form-control']}>
-                     <option value="">All</option>
-                     <option value="new">New vehicle</option>
-                     <option value="used">Used vehicle</option>
-                      </select>
-                    </div>
-                    </li>
-                  </ul>
-                </form>
+          <div className={styles.container}>
+            <label htmlFor="">Vehicle Type</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="carsJeeps">Cars and Jeeps</option>
+              <option value="motorcycle">Motorcycle</option>
+              <option value="truck">Truck</option>
+            </select>
+          </div>
 
-                <div className={styles['cars-container']}>
-                  <div className={styles['car-img']}>
-                    <img src={bmw} alt="" className={styles.carImage} />
-                  </div>
-                  <div className={styles.desc}>
-                    <h2>Model Make</h2>
-                    <p>Price</p>
-                    <p>Description</p>
-                  </div>
-                </div>
-            </div>
+          <div className={styles.container}>
+            <label htmlFor="">Make/</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Model</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Price</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Mileage</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Engine size</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Power</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Fuel</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Gearbox</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Doors</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Colour</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <label htmlFor="">Year</label>
+            <select className={styles["form-control"]}>
+              <option value="">All</option>
+              <option value="new">New vehicle</option>
+              <option value="used">Used vehicle</option>
+            </select>
+          </div>
+
+          <div className={styles.container}>
+            <button className={styles.searchBtn}>Search</button>
+          </div>
+        </form>
+      </div>
+
+      <div className={styles.rightSide}>
+      <div className={styles["cars-container"]}>
+        <div className={styles["car-img"]}>
+          <img src={bmw} alt="" className={styles.carImage} />
         </div>
-    </div>
-  )
+        <div className={styles.desc}>
+          <p className={styles["car-title"]}>Mazda RS7</p>
+          <p>Price: 40000$</p>
+          <p>Year: 2015 / Fuel: Diesel / Gearbox: Automatic/ Doors:4 /</p>
+          <button className={styles.detailsBtn}>View Details</button>
+        </div>
+      </div>
+
+      <div className={styles["cars-container"]}>
+        <div className={styles["car-img"]}>
+          <img src={bmw} alt="" className={styles.carImage} />
+        </div>
+        <div className={styles.desc}>
+          <p className={styles["car-title"]}>Mazda RS7</p>
+          <p>Price: 40000$</p>
+          <p>Year: 2015 / Fuel: Diesel / Gearbox: Automatic/ Doors:4 /</p>
+          <button className={styles.detailsBtn}>View Details</button>
+        </div>
+      </div>
+      
+
+      </div>
+    </section>
+  );
 }
 
 export default CatalogCars;

@@ -1,14 +1,20 @@
 
 .catalog {
-
+    display: flex;
+    margin: 30px auto;
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    font-family: 'Nunito', sans-serif;
 }
 
-.column {
-    
-}
+
 
 .row {
-    
+    display: flex;
+    margin: 10px auto;
 }
 
 .list-cars {
@@ -21,35 +27,101 @@
 
 .container{
     display: flex;
+    flex-direction: column;
+    /* margin-left: 5rem; */
+    padding: 10px;
+    /* height: 65px; */
+    /* flex-direction: column; */
+    /* flex: 1 0 21%; */
+    /* align-items: center; */
+    /* margin-left: 2rem; */
 }
 
 .form-control {
+        border-radius: 0px;
+        padding-left: 15px;
+        font-size: 13px;
+        color: #aaa;
+        background-color: #f4f4f4;
+        border: 1px solid #eee;
+        outline: none;
+        box-shadow: none;
+        line-height: 40px;
+        height: 40px;
+        width: 200%;
+        margin-bottom: 25px;
+    
+}
 
+
+.car-title {
+    font-size: large;
 }
 
 .cars-container {
-    position: relative;
-    top: 30px;
-    left: 550px;
     display: flex;
+    flex-direction: row;
+    /* position: absolute; */
+     /* top: 150px;  */
+    /* left: 350px;  */
+    display: flex;
+    /* flex-basis: 25%; */
     border: 2px solid black;
-    width: 750px;
+    width: 850px;
     height: 50vh;
+    margin-top: 20px;
     /* justify-content: center;
     align-items: center; */
-    align-content: center;
+    /* align-content: center; */
+    
 }
 
 .car-img {
-
+    
 }
 
 .carImage {
     object-fit: contain;
-    height: 20rem;
-    width: 20rem;
+    height: 100%;
+    width: 100%;
 }
 
 .desc {
     display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.searchBtn {
+    border-color: #09f;
+    color: #09f;
+    width: 200%;
+    border-radius: 15px;
+    padding: 15px 30px;
+}
+
+.searchBtn:focus,
+.searchBtn:hover,
+.searchBtn:active,
+.searchBtn:focus:active{
+    background: #09f; 
+    color: #fff; 
+    border-color: #09f; 
+}
+
+.detailsBtn {
+    border-color: #09f;
+    color: #09f;
+    width: 80%;
+    border-radius: 15px;
+    padding: 15px 30px;
+    cursor: pointer;
+}
+
+.rightSide {
+    margin-right: 30px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
 }

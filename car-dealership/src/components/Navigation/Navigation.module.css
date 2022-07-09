@@ -60,6 +60,7 @@ align-items: center;
     font-weight: 400;
     transition: all 0.5s;
     cursor: pointer; */
+    text-decoration: none;
     line-height: 40px;
     color: #575757;
     padding-right: 22px;
