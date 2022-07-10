@@ -18,6 +18,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Dashboard />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/details/:carId" element={<Details />} />
         </Routes>
         </main>
         

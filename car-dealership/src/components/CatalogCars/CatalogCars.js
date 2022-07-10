@@ -1,9 +1,38 @@
 import React from "react";
 import styles from "../CatalogCars/CatalogCars.module.css";
 import bmw from "../../assets/img/product-3-720x480.jpg";
-import { Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+// import Car from "../Car/Car.js";
+
+import { useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase.js";
+import { useEffect } from "react";
 
 function CatalogCars() {
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    getCars();
+  }, []);
+
+  useEffect(() => {
+    console.log(cars);
+  }, [cars]);
+
+  const getCars = () => {
+    const carsCollectionRef = collection(db, "cars");
+    getDocs(carsCollectionRef)
+      .then((res) => {
+        const cars = res.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setCars(cars);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   return (
     <section className={styles.catalog}>
       <div className={styles.row}>
@@ -133,31 +162,28 @@ function CatalogCars() {
       </div>
 
       <div className={styles.rightSide}>
-      <div className={styles["cars-container"]}>
-        <div className={styles["car-img"]}>
-          <img src={bmw} alt="" className={styles.carImage} />
-        </div>
-        <div className={styles.desc}>
-          <p className={styles["car-title"]}>Mazda RS7</p>
-          <p>Price: 40000$</p>
-          <p>Year: 2015 / Fuel: Diesel / Gearbox: Automatic/ Doors:4 /</p>
-          <button className={styles.detailsBtn}>View Details</button>
-        </div>
-      </div>
-
-      <div className={styles["cars-container"]}>
-        <div className={styles["car-img"]}>
-          <img src={bmw} alt="" className={styles.carImage} />
-        </div>
-        <div className={styles.desc}>
-          <p className={styles["car-title"]}>Mazda RS7</p>
-          <p>Price: 40000$</p>
-          <p>Year: 2015 / Fuel: Diesel / Gearbox: Automatic/ Doors:4 /</p>
-          <button className={styles.detailsBtn}>View Details</button>
-        </div>
-      </div>
-      
-
+        <ul>
+          {cars.map((car) => (
+            <li key={car.id}>
+              <div className={styles["cars-container"]}>
+                <div className={styles["car-img"]}>
+                  <img src={bmw} alt="" className={styles.carImage} />
+                </div>
+                <div className={styles.desc}>
+                  <p className={styles["car-title"]}>{car.data.Make}</p>
+                  <p>Price: {car.data.price}$</p>
+                  <p>
+                    {car.data.year} / Fuel: Diesel / Gearbox: Automatic/ Doors:4 /
+                  </p>
+                  <button className={styles.detailsBtn}>
+                  <Link className={styles.detailsBtn} to={`/details/${car.id}`}>Details</Link>
+                  </button>
+                  {/* <button className={styles.detailsBtn}>View Details</button> */}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
