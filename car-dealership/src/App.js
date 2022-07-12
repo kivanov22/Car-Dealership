@@ -1,11 +1,11 @@
 import './App.css';
-import Navigation from './components/Navigation/Navigation.js';
+import Navigation from './components/layout/Navigation/Navigation.js';
 import {Route, Routes} from 'react-router-dom';
-import Login from './components/Login/Login.js';
-import CatalogCars from './components/CatalogCars/CatalogCars.js';
-import Dashboard from './components/Dashboard/Dashboard.js';
-import Register from './components/Register/Register.js';
-import Details from './components/Details/Details.js';
+import Login from './components/user/Login/Login.js';
+import CatalogCars from './components/cars/Catalog/CatalogCars.js';
+import Dashboard from './components/layout/Dashboard/Dashboard.js';
+import Register from './components/user/Register/Register.js';
+import Details from './components/cars/Details/Details.js';
 
 function App() {
   return (

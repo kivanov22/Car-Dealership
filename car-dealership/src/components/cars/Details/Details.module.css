@@ -1,0 +1,22 @@
+.details {
+    
+}
+
+.container {
+
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.firstCol {
+    display: flex;
+    flex-direction: column;
+}
+
+.upperPic {
+    object-fit: contain;
+    width: 40%;
+}
