@@ -1,9 +1,24 @@
 
 .wrapper {
-    /* background: #ffffff; */
+    /* display: grid; 
+position: fixed; 
+top: 0; 
+z-index: 40; 
+z-index: 50; 
+padding: 1.25rem; 
+transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform; 
+transition-duration: 100ms; 
+transition-timing-function: cubic-bezier(0, 0, 0.2, 1); 
+width: 100vw;  */
+/* grid-template-columns: repeat(1, minmax(0, 1fr)); 
+grid-template-columns: repeat(2, minmax(0, 1fr)); 
+grid-auto-flow: row;  */
+    /* width: 100vw; */
+    
+    /* position: fixed; */
     border-top: 5px solid #09f;
     border-bottom: 0;
-    /* background: #ffffff; */
+    
     -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
@@ -13,6 +28,7 @@
 }
 
 .container {
+    /* position: sticky; */
     display: flex;
     flex-grow: 1;
     align-items: center;
@@ -61,26 +77,43 @@ align-items: center;
     transition: all 0.5s;
     cursor: pointer; */
     text-decoration: none;
-    line-height: 40px;
     color: #575757;
     padding-right: 22px;
     padding-left: 22px;
     line-height: 40px;
-    
+    transition: all 0.5s;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 /* .element:hover, .element:focus {
     background-color: transparent;
 } */
 .listItem {
+    box-sizing: border-box;
     line-height: 40px;
     color: #575757;
     padding-right: 22px;
     padding-left: 22px;
-    line-height: 40px;
+    
 }
 
-.element:hover, .element:active, .element:focus {
+.navList > .listItem > .element:hover
+.navList > .listItem > .element:focus{
+    background-color: transparent;
+}
+
+.navList .listItem .element:hover{
+    background-color: #09f;
+    color: white;
+}
+
+.navList .listItem:active > .element {
+    background-color: #09f;
+    color: white;
+}
+
+/* .element:hover, .element:active, .element:focus {
     color: #09f;
     outline: none;
     color: white;
@@ -90,11 +123,24 @@ align-items: center;
 .listItem:active{
     background-color: #09f;
     color: white;
-}
+} */
 
 .navList {
     display: flex;
     list-style-type: none;
 }
 
+.header-title {
+    display: flex;
+    color: #454545;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 40px;
+    height: 50px;
+    padding: 15px 15px;
+    cursor: pointer;
+}
 
+.header-span {
+    color: #09f;
+}

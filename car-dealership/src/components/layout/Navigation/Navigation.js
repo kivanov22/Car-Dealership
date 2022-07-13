@@ -8,7 +8,8 @@ function Navigation() {
     <div className={styles.container}>
       {/* left side */}
         <div className={styles['container-logo']}>
-          <img src={logo} alt="" className={styles.logo}/>
+          {/* <img src={logo} alt="" className={styles.logo}/> */}
+          <p className={styles['header-title']}>IVANOV <span className={styles['header-span']}>AUTO</span></p>
         </div>
 
         {/* right side */}
