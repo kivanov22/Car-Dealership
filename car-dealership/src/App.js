@@ -6,6 +6,7 @@ import CatalogCars from './components/cars/Catalog/CatalogCars.js';
 import Dashboard from './components/layout/Dashboard/Dashboard.js';
 import Register from './components/user/Register/Register.js';
 import Details from './components/cars/Details/Details.js';
+import Edit from './components/cars/Edit/Edit.js';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/details" element={<Details />} />
           <Route path="/details/:carId" element={<Details />} />
+          <Route path="/edit/:carId" element={<Edit />} />
         </Routes>
         </main>
         

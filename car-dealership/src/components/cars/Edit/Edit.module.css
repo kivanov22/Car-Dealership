@@ -227,15 +227,6 @@
     margin-left: 20px;
 }
 
-.editBtn:focus,
-.editBtn:hover,
-.editBtn:active,
-.editBtn:focus:active{
-    background: #09f; 
-    color: #fff; 
-    border-color: #09f; 
-}
-
 .deleteBtn {
     border-color: red;
     color: red;
@@ -245,15 +236,6 @@
     cursor: pointer;
     text-decoration: none;
     margin-left: 20px;
-}
-
-.deleteBtn:focus,
-.deleteBtn:hover,
-.deleteBtn:active,
-.deleteBtn:focus:active{
-    background: red; 
-    color: #fff; 
-    border-color: red; 
 }
 
 .info-col-buttons {

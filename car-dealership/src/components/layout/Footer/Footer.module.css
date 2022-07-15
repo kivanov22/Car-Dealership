@@ -31,14 +31,21 @@
 
 .wrapMiddle{
     display: flex;
-    flex-direction: column;
-    /* flex-wrap: nowrap; */
+    /* flex-direction: column; */
+
+    flex-wrap: wrap;
     margin: 20px auto;
 }
 
 .firstMiddle {
+    /* display: inline-block; */
+    margin-right: 25px;
     display: flex;
-    flex-direction: column;
+  /* flex-direction: column; */
+  /* flex-basis: 100%; */
+  flex: 0 1 46%;
+    /* flex-direction: column;
+    flex-wrap: wrap; */
     /* flex-basis: 25%; */
     /* display: flex; */
     /* flex-direction: column; */
@@ -49,23 +56,31 @@
     /* color: black; */
 }
 
+.usefull-links-container{
+    display: flex;
+    flex: 1 0 100%;
+    justify-content: center;
+}
+
 .secondMiddle {
-/* display: flex; */
+/* display: block;
+margin-right: 25px; */
+display: flex;
+  /* flex-direction: column; */
+  /* flex-basis: 100%; */
+  flex: 0 1 47%;
+/* margin-top: 4rem; */
 /* flex-direction: column; */
 /* flex-wrap: wrap; */
 /* flex-basis: 35%; */
 }
 
+
 .right {
-    /* display: block; */
-    display: flex;
-    flex-direction: column;
+    display: block;
     flex-basis: 30%;
     justify-content: center;
     margin: 20px auto;
-    /* align-items: center; */
-    /* flex-wrap: nowrap; */
-    /* color: black; */
 }
 
 .icons {
@@ -90,9 +105,23 @@
 .listLinks {
     list-style-type: none;
     display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: left;
+    /* display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    gap: 6px;
+    flex: 0 1 21%; */
+    /* flex-wrap: wrap; */
+    /* gap: 6px; */
+}
+
+.dotted-list:before {
+    content: '•';
+    color:#09f;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em
 }
 
 .listIcons {
@@ -137,6 +166,9 @@
     letter-spacing: 0.5px;
     margin-top: 15px;
     margin-bottom: 40px;
+    /* text-align: center; */
+    display: flex;
+    flex: 1 0 21%;
 }
 
 .contactInfo{
@@ -160,11 +192,32 @@
     color: #4883ff;
     letter-spacing: 0.5px;
     text-decoration: none;
+    width: 30%;
 }
 
 .email {
+    width: 30%;
     font-size: 13px;
     color: #4883ff;
     letter-spacing: 0.5px;
     text-decoration: none;
+}
+
+.contact-address {
+    margin-left: 10px;
+}
+
+.header-title {
+    display: flex;
+    color: #454545;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 40px;
+    height: 50px;
+    padding: 15px 15px;
+    cursor: pointer;
+}
+
+.header-span {
+    color: #09f;
 }

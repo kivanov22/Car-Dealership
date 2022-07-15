@@ -48,9 +48,24 @@
         box-shadow: none;
         line-height: 40px;
         height: 40px;
-        width: 200%;
+        width: 150%;
         margin-bottom: 25px;
     
+}
+
+.form-control-typed {
+    border-radius: 0px;
+        padding-left: 15px;
+        font-size: 13px;
+        color: #aaa;
+        background-color: #f4f4f4;
+        border: 1px solid #eee;
+        outline: none;
+        box-shadow: none;
+        line-height: 40px;
+        height: 40px;
+        width: 140%;
+        margin-bottom: 25px;
 }
 
 
@@ -96,7 +111,7 @@
 .searchBtn {
     border-color: #09f;
     color: #09f;
-    width: 200%;
+    width: 150%;
     border-radius: 15px;
     padding: 15px 30px;
 }
@@ -120,9 +135,22 @@
     text-decoration: none;
 }
 
+.detailsBtn:focus,
+.detailsBtn:hover,
+.detailsBtn:active,
+.detailsBtn:focus:active{
+    background: #09f; 
+    color: #fff; 
+    border-color: #09f; 
+}
+
 .rightSide {
     margin-right: 30px;
     /* display: flex; */
     /* flex-direction: column; */
     /* flex-wrap: wrap; */
+}
+
+.cars-list {
+    list-style-type: none;
 }

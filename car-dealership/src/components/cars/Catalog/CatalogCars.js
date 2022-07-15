@@ -11,6 +11,12 @@ import { useEffect } from "react";
 function CatalogCars() {
   const [cars, setCars] = useState([]);
 
+  const submitHandler = (e) =>{
+    e.preventDefault();
+    
+  }
+
+
   useEffect(() => {
     getCars();
   }, []);
@@ -35,10 +41,10 @@ function CatalogCars() {
   return (
     <section className={styles.catalog}>
       <div className={styles.row}>
-        <form >
+        <form onSubmit={submitHandler}>
           <div className={styles.container}>
-            <label htmlFor="">New/Used</label>
-            <select className={styles["form-control"]}>
+            <label htmlFor="condition">New/Used</label>
+            <select name="condition" id="condition" className={styles["form-control"]}>
               <option value="">All</option>
               <option value="new">New vehicle</option>
               <option value="used">Used vehicle</option>
@@ -56,18 +62,19 @@ function CatalogCars() {
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Make/</label>
+            <label htmlFor="">Make</label>
             <select className={styles["form-control"]}>
+              {/* ul with li > option maybe */}
               <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
+              <option value="new">BMW</option>
+              <option value="used">Mercedes</option>
             </select>
           </div>
 
           <div className={styles.container}>
             <label htmlFor="">Model</label>
             <select className={styles["form-control"]}>
-              <option value="">All</option>
+              <option value="all">All</option>
               <option value="new">New vehicle</option>
               <option value="used">Used vehicle</option>
             </select>
@@ -75,38 +82,22 @@ function CatalogCars() {
 
           <div className={styles.container}>
             <label htmlFor="">Price</label>
-            <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
-            </select>
+            <input type="number" name="price" className={styles["form-control-typed"]}/>
           </div>
 
           <div className={styles.container}>
             <label htmlFor="">Mileage</label>
-            <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
-            </select>
+            <input type="number" name="mileage" className={styles["form-control-typed"]}/>
           </div>
 
           <div className={styles.container}>
             <label htmlFor="">Engine size</label>
-            <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
-            </select>
+            <input type="number" name="engine" className={styles["form-control-typed"]}/>
           </div>
 
           <div className={styles.container}>
             <label htmlFor="">Power</label>
-            <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
-            </select>
+            <input type="number" name="power" className={styles["form-control-typed"]}/>
           </div>
 
           <div className={styles.container}>
@@ -129,29 +120,17 @@ function CatalogCars() {
 
           <div className={styles.container}>
             <label htmlFor="">Doors</label>
-            <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
-            </select>
+            <input type="number" name="doors" className={styles["form-control-typed"]}/>
           </div>
 
           <div className={styles.container}>
             <label htmlFor="">Colour</label>
-            <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
-            </select>
+            <input type="text" name="colour" className={styles["form-control-typed"]}/>
           </div>
 
           <div className={styles.container}>
             <label htmlFor="">Year</label>
-            <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
-            </select>
+            <input type="number" name="year" className={styles["form-control-typed"]}/>
           </div>
 
           <div className={styles.container}>
@@ -161,7 +140,7 @@ function CatalogCars() {
       </div>
 
       <div className={styles.rightSide}>
-        <ul>
+        <ul className={styles['cars-list']}>
           {cars.map((car) => (
             <li key={car.id}>
               <div className={styles["cars-container"]}>

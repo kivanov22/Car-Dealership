@@ -2,14 +2,20 @@ import React from "react";
 import styles from '../Details/Details.module.css';
 import car from '../../../assets/img/product-3-720x480.jpg'
 
+import { Link} from 'react-router-dom';
+
 function Details() {
+     
+
+
+
   return (
     <section className={styles.details}>
     <div className={styles.container}>
          <div className={styles.row}>
               <div className={styles.firstCol}>
                    <div className={styles['container-upper-pic']}>
-                        <img src={car} alt="" className={styles.upperPic}/>
+                        <img src={car} alt="" loading="lazy" className={styles.upperPic}/>
                    </div>
 
                    <br/>
@@ -25,7 +31,7 @@ function Details() {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car} alt="" className={styles['img-responsive']}/>
+                             <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              
                              <br/>
@@ -33,7 +39,7 @@ function Details() {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car} alt="" className={styles['img-responsive']}/>
+                             <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              <br/>
                         </div>
@@ -168,6 +174,17 @@ function Details() {
 
                                        <strong className={styles['form-strong']}>Black</strong>
                                   </p>
+                             </div>
+
+                             <div className={styles['info-col-buttons']}>
+                              
+                              <button className={styles.editBtn}>
+                              <Link className={styles.editBtn} to={`/edit/${car.id}`}>Edit</Link>
+                              </button>
+                                  
+                              <button className={styles.deleteBtn}>
+                              <Link className={styles.deleteBtn} to={`/delete/${car.id}`}>Delete</Link>
+                              </button>
                              </div>
                         </div>
                    </form>
