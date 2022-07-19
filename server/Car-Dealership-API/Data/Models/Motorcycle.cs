@@ -10,13 +10,20 @@ namespace Car_Dealership_API.Data.Models
 
         [Required]
         public string Condition { get; set; }
+        [Required]
+        public string Type { get; set; }
+
+        [Required]
+        public string Make { get; set; }
+
+        [Required]
+        public string Model { get; set; }
 
         [Required]
         public string ImageUrl { get; set; }
 
 
-        [Required]
-        public string Type { get; set; }
+       
         public int Year { get; set; }
 
         public double Price { get; set; }
@@ -44,11 +51,8 @@ namespace Car_Dealership_API.Data.Models
         [Required]
         public string MiniDescription { get; set; }
 
-        [ForeignKey("MakeId")]
-        public virtual Make Make { get; set; }
-
-        [ForeignKey("ModelId")]
-        public virtual Model Model { get; set; }
-
+        [ForeignKey("SellerId")]
+        public int SellerId { get; set; }
+        public Seller Seller { get; set; }
     }
 }

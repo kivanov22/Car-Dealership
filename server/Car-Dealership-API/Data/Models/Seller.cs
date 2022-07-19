@@ -21,17 +21,7 @@ namespace Car_Dealership_API.Data.Models
         [Required]
         public string Address { get; set; }
 
-
-        [ForeignKey("TruckId")]
-        public virtual Truck Truck { get; set; }
-
-        [ForeignKey("CarId")]
-        public virtual Car Car { get; set; }
-
-
-        [ForeignKey("MotorcycleId")]
-        public virtual Motorcycle Motorcycle { get; set; }
-
-
     }
+
+
 }

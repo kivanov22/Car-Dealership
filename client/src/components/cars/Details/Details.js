@@ -1,21 +1,21 @@
 import React from "react";
 import styles from '../Details/Details.module.css';
-import car from '../../../assets/img/product-3-720x480.jpg'
 
 import { Link} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-function Details() {
-     
+function Details({cars}) {
+const { carId } = useParams();
 
-
-
+const car = cars.find(x => x.id == carId);
+console.log(car);
   return (
     <section className={styles.details}>
     <div className={styles.container}>
          <div className={styles.row}>
               <div className={styles.firstCol}>
                    <div className={styles['container-upper-pic']}>
-                        <img src={car} alt="" loading="lazy" className={styles.upperPic}/>
+                        <img src={car.imageUrl} alt="image"  className={styles.upperPic}/>
                    </div>
 
                    <br/>
@@ -23,7 +23,7 @@ function Details() {
                    <div className={styles.row}>
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                                  <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
+                                  {/* <img src={car.imageUrl} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                              </div>
                              
                              <br/>
@@ -31,7 +31,7 @@ function Details() {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
+                             {/* <img src={car.imageUrl} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                              </div>
                              
                              <br/>
@@ -39,7 +39,7 @@ function Details() {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
+                             {/* <img src={car.imageUrl} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                              </div>
                              <br/>
                         </div>
@@ -47,12 +47,12 @@ function Details() {
               </div>
 
               <div className={styles.secondCol}>
-                   <form  method="post" className={styles.form}>
-                        <h2 className={styles['form-header']}>BMW X6</h2>
+                   <div className={styles.form}>
+                        <h2 className={styles['form-header']}>{car.make} {car.model}</h2>
 
-                        <p className={styles.description}>ABS, Leather seats, Power Assisted Steering, Electric heated seats, New HU and AU, Xenon headlights</p>
+                        <p className={styles.description}>{car.miniDescription}</p>
                         
-                        <p className="lead"><small><del> $11999.00</del></small> <strong className={styles['span-color']}>$11779.00</strong></p>
+                        <p className="lead"><small><del> $11999.00</del></small> <strong className={styles['span-color']}>${car.price}</strong></p>
 
                         <div className={styles.row}>
                              <div className={styles['info-col-1']}>
@@ -61,7 +61,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Used vehicle</strong>
+                                       <strong className={styles['form-strong']}>{car.type}</strong>
                                   </p>
                              </div>
 
@@ -71,7 +71,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>BMW</strong>
+                                       <strong className={styles['form-strong']}>{car.make}</strong>
                                   </p>
                              </div>
 
@@ -81,7 +81,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>X6</strong>
+                                       <strong className={styles['form-strong']}>{car.model}</strong>
                                   </p>
                              </div>
 
@@ -91,7 +91,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>05/2010</strong>
+                                       <strong className={styles['form-strong']}>{car.year}</strong>
                                   </p>
                              </div>
 
@@ -101,7 +101,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>5000 km</strong>
+                                       <strong className={styles['form-strong']}>{car.mileage} km</strong>
                                   </p>
                              </div>
 
@@ -111,7 +111,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Diesel</strong>
+                                       <strong className={styles['form-strong']}>{car.fuel}</strong>
                                   </p>
                              </div>
 
@@ -121,7 +121,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>1800 cc</strong>
+                                       <strong className={styles['form-strong']}>{car.engineSize} cc</strong>
                                   </p>
                              </div>
 
@@ -131,7 +131,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>85 hp</strong>
+                                       <strong className={styles['form-strong']}>{car.power} hp</strong>
                                   </p>
                              </div>
 
@@ -142,7 +142,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Manual</strong>
+                                       <strong className={styles['form-strong']}>{car.gearbox}</strong>
                                   </p>
                              </div>
 
@@ -152,7 +152,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>4</strong>
+                                       <strong className={styles['form-strong']}>{car.seats}</strong>
                                   </p>
                              </div>
 
@@ -162,7 +162,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>2/3</strong>
+                                       <strong className={styles['form-strong']}>{car.doors}</strong>
                                   </p>
                              </div>
 
@@ -172,7 +172,7 @@ function Details() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Black</strong>
+                                       <strong className={styles['form-strong']}>{car.color}</strong>
                                   </p>
                              </div>
 
@@ -187,7 +187,7 @@ function Details() {
                               </button>
                              </div>
                         </div>
-                   </form>
+                   </div>
               </div>
          </div>
 
@@ -199,7 +199,7 @@ function Details() {
                         </div>
 
                         <div className={styles['panel-body']}>
-                             <p >- Colour coded bumpers<br/>- Tinted glass<br/>- Immobiliser<br/>-</p>
+                             <p >- {car.description}-</p>
                         </div>
                    </div>
               </div>
@@ -216,7 +216,7 @@ function Details() {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}>Kristian Smith</strong>
+                                  <strong className={styles['contact-info']}>{car.seller.name}</strong>
                              </p>
 
                              <p>
@@ -224,16 +224,16 @@ function Details() {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >123-456-789</a></strong>
+                                  <strong className={styles['contact-info']}><a >{car.seller.phone}</a></strong>
                              </p>
 
 
                              <p>
-                                  <span>Mobile phone</span>
+                                  <span>Address</span>
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >456789123</a></strong>
+                                  <strong className={styles['contact-info']}><a >{car.seller.address}</a></strong>
                              </p>
 
                              <p>
@@ -241,7 +241,7 @@ function Details() {
 
                                   <br/>
 
-                                  <strong><a  href="mailto:krisko512@gmail.com" className={styles['contact-info']}>krisko512@gmail.com</a></strong>
+                                  <strong><a  href="mailto:krisko512@gmail.com" className={styles['contact-info']}>{car.seller.email}</a></strong>
                              </p>
                         </div>
                    </div>

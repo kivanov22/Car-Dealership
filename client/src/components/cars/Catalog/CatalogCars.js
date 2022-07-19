@@ -1,15 +1,31 @@
 import React from "react";
 import styles from "../Catalog/CatalogCars.module.css";
-import bmw from "../../../assets/img/product-3-720x480.jpg";
 import { Link } from "react-router-dom";
 
-import { useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase.js";
-import { useEffect } from "react";
+// import { collection, getDocs } from "firebase/firestore";
+// import { db } from "../../../firebase.js";
+// import { createAPIEndpoint } from "../../../api/serverApi.js";
 
-function CatalogCars() {
-  const [cars, setCars] = useState([]);
+function CatalogCars({cars}) {
+  // const [cars, setCars] = useState([]);
+
+  // useEffect(()=> {
+  //   const carList =   
+  //   fetch("https://localhost:7213/api/Car/GetAll")
+  //   .then(res => res.json())
+  //   .then(data=> data);
+    
+    // useEffect(()=>{
+    //   carService.getAll()
+    //   .then(carData =>setCars(carData));
+    // },[]);
+  //   console.log(carList)
+  // },[]);
+
+  // createAPIEndpoint('Car/GetAll')
+  // .fetch()
+  // .then(res => setCars(res.json()))
+  // .catch(err =>console.log(err));
 
   const submitHandler = (e) =>{
     e.preventDefault();
@@ -17,26 +33,26 @@ function CatalogCars() {
   }
 
 
-  useEffect(() => {
-    getCars();
-  }, []);
+  // useEffect(() => {
+  //   getCars();
+  // }, []);
 
-  useEffect(() => {
-    console.log(cars);
-  }, [cars]);
+  // useEffect(() => {
+  //   console.log(cars);
+  // }, [cars]);
 
-  const getCars = () => {
-    const carsCollectionRef = collection(db, "cars");
-    getDocs(carsCollectionRef)
-      .then((res) => {
-        const cars = res.docs.map((doc) => ({
-          data: doc.data(),
-          id: doc.id,
-        }));
-        setCars(cars);
-      })
-      .catch((err) => console.log(err.message));
-  };
+  // const getCars = () => {
+  //   const carsCollectionRef = collection(db, "cars");
+  //   getDocs(carsCollectionRef)
+  //     .then((res) => {
+  //       const cars = res.docs.map((doc) => ({
+  //         data: doc.data(),
+  //         id: doc.id,
+  //       }));
+  //       setCars(cars);
+  //     })
+  //     .catch((err) => console.log(err.message));
+  // };
 
   return (
     <section className={styles.catalog}>
@@ -145,16 +161,18 @@ function CatalogCars() {
             <li key={car.id}>
               <div className={styles["cars-container"]}>
                 <div className={styles["car-img"]}>
-                  <img src={bmw} alt="" className={styles.carImage} />
+                  <img src={car.imageUrl} alt="" className={styles.carImage} />
                 </div>
                 <div className={styles.desc}>
-                  <p className={styles["car-title"]}>{car.data.Make}</p>
-                  <p>Price: {car.data.price}$</p>
+                  <p className={styles["car-title"]}>{car.make} {car.model}</p>
+                  {/* car.data.make */}
+                  <p>Price: {car.price}$</p>
+                  {/* car.data.price */}
                   <p>
-                    {car.data.year} / Fuel: Diesel / Gearbox: Automatic/ Doors:4 /
+                    {car.year} / Fuel: {car.fuel} / Gearbox: {car.gearbox}/ Doors:{car.doors} /
                   </p>
                   <button className={styles.detailsBtn}>
-                  <Link className={styles.detailsBtn} to={`/details/${car.id}`}>Details</Link>
+                  <Link className={styles.detailsBtnLink} to={`/details/${car.id}`}>Details</Link>
                   </button>
                   {/* <button className={styles.detailsBtn}>View Details</button> */}
                 </div>

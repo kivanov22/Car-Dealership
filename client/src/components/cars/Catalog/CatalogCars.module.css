@@ -144,6 +144,18 @@
     border-color: #09f; 
 }
 
+.detailsBtnLink{
+    /* background: #09f;  */
+    color: #09f; 
+    /* border-color: #09f;  */
+    text-decoration: none;
+}
+
+
+.detailsBtnLink:hover{
+    color: white;
+}
+
 .rightSide {
     margin-right: 30px;
     /* display: flex; */

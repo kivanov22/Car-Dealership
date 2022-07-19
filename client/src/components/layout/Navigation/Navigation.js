@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Navigation.module.css";
-import logo from "../../../assets/cars.png";
+import { Link, NavLink } from "react-router-dom";
 
 function Navigation() {
   return (
@@ -8,7 +8,6 @@ function Navigation() {
       <div className={styles.container}>
         {/* left side */}
         <div className={styles["container-logo"]}>
-          {/* <img src={logo} alt="" className={styles.logo}/> */}
           <p className={styles["header-title"]}>
             IVANOV <span className={styles["header-span"]}>AUTO</span>
           </p>
@@ -18,34 +17,34 @@ function Navigation() {
         <div className={styles["right-side"]}>
           <ul className={styles.navList}>
             <li className={styles.listItem}>
-              <a href="/login" className={styles.element}>
+              <NavLink to='/login' className={styles.element}>
                 Sign In
-              </a>
+              </NavLink>
             </li>
             <li className={styles.listItem}>
-              <a href="/register" className={styles.element}>
+              <NavLink to='/register' className={styles.element}>
                 Register
-              </a>
+              </NavLink>
             </li>
             <li className={styles.listItem}>
-              <a href="/logout" className={styles.element}>
+              <NavLink to='/logout' className={styles.element}>
                 Logout
-              </a>
+              </NavLink>
             </li>
             <li className={styles.listItem}>
-              <a href="/catalogCars" className={styles.element}>
+              <NavLink to='/catalogCars' className={styles.element}>
                 All Cars
-              </a>
+              </NavLink>
             </li>
             <li className={styles.listItem}>
-              <a href="/myCars" className={styles.element}>
+              <NavLink to='/myCars' className={styles.element}>
                 My Cars
-              </a>
+              </NavLink>
             </li>
             <li className={styles.listItem}>
-              <a href="/details" className={styles.element}>
+              <NavLink to='/details' className={styles.element}>
                 Details
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>

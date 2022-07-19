@@ -15,6 +15,7 @@ namespace Car_Dealership_API.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
 
         public AuthenticateController(
@@ -57,6 +58,14 @@ namespace Car_Dealership_API.Controllers
             }
 
             return Unauthorized();
+        }
+
+        [HttpPost]
+        [Route("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
