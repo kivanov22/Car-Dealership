@@ -13,7 +13,6 @@ import * as authService from "../../../services/authService.js";
 function Login() {
   const [values, setValues] = useState({
     username: "",
-    email: "",
     password: "",
   });
 
@@ -26,12 +25,16 @@ function Login() {
   };
 
 
-  const registerSubmitHandler = (e) => {
+  const LoginSubmitHandler = (e) => {
     e.preventDefault();
 
-    let{username,email,password} = Object.fromEntries(new FormData(e.currentTarget));
+    let{username,password} = Object.fromEntries(new FormData(e.currentTarget));
    
-      authService.login(username,email,password)
+    console.log(username);
+    console.log(password);
+
+
+      authService.login(username,password)
       .then(res => console.log(res))
       .catch(err => console.log(err.message))
    
@@ -44,7 +47,7 @@ function Login() {
           <form
             className={styles["form-container"]}
             method="POST"
-            onSubmit={registerSubmitHandler}
+            onSubmit={LoginSubmitHandler}
           >
             <h1 className={styles["form-headings"]}>Sign in</h1>
             <div className={styles["social-container"]}>
@@ -69,20 +72,24 @@ function Login() {
             </div>
             <span className={styles["form-spans"]}>or use your account</span>
             <input
+              id="username"
+              name="username"
               type="text"
               placeholder="Username"
               className={styles["input-txt"]}
               value={values.username}
               onChange={changeHandler}
             />
-            <input
+            {/* <input
               type="email"
               placeholder="Email"
               className={styles["input-txt"]}
               value={values.email}
               onChange={changeHandler}
-            />
+            /> */}
             <input
+              id="password"
+              name="password"
               type="password"
               placeholder="Password"
               className={styles["input-txt"]}
@@ -92,7 +99,7 @@ function Login() {
             <a href="#" className={styles["form-anchors"]}>
               Forgot your password?
             </a>
-            <button className={styles.btn}>Sign In</button>
+            <input type="submit" className={styles.btn} value="Login" />
           </form>
         </div>
         <div className={styles["overlay-container"]}>

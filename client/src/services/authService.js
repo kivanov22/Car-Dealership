@@ -1,4 +1,3 @@
-// const baseUrl = 'http://localhost:3000';
 const serverUrl = 'https://localhost:7213';
 
 //Register as User
@@ -26,13 +25,13 @@ export const registerAdmin = (username,email,password) =>{
 };
 
 
-export const login = async (username,email,password)=>{
+export const login = async (username,password)=>{
     let response  = await fetch(`${serverUrl}/api/Authenticate/login`,{
         method:'POST',
         headers: {
-            'content-type':'application/json'
+            'content-type':'application/json',
         },
-        body: JSON.stringify({username,email,password})
+        body: JSON.stringify({username,password})
     });
 
     let jsonResult = await response.json();

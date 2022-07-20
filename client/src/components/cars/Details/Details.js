@@ -2,13 +2,25 @@ import React from "react";
 import styles from '../Details/Details.module.css';
 
 import { Link} from 'react-router-dom';
+import { useEffect } from "react";
+import { useState } from "react";
+
 import { useParams } from 'react-router-dom';
+import * as carService from '../../../services/carService.js';
 
-function Details({cars}) {
-const { carId } = useParams();
+function Details() {
+ const { carId } = useParams();
 
-const car = cars.find(x => x.id == carId);
-console.log(car);
+// const car = cars.find(x => x.id == carId);
+// console.log(car);
+const [car, setCar] = useState({});
+
+useEffect(()=>{
+  carService.getOne(carId)
+  .then(carData =>setCar(carData));
+},[]);
+
+
   return (
     <section className={styles.details}>
     <div className={styles.container}>
@@ -216,7 +228,7 @@ console.log(car);
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}>{car.seller.name}</strong>
+                                  {/* <strong className={styles['contact-info']}>{car.seller.name}</strong> */}
                              </p>
 
                              <p>
@@ -224,7 +236,7 @@ console.log(car);
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >{car.seller.phone}</a></strong>
+                                  {/* <strong className={styles['contact-info']}><a >{car.seller.phone}</a></strong> */}
                              </p>
 
 
@@ -233,7 +245,7 @@ console.log(car);
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >{car.seller.address}</a></strong>
+                                  {/* <strong className={styles['contact-info']}><a >{car.seller.address}</a></strong> */}
                              </p>
 
                              <p>
@@ -241,7 +253,7 @@ console.log(car);
 
                                   <br/>
 
-                                  <strong><a  href="mailto:krisko512@gmail.com" className={styles['contact-info']}>{car.seller.email}</a></strong>
+                                  {/* <strong><a  href="mailto:krisko512@gmail.com" className={styles['contact-info']}>{car.seller.email}</a></strong> */}
                              </p>
                         </div>
                    </div>

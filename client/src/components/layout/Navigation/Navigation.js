@@ -41,11 +41,11 @@ function Navigation() {
                 My Cars
               </NavLink>
             </li>
-            <li className={styles.listItem}>
+            {/* <li className={styles.listItem}>
               <NavLink to='/details' className={styles.element}>
                 Details
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

@@ -20,7 +20,7 @@ function App() {
     .then(carData =>setCars(carData));
   },[]);
 
-  
+
 
   return (
     <div className="App">
@@ -31,8 +31,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Dashboard cars={cars}/>} />
-          {/* <Route path="/details" element={<Details />} /> */}
-          <Route path="/details/:carId" element={<Details cars={cars}/>} />
+          <Route path="/details/:carId" element={<Details />} />
           <Route path="/edit/:carId" element={<Edit cars={cars}/>} />
           <Route path='/create' element={<Create />}/>
         </Routes>

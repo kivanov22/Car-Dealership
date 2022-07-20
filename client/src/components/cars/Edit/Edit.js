@@ -1,17 +1,35 @@
 import React from 'react'
 import styles from '../Edit/Edit.module.css';
-import car from '../../../assets/img/product-3-720x480.jpg'
-
+import { useEffect } from "react";
+import { useState } from "react";
 // import { Link} from 'react-router-dom';
+import * as carService from '../../../services/carService.js';
+import { useParams } from 'react-router-dom';
 
 function Edit() {
+     const [car, setCar] = useState({});
+     const { carId } = useParams();
+
+     // useEffect(() => {
+     //   carService.edit(car)
+     //   .then(carData =>setCar(carData,carId));
+     // }, []);
+
+     const carEditSubmitHandler =(e) => {
+          e.preventDefault();
+          let carData = Object.fromEntries(new FormData(e.currentTarget));
+
+          carService.edit(carData)
+          .then(carInfo =>setCar(carInfo));
+     }
+
   return (
     <section className={styles.details}>
     <div className={styles.container}>
          <div className={styles.row}>
               <div className={styles.firstCol}>
                    <div className={styles['container-upper-pic']}>
-                        <img src={car} alt="" loading="lazy" className={styles.upperPic}/>
+                        {/* <img src={car} alt="" loading="lazy" className={styles.upperPic}/> */}
                    </div>
 
                    <br/>
@@ -19,7 +37,7 @@ function Edit() {
                    <div className={styles.row}>
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                                  <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
+                                  {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                              </div>
                              
                              <br/>
@@ -27,7 +45,7 @@ function Edit() {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
+                             {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                              </div>
                              
                              <br/>
@@ -35,7 +53,7 @@ function Edit() {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/>
+                             {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                              </div>
                              <br/>
                         </div>
@@ -43,12 +61,13 @@ function Edit() {
               </div>
 
               <div className={styles.secondCol}>
-                   <form  method="post" className={styles.form}>
-                        <h2 className={styles['form-header']}>BMW X6</h2>
+                   <form  method="POST" className={styles.form} onSubmit={carEditSubmitHandler}>
+                        <input className={styles['form-header']} name="make" id="make" defaultValue={car.make}/>
+                        <input className={styles['form-header']} name="model" id="model" defaultValue={car.model}/>
 
-                        <p className={styles.description}>ABS, Leather seats, Power Assisted Steering, Electric heated seats, New HU and AU, Xenon headlights</p>
+                        <input className={styles.description} name="miniDescription" id="miniDescription" defaultValue={car.miniDescription}/>
                         
-                        <p className="lead"><small><del> $11999.00</del></small> <strong className={styles['span-color']}>$11779.00</strong></p>
+                        <p><input className={styles['span-color']} /></p>
 
                         <div className={styles.row}>
                              <div className={styles['info-col-1']}>
@@ -57,7 +76,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Used vehicle</strong>
+                                       <input className={styles['form-strong']} name="type" id="type" defaultValue={car.type} />
                                   </p>
                              </div>
 
@@ -67,7 +86,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>BMW</strong>
+                                       <input className={styles['form-strong']} name="make" id="make" defaultValue={car.make} />
                                   </p>
                              </div>
 
@@ -77,7 +96,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>X6</strong>
+                                       <input className={styles['form-strong']} name="model" id="model" defaultValue={car.model} />
                                   </p>
                              </div>
 
@@ -87,7 +106,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>05/2010</strong>
+                                       <input className={styles['form-strong']} name="year" id="year" defaultValue={car.year} />
                                   </p>
                              </div>
 
@@ -97,7 +116,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>5000 km</strong>
+                                       <input className={styles['form-strong']} name="mileage" id="mileage" defaultValue={car.mileage} />
                                   </p>
                              </div>
 
@@ -107,7 +126,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Diesel</strong>
+                                       <input className={styles['form-strong']} name="fuel" id="fuel" defaultValue={car.fuel} />
                                   </p>
                              </div>
 
@@ -117,7 +136,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>1800 cc</strong>
+                                       <input className={styles['form-strong']} name="engineSize" id="engineSize" defaultValue={car.engineSize} />
                                   </p>
                              </div>
 
@@ -127,7 +146,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>85 hp</strong>
+                                       <input className={styles['form-strong']} name="power" id="power" defaultValue={car.power} />
                                   </p>
                              </div>
 
@@ -138,7 +157,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Manual</strong>
+                                       <input className={styles['form-strong']} name="gearbox" id="gearbox" defaultValue={car.gearbox} />
                                   </p>
                              </div>
 
@@ -148,7 +167,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>4</strong>
+                                       <input className={styles['form-strong']} name="numberOfSeats" id="numberOfSeats" defaultValue={car.numberOfSeats} />
                                   </p>
                              </div>
 
@@ -158,7 +177,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>2/3</strong>
+                                       <input className={styles['form-strong']} name="doors" id="doors" defaultValue={car.doors} />
                                   </p>
                              </div>
 
@@ -168,7 +187,7 @@ function Edit() {
 
                                        <br/>
 
-                                       <strong className={styles['form-strong']}>Black</strong>
+                                       <input className={styles['form-strong']} name="color" id="color" defaultValue={car.color} />
                                   </p>
                              </div>
 
@@ -195,7 +214,7 @@ function Edit() {
                         </div>
 
                         <div className={styles['panel-body']}>
-                             <p >- Colour coded bumpers<br/>- Tinted glass<br/>- Immobiliser<br/>-</p>
+                             <textarea name="description" id="description" cols="30" rows="10"></textarea>
                         </div>
                    </div>
               </div>
@@ -212,7 +231,7 @@ function Edit() {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}>Kristian Smith</strong>
+                                  {/* <input className={styles['contact-info']} name="name" id="name" defaultValue={car.seller.name}/> */}
                              </p>
 
                              <p>
@@ -220,16 +239,16 @@ function Edit() {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >123-456-789</a></strong>
+                                  {/* <input className={styles['contact-info']} name="phone" id="phone" defaultValue={car.seller.phone}/> */}
                              </p>
 
 
                              <p>
-                                  <span>Mobile phone</span>
+                                  <span>Address</span>
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >456789123</a></strong>
+                                  {/* <input className={styles['contact-info']}  name="address" id="address" defaultValue={car.seller.address}/> */}
                              </p>
 
                              <p>
@@ -237,7 +256,7 @@ function Edit() {
 
                                   <br/>
 
-                                  <strong><a  href="mailto:krisko512@gmail.com" className={styles['contact-info']}>krisko512@gmail.com</a></strong>
+                                  {/* <input href="mailto:krisko512@gmail.com" className={styles['contact-info']} name="email" id="email" defaultValue={car.seller.email}/> */}
                              </p>
                         </div>
                    </div>
