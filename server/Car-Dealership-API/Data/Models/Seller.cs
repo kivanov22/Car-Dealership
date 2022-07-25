@@ -20,6 +20,7 @@ namespace Car_Dealership_API.Data.Models
 
         [Required]
         public string Address { get; set; }
+            
 
     }
 
