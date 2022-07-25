@@ -92,7 +92,9 @@
 }
 
 .car-img {
-    
+    object-fit: cover;
+    height: 50vh;
+    width: 55%;
 }
 
 .carImage {

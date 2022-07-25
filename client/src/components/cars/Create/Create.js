@@ -1,158 +1,123 @@
 import React from "react";
 import { useState } from "react";
+import useCarData from "../../../hooks/carData.js";
 
 import styles from "../Create/Create.module.css";
-import { useEffect } from "react";
 import * as carService from "../../../services/carService.js";
-import { useParams } from "react-router-dom";
 
 function Create() {
-//   const [car, setCar] = useState({});
-
-  //   firstImage: "",
-  //     secondImage: "",
-  //     thirdImage: "",
-  //     numberOfSeats: "",
-
-  const [values, setValues] = useState({
-    condition: "",
-    type: "",
-    make: "",
-    model: "",
-    imageUrl: "",
-    year: "",
-    price: "",
-    gearbox: "",
-    fuel: "",
-    color: "",
-    power: "",
-    engineSize: "",
-    mileage: "",
-    doors: "",
-    description: "",
-    miniDescription: "",
-    isOwner: Boolean,
-    seller: {
-      name: "",
-      phone: "",
-      email: "",
-      address: "",
-    },
-  });
-
-//   const[name,setName] = useState('');
-//   const[address,setAddress] = useState('');
-//   const[email,setEmail] = useState('');
-//   const[phone,setPhone] = useState('');
-
-
-  const changeHandler = (e)=> {
-     setValues(state => ({
-       ...state
-       [e.target]
-       
-     }));
-   };
-
-  
-
+  const{ 
+    condition,
+    type,
+    make,
+    model,
+    imageUrl,
+    year,
+    price,
+    gearbox,
+    fuel,
+    color,
+    power,
+    engineSize,
+    mileage,
+    doors,
+    description,
+    miniDescription,
+    isOwner,
+    name,
+    phone,
+    email,
+    address,
+    setCondition,
+    setType,
+    setMake,
+    setModel,
+    setImageUrl,
+    setYear,
+    setPrice,
+    setGearbox,
+    setFuel,
+    setColor,
+    setPower,
+    setEngineSize,
+    setMileage,
+    setDoors,
+    setDescription,
+    setMiniDescription,
+    setIsOwner,
+    setName,
+    setPhone,
+    setEmail,
+    setAddress
+  }=useCarData();
+ 
   const carCreateSubmitHandler = (e) => {
     e.preventDefault();
-    let carData= Object.fromEntries(new FormData(e.currentTarget));
+    let {condition,
+      type,
+      make,
+      model,
+      imageUrl,
+      year,
+      price,
+      gearbox,
+      fuel,
+      color,
+      power,
+      engineSize,
+      mileage,
+      doors,
+      description,
+      miniDescription,
+      isOwner}= Object.fromEntries(new FormData(e.currentTarget));
+    let {name,address,email,phone}= Object.fromEntries(new FormData(e.currentTarget));
    
+     year = Number(year);
+     price= Number(price);
+     power= Number(power);
+     engineSize = Number(engineSize);
+      doors = Number(doors);
+     mileage = Number(mileage);
+     isOwner = Boolean(isOwner);
+      phone = Number(phone);
 
-     // console.log(carData);
+    let carData = {
+      condition,
+      type,
+      make,
+      model,
+      imageUrl,
+      year,
+      price,
+      gearbox,
+      fuel,
+      color,
+      power,
+      engineSize,
+      mileage,
+      doors,
+      description,
+      miniDescription,
+      isOwner
+    }
 
-    //const { condition,isOwner, ...seller} = carData;
-//     values.condition = carData.condition;
-//     values.imageUrl = carData.imageUrl;
-//     values.price = carData.condition;
-//     values.make = carData.make;
-//     values.model = carData.model;
-//     values.year = carData.year;
-//     values.mileage = carData.mileage;
-//     values.fuel = carData.fuel;
-//     values.engineSize = carData.engineSize;
-//     values.power = carData.power;
-//     values.gearbox = carData.gearbox;
-//     values.doors = carData.doors;
-//     values.color = carData.color;
-//     values.description = carData.description;
-//     values.miniDescription = carData.miniDescription;
-//     values.isOwner = carData.isOwner;
-//     values.seller.name = carData.name;
-//     values.seller.phone = carData.phone;
-//     values.seller.email = carData.email;
-//     values.seller.address = carData.address;
-    //let cars = Object.assign(values);
+      let seller ={
+        name,
+        address,
+        email,
+        phone
+      }
 
-    //    let sellerData =   setValues({...values,seller:{
-    //           // ...values.seller,
-    //           name:carData.name,
-    //           phone:carData.phone,
-    //           address:carData.address,
-    //           email: carData.email,
+      let sendData = {
+        ...carData,
+        seller
+        }
+      console.log(sendData)
+      
+     carService.create(sendData);
 
-    //      }});
-
-    // let sendData = {
-    //      ...values,
-    //      ...sellerData
-    // }
-
-    // const {
-    // mainImage,
-    // condition,
-    // price,
-    // type,
-    // make,
-    // model,
-    // firstRegistration,
-    // mileage,
-    // fuel,
-    // engineSize,
-    // power,
-    // gearBox,
-    // doors,
-    // color,
-    // description,
-    // isOwner,
-    // seller: {
-    //   name,
-    //   phone,
-    //   address,
-    //   email} = this.values;
-
-    //     const sendData = setValues( state =>{
-    //           values.mainImage = {...carData.mainImage};
-    //           values.condition = {...state.condition};
-    //           values.price = {...state.price};
-    //           values.make = {...state.make};
-    //           values.model = {...state.model};
-    //           values.firstRegistration = {...state.firstRegistration};
-    //           values.mileage = {...state.mileage};
-    //           values.fuel = {...state.fuel};
-    //           values.engineSize = {...state.engineSize};
-    //           values.power = {...state.power};
-    //           values.gearBox = {...state.gearBox};
-    //           values.doors = {...state.doors};
-    //           values.color = {...state.color};
-    //           values.description = {...state.description};
-    //           values.isOwner = {...state.isOwner};
-    //           values.miniDescription = {...state.miniDescription};
-    //           values.seller.name = {...state.seller.name};
-    //           values.seller.phone = {...state.seller.phone};
-    //           values.seller.email = {...state.seller.email};
-    //           values.seller.address = {...state.seller.address};
-
-    //           return {values};
-    //     });
-
-    console.log(carData);
-    carService.create(carData);
-//     .then(res =>console.log(res)
-//     .catch(err =>console.log(err)));
-  };
+    }
+ 
 
   return (
     <section className={styles.details}>
@@ -168,7 +133,7 @@ function Create() {
               <label htmlFor="" className={styles["form-span"]}>
                 Main Picture
               </label>
-              <input type="text" id="imageUrl" name="imageUrl"  value={values.imageUrl} onChange={changeHandler}/>
+              <input type="text" id="imageUrl" name="imageUrl"  value={imageUrl} onChange={setImageUrl}/>
             </div>
 
             <br />
@@ -214,18 +179,18 @@ function Create() {
                 name="miniDescription"
                 id="miniDescription"
                //  defaultValue={car.miniDescription}
-                value={values.miniDescription} onChange={changeHandler}
+                value={miniDescription} onChange={setMiniDescription}
               />
 
               <label htmlFor="condition" className={styles["form-span"]}>
                 Condition
               </label>
-              <input type="text" id="condition" name="condition" value={values.condition} onChange={changeHandler}/>
+              <input type="text" id="condition" name="condition" value={condition} onChange={setCondition}/>
 
               <label htmlFor="price" className={styles["form-span"]}>
                 Price
               </label>
-              <input type="number" id="price" name="price" value={values.price} onChange={changeHandler} />
+              <input type="number" id="price" name="price" value={price} onChange={setPrice} />
 
               <div className={styles.row}>
                 <div className={styles["info-col-1"]}>
@@ -240,7 +205,7 @@ function Create() {
                       name="type"
                       id="type"
                     //   defaultValue={car.type}
-                      value={values.type} onChange={changeHandler}
+                      value={type} onChange={setType}
                     />
                   </p>
                 </div>
@@ -257,7 +222,7 @@ function Create() {
                       name="make"
                       id="make"
                     //   defaultValue={car.make}
-                    value={values.make} onChange={changeHandler}
+                    value={make} onChange={setMake}
                     />
                   </p>
                 </div>
@@ -274,7 +239,7 @@ function Create() {
                       name="model"
                       id="model"
                     //   defaultValue={car.model}
-                    value={values.model} onChange={changeHandler}
+                    value={model} onChange={setModel}
                     />
                   </p>
                 </div>
@@ -293,7 +258,7 @@ function Create() {
                       name="year"
                       id="year"
                     //   defaultValue={car.year}
-                    value={values.year} onChange={changeHandler}
+                    value={year} onChange={setYear}
                     />
                   </p>
                 </div>
@@ -310,7 +275,7 @@ function Create() {
                       name="mileage"
                       id="mileage"
                     //   defaultValue={car.mileage}
-                    value={values.mileage} onChange={changeHandler}
+                    value={mileage} onChange={setMileage}
                     />
                   </p>
                 </div>
@@ -327,7 +292,7 @@ function Create() {
                       name="fuel"
                       id="fuel"
                     //   defaultValue={car.fuel}
-                    value={values.fuel} onChange={changeHandler}
+                    value={fuel} onChange={setFuel}
                     />
                   </p>
                 </div>
@@ -344,7 +309,7 @@ function Create() {
                       name="engineSize"
                       id="engineSize"
                     //   defaultValue={car.engineSize}
-                    value={values.engineSize} onChange={changeHandler}
+                    value={engineSize} onChange={setEngineSize}
                     />
                   </p>
                 </div>
@@ -361,7 +326,7 @@ function Create() {
                       name="power"
                       id="power"
                     //   defaultValue={car.power}
-                    value={values.power} onChange={changeHandler}
+                    value={power} onChange={setPower}
                     />
                   </p>
                 </div>
@@ -378,7 +343,7 @@ function Create() {
                       name="gearbox"
                       id="gearbox"
                     //   defaultValue={car.gearbox}
-                    value={values.gearbox} onChange={changeHandler}
+                    value={gearbox} onChange={setGearbox}
                     />
                   </p>
                 </div>
@@ -395,20 +360,10 @@ function Create() {
                       name="isOwner"
                       id="isOwner"
                     //   defaultValue={car.isOwner}
-                    value={values.isOwner} onChange={changeHandler}
+                    value={isOwner} onChange={setIsOwner}
                     />
                   </p>
                 </div>
-
-                {/* <div className={styles['info-col-1']}>
-                                   <p className={styles['form-text']}>
-                                        <span className={styles['form-span']}>Number of seats</span>
- 
-                                        <br/>
- 
-                                        <input className={styles['form-strong']} name="numberOfSeats" id="numberOfSeats" defaultValue={car.numberOfSeats} />
-                                   </p>
-                              </div> */}
 
                 <div className={styles["info-col-1"]}>
                   <p className={styles["form-text"]}>
@@ -422,7 +377,7 @@ function Create() {
                       name="doors"
                       id="doors"
                     //   defaultValue={car.doors}
-                    value={values.doors} onChange={changeHandler}
+                    value={doors} onChange={setDoors}
                     />
                   </p>
                 </div>
@@ -439,7 +394,7 @@ function Create() {
                       name="color"
                       id="color"
                     //   defaultValue={car.color}
-                    value={values.color} onChange={changeHandler}
+                    value={color} onChange={setColor}
                     />
                   </p>
                 </div>
@@ -464,7 +419,7 @@ function Create() {
                   id="description"
                   cols="30"
                   rows="10"
-                  value={values.description} onChange={changeHandler}
+                  value={description} onChange={setDescription}
                 ></textarea>
               </div>
             </div>
@@ -487,7 +442,8 @@ function Create() {
                     className={styles["contact-info"]}
                     name="name"
                     id="name"
-                    value={values.seller.name} onChange={changeHandler}
+                    value={name} 
+                    onChange={setName}
                   />
                 </p>
 
@@ -501,7 +457,7 @@ function Create() {
                     className={styles["contact-info"]}
                     name="phone"
                     id="phone"
-                    value={values.seller.phone} onChange={changeHandler}
+                    value={phone } onChange={setPhone}
                   />
                 </p>
 
@@ -515,7 +471,7 @@ function Create() {
                     className={styles["contact-info"]}
                     name="address"
                     id="address"
-                    value={values.seller.address} onChange={changeHandler}
+                    value={address} onChange={setAddress}
                   />
                 </p>
 
@@ -530,8 +486,8 @@ function Create() {
                     className={styles["contact-info"]}
                     name="email"
                     id="email"
-                    value={values.seller.email} 
-                    onChange={changeHandler}
+                    value={email} 
+                    onChange={setEmail}
                   />
                 </p>
               </div>
@@ -544,100 +500,7 @@ function Create() {
   );
 }
 
+
 export default Create;
 
-{
-  /* <div className={styles.wrapper}>
-<form className={styles.container}>
-  <div className={styles['main-picture']}>
-  <label htmlFor="">Main Picture</label>
-  <input type="text" placeholder='url'/>
-  </div>
 
-
-  <div className={styles['three-little-photos']}>
-  <label htmlFor="">Three smaller</label>
-  <label htmlFor="">Picture:1</label>
-  <input type="text" placeholder='url'/>
-
-  <label htmlFor="">Picture:2</label>
-  <input type="text" placeholder='url'/>
-
-  <label htmlFor="">Picture:3</label>
-  <input type="text" placeholder='url'/>
-  </div>
-
-  <div className={styles['main-info']}>
-  <label htmlFor="">Make</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Model</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Description Upper</label>
-  <textarea name="" id="" cols="30" rows="10"></textarea>
-
-  <label htmlFor="">Price</label>
-  <input type="text" placeholder='' />
-  </div>
- 
- <div className={styles.specifics}>
-  <label htmlFor="">Type</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Make</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Model</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">First Registration</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Mileage</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Fuel</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Engine Size</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Power</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Gearbox</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Number of Seats</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Doors</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Color</label>
-  <input type="text" placeholder='' />
- </div>
-
-<div className={styles['bigger-description']}>
-<label htmlFor="">Description</label>
-<textarea name="" id="" cols="30" rows="10"></textarea>
-</div>
-
-<div className='contact-info'>
-<label htmlFor="">Name</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Phone</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Address</label>
-  <input type="text" placeholder='' />
-
-  <label htmlFor="">Email</label>
-  <input type="text" placeholder='' />
-</div>
-
-</form>
-</div> */
-}

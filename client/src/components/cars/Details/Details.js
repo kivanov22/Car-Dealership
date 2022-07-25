@@ -1,15 +1,19 @@
 import React from "react";
 import styles from '../Details/Details.module.css';
+import { GoogleMap, useJsApiLoader,Marker,useLoadScript } from '@react-google-maps/api';
+import {useMemo} from "react";
+import * as carService from '../../../services/carService.js';
+// import * as dotenv from 'dotenv'
 
 import { Link} from 'react-router-dom';
 import { useEffect } from "react";
 import { useState } from "react";
-
 import { useParams } from 'react-router-dom';
-import * as carService from '../../../services/carService.js';
+
+
 
 function Details() {
- const { carId } = useParams();
+     const { carId } = useParams();
 
 // const car = cars.find(x => x.id == carId);
 // console.log(car);
@@ -17,9 +21,21 @@ const [car, setCar] = useState({});
 
 useEffect(()=>{
   carService.getOne(carId)
-  .then(carData =>setCar(carData));
+  .then(carData =>setCar(carData));// console.log(carData)
 },[]);
 
+const carDeleteHandler = async () => {
+ await carService.deleteCar(car.id)
+ .then(carData => setCar(carData.filter(x=>x.id != carId))); // ??
+}
+
+//const myEnv = dotenv.config();
+const {isLoaded} = useJsApiLoader({
+     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+});
+//console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+
+if(!isLoaded) return <div>Loading...</div>;
 
   return (
     <section className={styles.details}>
@@ -190,12 +206,13 @@ useEffect(()=>{
 
                              <div className={styles['info-col-buttons']}>
                               
-                              <button className={styles.editBtn}>
+                              <button className={styles.editBtn} >
                               <Link className={styles.editBtn} to={`/edit/${car.id}`}>Edit</Link>
                               </button>
                                   
-                              <button className={styles.deleteBtn}>
-                              <Link className={styles.deleteBtn} to={`/delete/${car.id}`}>Delete</Link>
+                              <button className={styles.deleteBtn} onClick={() => carDeleteHandler(car.id)}>
+                              {/* <Link className={styles.deleteBtn} to={`/delete/${car.id}`}>Delete</Link> */}
+                              Delete
                               </button>
                              </div>
                         </div>
@@ -228,7 +245,7 @@ useEffect(()=>{
 
                                   <br/>
 
-                                  {/* <strong className={styles['contact-info']}>{car.seller.name}</strong> */}
+                                  <strong className={styles['contact-info']}>{car.seller.name}</strong>
                              </p>
 
                              <p>
@@ -236,7 +253,7 @@ useEffect(()=>{
 
                                   <br/>
 
-                                  {/* <strong className={styles['contact-info']}><a >{car.seller.phone}</a></strong> */}
+                                  <strong className={styles['contact-info']}><a >{car.seller.phone}</a></strong>
                              </p>
 
 
@@ -245,7 +262,7 @@ useEffect(()=>{
 
                                   <br/>
 
-                                  {/* <strong className={styles['contact-info']}><a >{car.seller.address}</a></strong> */}
+                                  <strong className={styles['contact-info']}><a >{car.seller.address}</a></strong>
                              </p>
 
                              <p>
@@ -253,12 +270,19 @@ useEffect(()=>{
 
                                   <br/>
 
-                                  {/* <strong><a  href="mailto:krisko512@gmail.com" className={styles['contact-info']}>{car.seller.email}</a></strong> */}
+                                  <strong><a  className={styles['contact-info']}>{car.seller.email}</a></strong>
                              </p>
                         </div>
                    </div>
               </div>
          </div>
+         <GoogleMap zoom={10} 
+         center={{lat:43, lng:25}} 
+     //     key="API_KEY"
+     //     googleMapsApiKey={{process.env.REACT_APP_GOOGLE_API_KEY}}
+     //     key={{key: process.env.REACT_APP_GOOGLE_API_KEY}}
+         mapContainerClassName={styles['map-container']}
+         ></GoogleMap>
     </div>
 </section>
   );

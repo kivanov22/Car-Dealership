@@ -270,3 +270,8 @@
     /* align-content: center; */
     /* justify-items: center; */
 }
+
+.map-container {
+    width: 100%;
+    height: 100%;
+}

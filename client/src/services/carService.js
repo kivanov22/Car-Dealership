@@ -16,22 +16,6 @@ const result = await response.json();
 
 return result.value;
 }
-//Create Edit
-export const createEdit = async (carData) => {
-    const response = await fetch(`${baseUrl}/Car/CreateEdit`,{
-        method:'POST',
-        headers: {
-            'content-type':'application/json',
-            //'X-Authorization': token,
-        },
-        body: JSON.stringify(carData,carData.Id)
-    });
-    
-    
-    const result = await response.json();
-    
-    return result;
-    }
 
 //Post / Create 
 export const create = async (carData) => {
@@ -50,20 +34,33 @@ const result = await response.json();
 return result.value;
 }
 
-export const edit = async (carData) => {
-    const response = await fetch(`${baseUrl}/Car/Edit/${carData.id}`,{
-        method:'POST',
+export const edit = async (id,carData) => {
+    const response = await fetch(`${baseUrl}/Car/Edit/${id}`,{
+        method:'PUT',
         headers: {
             'content-type':'application/json',
         },
         body: JSON.stringify(carData)
     });
     
-    
-    
     const result = await response.json();
     
     return result.value;
+}
+
+
+export const deleteCar = (id) => {
+    return fetch(`${baseUrl}/Car/Delete/${id}`,{
+        method: 'DELETE',
+    }).then(res=>res.json())
+}
+
+export const getLatest= ()=> {
+    return fetch(`${baseUrl}/Car/Latest`).then(res => res.json());
+}
+
+export const myCars = (userId) => {
+    return fetch(`${baseUrl}/MyCars/${userId}`)
 }
     // export const update = (petId, petData) => request.put(`${baseUrl}/pets/${petId}`, petData);
 
