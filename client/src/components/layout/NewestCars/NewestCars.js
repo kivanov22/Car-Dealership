@@ -1,153 +1,75 @@
 import React from "react";
 import styles from "../NewestCars/NewestCars.module.css";
-import car from '../../../assets/img/product-2-720x480.jpg'
+import * as carService from '../../../services/carService.js';
+import {useEffect} from 'react';
+import {useState} from 'react';
+import { Link } from "react-router-dom";
 
 function NewestCars() {
+
+  const [cars, setCars] = useState([]);
+
+  useEffect(()=>{
+    carService.getLatest()
+    .then(carData =>setCars(carData));// console.log(carData)
+  },[]);
+
+
+
   return (
     <section className={styles['section-new-cars']}>
       <h2>Newest Cars:</h2>
 
       <ul className={styles.list}>
-        <li className={styles.item}>
+      {cars.map((car) => (
+        <li className={styles.item}  key={car.id}>
           <div className={styles.wrapper}>
             <div className={styles['featured-car']}>
               <div className={styles.thumb}>
                 <div className={styles['thumb-img']}>
-                  <img src={car} alt="" />
+                  <img src={car.imageUrl} alt="" className={styles.carImg}/>
                 </div>
                 <div className={styles['overlay-content']}>
                   <strong className={styles['strong-fields']}>
-                    <i className="fa fa-dashboard"></i> 130 000km
+                    <i className="fa fa-dashboard"></i> {car.mileage}km
                   </strong>{" "}
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <strong className={styles['strong-fields']}>
-                    <i className="fa fa-cube"></i> 1800 cc
+                    <i className="fa fa-cube"></i> {car.engizeSize} cc
                   </strong>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <strong className={styles['strong-fields']}>
-                    <i className="fa fa-cog"></i> Manual
+                    <i className="fa fa-cog"></i> {car.gearbox}
                   </strong>
                 </div>
               </div>
               <div className={styles['down-content']}>
-                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
+                <h4>{car.miniDescription}</h4>
 
                 <br />
 
-                <p className={styles['container-text']}>190 hp / Petrol / 2008 / Used vehicle</p>
+                <p className={styles['container-text']}>{car.power} hp / {car.fuel} / {car.year} / {car.condition}</p>
 
                 <p className={styles['container-text']}>
                   <span className={styles['price-span']}>
-                    <del>
-                      <sup>$</sup>11999.00{" "}
-                    </del>{" "}
                     <strong className={styles['strong-fields']}>
-                      <sup>$</sup>11779.00
+                      <sup>$</sup>{car.price}
                     </strong>
                   </span>
                 </p>
 
                 <div className={styles['text-button']}>
-                  <a href="car-details.html" className={styles.details}>Details</a>
+                  <p className={styles.details}>
+                  <Link to={`/details/${car.id}`} className={styles.details}> 
+                    Details
+                  </Link>
+                    </p>
                 </div>
               </div>
             </div>
           </div>
         </li>
-
-        <li>
-          <div className={styles.wrapper}>
-            <div className={styles['featured-car']}>
-              <div className={styles.thumb}>
-                <div className={styles['thumb-img']}>
-                  <img src={car} alt="" />
-                </div>
-                <div className={styles['overlay-content']}>
-                  <strong className={styles['strong-fields']}>
-                    <i className="fa fa-dashboard"></i> 130 000km
-                  </strong>{" "}
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <strong className={styles['strong-fields']}>
-                    <i className="fa fa-cube"></i> 1800 cc
-                  </strong>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <strong className={styles['strong-fields']}>
-                    <i className="fa fa-cog"></i> Manual
-                  </strong>
-                </div>
-              </div>
-              <div className={styles['down-content']}>
-                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-
-                <br />
-
-                <p className={styles['container-text']}>190 hp / Petrol / 2008 / Used vehicle</p>
-
-                <p className={styles['container-text']}>
-                  <span className={styles['price-span']}>
-                    <del>
-                      <sup>$</sup>11999.00{" "}
-                    </del>{" "}
-                    <strong className={styles['strong-fields']}>
-                      <sup>$</sup>11779.00
-                    </strong>
-                  </span>
-                </p>
-
-                <div className={styles['text-button']}>
-                  <a href="car-details.html" className={styles.details}>Details</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div className={styles.wrapper}>
-            <div className={styles['featured-car']}>
-              <div className={styles.thumb}>
-                <div className={styles['thumb-img']}>
-                  <img src={car} alt="" />
-                </div>
-                <div className={styles['overlay-content']}>
-                  <strong>
-                    <i className="fa fa-dashboard"></i> 130 000km
-                  </strong>{" "}
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <strong>
-                    <i className="fa fa-cube"></i> 1800 cc
-                  </strong>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <strong>
-                    <i className="fa fa-cog"></i> Manual
-                  </strong>
-                </div>
-              </div>
-              <div className={styles['down-content']}>
-                <h4>Lorem ipsum dolor sit amet, consectetur</h4>
-
-                <br />
-
-                <p className={styles['container-text']}>190 hp / Petrol / 2008 / Used vehicle</p>
-
-                <p className={styles['container-text']}>
-                  <span className={styles['price-span']}>
-                    <del>
-                      <sup>$</sup>11999.00{" "}
-                    </del>{" "}
-                    <strong>
-                      <sup>$</sup>11779.00
-                    </strong>
-                  </span>
-                </p>
-
-                <div className={styles['text-button']}>
-                  <a href="car-details.html" className={styles.details}>Details</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
+          ))}
       </ul>
     </section>
   );

@@ -1,120 +1,158 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../Filter/Filter.module.css';
+import {useState} from 'react';
+import {useEffect} from 'react';
+import * as carService from '../../../services/carService.js';
 
-function Filter() {
+function Filter({search}) {
 
-    const[make,setMake] = useState('');
-    const[model,setModel] = useState('');
+  const [makeList, setMakeList] = useState([]);
+  const [modelList, setModelList] = useState([]);
+  const [make,setMake] = useState('')
+
+
+  useEffect(()=>{
+    carService.getMakes()
+    .then(carData =>setMakeList(carData));
+  },[]);
+
+  useEffect(()=>{
+    carService.getModels()
+    .then(carData =>setModelList(carData)); 
+  },[]);
+
+
+  
+const carFilterSubmitHandler = (e) =>{
+  e.preventDefault();
+
+  let formData= Object.fromEntries(new FormData(e.currentTarget));
+
+    search = formData
+  //  const formInfo = {
+  //   ...formData,
+  //   ...search
+  //  }
+
+      console.log(search)
+}
+
+const selectMakeHandler = (e) =>{
+  let makeValue = e.currentTarget.value;
+  //console.log(makeValue);
+
+  //setMake(makeValue)
+  
+  // let bmw = 'bmw';
+
+  //   carService.getModels(bmw)
+  //   .then(carData =>setModelList(carData)); 
+
+   
+ 
+}
 
 
 
   return (
     <section className={styles['section-filter']}>
-      <form >
+      <form method='POST' onSubmit={carFilterSubmitHandler}>
         <div className={styles.wrapper}>
           <div className={styles.container}>
-            <label htmlFor="">Used/New:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
+            <label htmlFor="condition">Used/New:</label>
+            <select name="condition" id="condition" className={styles.group}>
+              <option value="all">All</option>
+              <option value="used">Used</option>
+              <option value="new">New</option>
             </select>
           </div>
 
 
           <div className={styles.container}>
-            <label htmlFor="">Vehicle Type:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
+            <label htmlFor="type">Vehicle Type:</label>
+            <select name="type" id="" className={styles.group}>
+              <option value="all">All</option>
+              <option value="car">Car</option>
+              <option value="truck">Truck</option>
+              <option value="Motorcycle">Motorcycle</option>
             </select>
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Make:</label>
+            <label htmlFor="make">Make:</label>
             {/* onChange={(e)=>setMake(e.target.value)} */}
-            <select name="" id="" className={styles.group} value={make}>
-              <option value="">Used</option>
-              <option value="">New</option>
+            <select name="make" id="make" className={styles.group}  onChange={selectMakeHandler}>
+              {makeList.map((m)=>(
+              <option  value={m}>{m}</option>
+            ))} 
+              
             </select>
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Model:</label>
-            <select name="" id="" className={styles.group} value={model}>
-              <option value="">Used</option>
-              <option value="">New</option>
+            <label htmlFor="model">Model:</label>
+            <select name="model" id="model" className={styles.group} >
+            {modelList.map((m)=>(
+              <option  value={m}>{m}</option>
+            ))} 
             </select>
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Used/New:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
-            </select>
-          </div>
-
-
-          <div className={styles.container}>
-            <label htmlFor="">Vehicle Type:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
-            </select>
+            <label htmlFor="price">Price</label>
+            <input type="number" name="price" className={styles.group}/>
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Make:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
-            </select>
+            <label htmlFor="mileage">Mileage</label>
+            <input type="number" name="mileage" className={styles.group}/>
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Model:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
-            </select>
+            <label htmlFor="engine">Engine size</label>
+            <input type="number" name="engine" className={styles.group}/>
           </div>
 
-
           <div className={styles.container}>
-            <label htmlFor="">Used/New:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
-            </select>
+            <label htmlFor="power">Power</label>
+            <input type="number" name="power" className={styles.group}/>
           </div>
 
-
           <div className={styles.container}>
-            <label htmlFor="">Vehicle Type:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
+            <label htmlFor="">Fuel</label>
+            <select className={styles.group}>
+              <option value="all">All</option>
+              <option value="petrol">Petrol</option>
+              <option value="diesel">Diesel</option>
             </select>
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Make:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
+            <label htmlFor="gearbox">Gearbox</label>
+            <select className={styles.group}>
+              <option value="all">All</option>
+              <option value="automatic">Automatic</option>
+              <option value="manual">Manual</option>
             </select>
           </div>
 
+          {/* <div className={styles.container}>
+            <label htmlFor="doors">Doors</label>
+            <input type="number" name="doors" className={styles.group}/>
+          </div> */}
+
           <div className={styles.container}>
-            <label htmlFor="">Model:</label>
-            <select name="" id="" className={styles.group}>
-              <option value="">Used</option>
-              <option value="">New</option>
-            </select>
+            <label htmlFor="color">Color</label>
+            <input type="text" name="color" className={styles.group}/>
           </div>
 
           <div className={styles.container}>
-            <button className={styles.button}>Search</button>
+            <label htmlFor="year">Year</label>
+            <input type="number" name="year" className={styles.group}/>
+          </div>
+
+          <div className={styles.container}>
+          <input className={styles.button} type="submit" value="Search" />
           </div>
         </div>
         </form>

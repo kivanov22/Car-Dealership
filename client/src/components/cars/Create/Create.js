@@ -1,11 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import useCarData from "../../../hooks/carData.js";
+import { useNavigate } from "react-router-dom";
 
 import styles from "../Create/Create.module.css";
 import * as carService from "../../../services/carService.js";
 
 function Create() {
+  const navigate = useNavigate();
+  
   const{ 
     condition,
     type,
@@ -115,7 +118,7 @@ function Create() {
       console.log(sendData)
       
      carService.create(sendData);
-
+     navigate('/myCars')
     }
  
 
@@ -457,7 +460,7 @@ function Create() {
                     className={styles["contact-info"]}
                     name="phone"
                     id="phone"
-                    value={phone } onChange={setPhone}
+                    value={phone} onChange={setPhone}
                   />
                 </p>
 

@@ -1,8 +1,23 @@
 import React from 'react'
 import styles from "../MyListings/MyListings.module.css";
+import {useEffect} from 'react';
+import {useState} from 'react';
+import { Link } from "react-router-dom";
+import * as carService from '../../../services/carService.js';
+import * as auth from '../../common/userLocalStorage.js';
+import { useContext } from "react";
+import { AuthContext } from '../../../context/authContext.js';
 
 function MyListings() {
-    
+  const [cars, setCars] = useState([]);
+  const {user} = useContext(AuthContext);
+
+  useEffect(()=>{
+    carService.myCars(user.id)
+    .then(carData =>
+      setCars(carData));
+      
+  },[]);
 
   return (
     <section className={styles.catalog}>
@@ -24,7 +39,6 @@ function MyListings() {
                   <button className={styles.detailsBtn}>
                   <Link className={styles.detailsBtnLink} to={`/details/${car.id}`}>Details</Link>
                   </button>
-                  {/* <button className={styles.detailsBtn}>View Details</button> */}
                 </div>
               </div>
             </li>

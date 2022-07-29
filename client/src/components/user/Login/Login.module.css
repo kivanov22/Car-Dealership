@@ -32,8 +32,11 @@
 
 .btn {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid transparent;
+	/* background-color: #FF4B2B; */
+	background: -webkit-linear-gradient(to right, #00b4db, #0083b0); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #00b4db, #0083b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #00b4db;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -67,7 +70,8 @@
 	font-weight: bold;
 	margin: 0;
 	text-align: center;
-	color: #FF4B2B;
+	/* color: #FF4B2B; */
+	color: #00b4db;
 }
 
 .form-text {
@@ -157,9 +161,12 @@
 }
 
 .overlay {
-	background: #FF416C;
+	background: -webkit-linear-gradient(to right, #00b4db, #0083b0); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #00b4db, #0083b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #00b4db;
+	/* background: #FF416C;
 	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(to right, #FF4B2B, #FF416C); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

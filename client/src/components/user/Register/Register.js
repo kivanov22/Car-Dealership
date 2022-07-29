@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../Register/Register.module.css";
-// import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
@@ -9,17 +9,19 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import * as authService from "../../../services/authService.js";
-import { createAPIEndpoint } from "../../../api/serverApi.js";
-import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/authContext.js";
 
 function Register() {
+  
   const [values, setValues] = useState({
     username: '',
     email: '',
     password: '',
   });
 
-  // const {login}  = useAuthContenxt();
+  const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const changeHandler = (e)=> {
     setValues(state => ({
@@ -35,12 +37,10 @@ function Register() {
     let{username,email,password} = Object.fromEntries(new FormData(e.currentTarget));
    
       authService.register(username,email,password)
-      .then(res => console.log(res))
-      .catch(err => console.log(err.message))
-   
-      
-      
-     
+      .then(authData =>{
+        userLogin(authData);
+        navigate('/login')
+      })
     // let {username,email,password} = Object.fromEntries(new FormData(e.currentTarget));
 
     // authService.register(username,email,password);

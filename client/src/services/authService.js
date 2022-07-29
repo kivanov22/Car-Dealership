@@ -1,3 +1,4 @@
+import * as request from '../services/requester.js'
 const serverUrl = 'https://localhost:7213';
 
 //Register as User
@@ -43,20 +44,48 @@ export const login = async (username,password)=>{
     }
 };
 
-export const logout = (token) => {
-    return fetch(`${serverUrl}/api/Authenticate/logout`,{
-        headers: {
-            'X-Authorization':token,
-        }
-    });
+
+export const logout = async (token) => {
+    try {
+        const response = await fetch(`${serverUrl}/api/Authenticate/logout`,{
+            method:'POST',
+            headers: {
+            Authorization:`Bearer ${token}`
+            }
+        });
+        localStorage.removeItem('user')
+        //localStorage.clear();
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
-export const getUser = () => {
-    let username = localStorage.getItem('username');
 
-    return username;
-};
+// export const login = (username,password) => {
+//     request.post(`${serverUrl}/api/Authenticate/login`,{username,password});
+// }
 
-export const isAuthenticated = () => {
-    return Boolean(getUser())
-};
+// export const logout = async (token) => {
+//     try {
+//         const response = await fetch(`${serverUrl}/api/Authenticate/logout`, {
+//             // headers: {
+//             //     'X-Authorization': token
+//             // }
+//         });
+
+//         return response;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+
+// export const getUser = () => {
+//     let username = localStorage.getItem('username');
+
+//     return username;
+// };
+
+// export const isAuthenticated = () => {
+//     return Boolean(getUser())
+//};

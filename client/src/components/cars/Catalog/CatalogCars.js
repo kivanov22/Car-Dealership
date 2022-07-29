@@ -1,58 +1,29 @@
 import React from "react";
 import styles from "../Catalog/CatalogCars.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Filter from "../../layout/Filter/Filter.js";
 
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../../../firebase.js";
 // import { createAPIEndpoint } from "../../../api/serverApi.js";
 
-function CatalogCars({cars}) {
-  // const [cars, setCars] = useState([]);
+function CatalogCars({cars,search}) {
 
-  // useEffect(()=> {
-  //   const carList =   
-  //   fetch("https://localhost:7213/api/Car/GetAll")
-  //   .then(res => res.json())
-  //   .then(data=> data);
-    
-    // useEffect(()=>{
-    //   carService.getAll()
-    //   .then(carData =>setCars(carData));
-    // },[]);
-  //   console.log(carList)
-  // },[]);
-
-  // createAPIEndpoint('Car/GetAll')
-  // .fetch()
-  // .then(res => setCars(res.json()))
-  // .catch(err =>console.log(err));
+  // const [filteredCars,setFilteredCars] = useState({})
+  // const filterCars = cars.filter(option =>{
+  //   if(!option.includes(search.condition)) return false;
+  //   if(!option.includes(search.condition)) return false;
+  //   if(!option.includes(search.condition)) return false;
+  //   if(!option.includes(search.condition)) return false;
+  //   if(!option.includes(search.condition)) return false;
+  // })
 
   const submitHandler = (e) =>{
     e.preventDefault();
     
   }
-
-
-  // useEffect(() => {
-  //   getCars();
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log(cars);
-  // }, [cars]);
-
-  // const getCars = () => {
-  //   const carsCollectionRef = collection(db, "cars");
-  //   getDocs(carsCollectionRef)
-  //     .then((res) => {
-  //       const cars = res.docs.map((doc) => ({
-  //         data: doc.data(),
-  //         id: doc.id,
-  //       }));
-  //       setCars(cars);
-  //     })
-  //     .catch((err) => console.log(err.message));
-  // };
+ 
 
   return (
     <section className={styles.catalog}>
@@ -120,17 +91,17 @@ function CatalogCars({cars}) {
             <label htmlFor="">Fuel</label>
             <select className={styles["form-control"]}>
               <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
+              <option value="petrol">Petrol</option>
+              <option value="diesel">Diesel</option>
             </select>
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="">Gearbox</label>
+            <label htmlFor="gearbox">Gearbox</label>
             <select className={styles["form-control"]}>
-              <option value="">All</option>
-              <option value="new">New vehicle</option>
-              <option value="used">Used vehicle</option>
+              <option value="gearbox">All</option>
+              <option value="automatic">Automatic</option>
+              <option value="manual">Manual</option>
             </select>
           </div>
 
@@ -157,6 +128,10 @@ function CatalogCars({cars}) {
 
       <div className={styles.rightSide}>
         <ul className={styles['cars-list']}>
+        {/* {games.length > 0
+                ? games.map(x => <CatalogItem key={x._id} game={x} />)
+                : <h3 className="no-articles">No articles yet</h3>
+            } */}
           {cars.map((car) => (
             <li key={car.id}>
               <div className={styles["cars-container"]}>

@@ -1,7 +1,6 @@
 import React from "react";
 import styles from '../Details/Details.module.css';
-import { GoogleMap, useJsApiLoader,Marker,useLoadScript } from '@react-google-maps/api';
-import {useMemo} from "react";
+
 import * as carService from '../../../services/carService.js';
 // import * as dotenv from 'dotenv'
 
@@ -29,13 +28,6 @@ const carDeleteHandler = async () => {
  .then(carData => setCar(carData.filter(x=>x.id != carId))); // ??
 }
 
-//const myEnv = dotenv.config();
-const {isLoaded} = useJsApiLoader({
-     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-});
-//console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
-
-if(!isLoaded) return <div>Loading...</div>;
 
   return (
     <section className={styles.details}>
@@ -276,13 +268,6 @@ if(!isLoaded) return <div>Loading...</div>;
                    </div>
               </div>
          </div>
-         <GoogleMap zoom={10} 
-         center={{lat:43, lng:25}} 
-     //     key="API_KEY"
-     //     googleMapsApiKey={{process.env.REACT_APP_GOOGLE_API_KEY}}
-     //     key={{key: process.env.REACT_APP_GOOGLE_API_KEY}}
-         mapContainerClassName={styles['map-container']}
-         ></GoogleMap>
     </div>
 </section>
   );

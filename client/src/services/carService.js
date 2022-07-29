@@ -55,12 +55,37 @@ export const deleteCar = (id) => {
     }).then(res=>res.json())
 }
 
-export const getLatest= ()=> {
-    return fetch(`${baseUrl}/Car/Latest`).then(res => res.json());
+export const getLatest= async ()=> {
+    const response = await fetch(`${baseUrl}/Car/Latest`);
+
+    const result = await response.json();
+
+    return result.value;
+
 }
 
-export const myCars = (userId) => {
-    return fetch(`${baseUrl}/MyCars/${userId}`)
+export const myCars = async (userId) => {
+    const response = await fetch(`${baseUrl}/Car/MyCars`)
+
+    const result = await response.json(userId);
+
+    return result.value;
+}
+
+export const getMakes = async () => {
+    const response = await fetch(`${baseUrl}/Car/GetMake`)
+
+    const result = await response.json();
+
+    return result.value;
+}
+
+export const getModels = async () => {
+    const response = await fetch(`${baseUrl}/Car/GetModel`)
+
+    const result = await response.json();
+
+    return result.value;
 }
     // export const update = (petId, petData) => request.put(`${baseUrl}/pets/${petId}`, petData);
 

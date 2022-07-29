@@ -16,6 +16,7 @@ grid-auto-flow: row;  */
     /* width: 100vw; */
     
     /* position: fixed; */
+    height: 13vh;
     border-top: 5px solid #09f;
     border-bottom: 0;
     
@@ -23,7 +24,7 @@ grid-auto-flow: row;  */
     -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     padding: 12px 0;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     padding: 0;
 }
 
@@ -148,8 +149,13 @@ align-items: center;
     cursor: pointer;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .header-span {
     color: #09f;
+}
+
+.nav {
+    height: 15vh;
 }

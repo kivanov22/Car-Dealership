@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "../Login/Login.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/authContext.js";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,10 +13,14 @@ import { useState } from "react";
 import * as authService from "../../../services/authService.js";
 
 function Login() {
+  const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
+
 
   const changeHandler = (e)=> {
     setValues(state => ({
@@ -30,14 +36,15 @@ function Login() {
 
     let{username,password} = Object.fromEntries(new FormData(e.currentTarget));
    
-    console.log(username);
-    console.log(password);
-
 
       authService.login(username,password)
-      .then(res => console.log(res))
-      .catch(err => console.log(err.message))
-   
+      .then(authData => {
+        userLogin(authData)
+        navigate('/');
+      })
+      .catch(()=> {
+        navigate('/404');
+      });
   };
 
   return (
@@ -114,9 +121,9 @@ function Login() {
             <div className={styles["overlay-right"]}>
               <h1 className={styles["overlay-headings"]}>Hello, Friend!</h1>
               <p className={styles["overlay-text"]}>
-                Enter your personal details and start journey with us
+                Sign in to create car posts
               </p>
-              <input type="submit" className={styles.btn} value="Login" />
+              {/* <input type="submit" className={styles.btn} value="Login" /> */}
             </div>
           </div>
         </div>
