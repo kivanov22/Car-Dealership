@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Car_Dealership_API.Data.Models;
+﻿using Car_Dealership_API.CarPagination;
 using Car_Dealership_API.Data;
-using Microsoft.AspNetCore.Cors;
+using Car_Dealership_API.Data.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Car_Dealership_API.Controllers
@@ -22,32 +21,36 @@ namespace Car_Dealership_API.Controllers
         [HttpPost]
         public async Task<JsonResult> Create(Car car)
         {
-              await _context.Cars.AddAsync(car);
 
-           await _context.SaveChangesAsync();
+            await _context.Cars.AddAsync(car);
+
+            await _context.SaveChangesAsync();
 
             return new JsonResult(Ok(car));
         }
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<JsonResult> Edit([FromRoute] int id,Car car)//maybe add int id
+        public async Task<JsonResult> Edit([FromRoute] int id, Car car)
         {
             // var carInDb = _context.Cars.Find(id);//change this to only id
             var carInDb = await _context.Cars
              //.Where(c => c.Id == id)
              .Include(c => c.Seller)
-             .FirstOrDefaultAsync(c=>c.Id.Equals(id));
+             .FirstOrDefaultAsync(c => c.Id.Equals(id));
 
-                if (carInDb == null)
-                {
-                    return new JsonResult(NotFound());
-                }
+            if (carInDb == null)
+            {
+                return new JsonResult(NotFound());
+            }
 
             carInDb.Condition = car.Condition;
-            carInDb.Type = car.Type;
             carInDb.Make = car.Make;
             carInDb.Model = car.Model;
+            carInDb.ImageUrl = car.ImageUrl;
+            carInDb.firstLowerImgUrl = car.firstLowerImgUrl;
+            carInDb.secondLowerImgUrl = car.secondLowerImgUrl;
+            carInDb.thirdLowerImgUrl = car.thirdLowerImgUrl;
             carInDb.ImageUrl = car.ImageUrl;
             carInDb.Year = car.Year;
             carInDb.Price = car.Price;
@@ -61,12 +64,12 @@ namespace Car_Dealership_API.Controllers
             carInDb.Description = car.Description;
             carInDb.MiniDescription = car.MiniDescription;
             carInDb.IsOwner = car.IsOwner;
-            carInDb.Seller.Name = car.Seller.Name;
+            carInDb.Seller.FullName = car.Seller.FullName;
             carInDb.Seller.Phone = car.Seller.Phone;
             carInDb.Seller.Email = car.Seller.Email;
             carInDb.Seller.Address = car.Seller.Address;
-           // carInDb = car;
-          
+            // carInDb = car;
+
 
             await _context.SaveChangesAsync();
 
@@ -86,10 +89,10 @@ namespace Car_Dealership_API.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> MyCars(int userId)
+        public async Task<JsonResult> MyCars(string userId)
         {
             var result = await _context.Cars
-                .Where(x => x.SellerId == userId)
+                .Where(x => x.Seller.UserId == userId)
                 .ToListAsync();
 
             //var result = _context.Cars
@@ -99,14 +102,30 @@ namespace Car_Dealership_API.Controllers
             return new JsonResult(Ok(result));
         }
 
-        [HttpGet]
-        public async Task<JsonResult> GetAll()
+        [HttpGet("{page}")]
+        public async Task<ActionResult<List<Car>>> GetAll(int page)
         {
-            var result = await _context.Cars.ToListAsync();
+            if (_context.Cars == null)
+                return NotFound();
 
-            return new JsonResult(Ok(result));
+            var pageResults = 10f;
+            var pageCount = Math.Ceiling(_context.Cars.Count() / pageResults);
 
-            //return result;
+            var cars = await _context.Cars
+                .Skip((page -1) * (int)pageResults)
+                .Take((int)pageResults)
+                .ToListAsync();
+
+            var response = new CarResponse
+            {
+                Cars  = cars,
+                CurrentPage = page,
+                Pages = (int)pageCount
+            };
+
+            //add sorting asc ,desc ,newest
+
+            return (Ok(response));
         }
 
         [HttpGet("{id}")]
@@ -119,30 +138,7 @@ namespace Car_Dealership_API.Controllers
                 .Include(c => c.Seller)
                 .FirstOrDefaultAsync();
 
-            //var car = new Car()
-            //{
-            //    Id = result.Id,
-            //    Condition = result.Condition,
-            //    Type = result.Type,
-            //    Make = result.Make,
-            //    Model = result.Model,
-            //    ImageUrl = result.ImageUrl,
-            //    Year = result.Year,
-            //    Price = result.Price,
-            //    Gearbox = result.Gearbox,
-            //    Fuel = result.Fuel,
-            //    Color = result.Color,
-            //    Power = result.Power,
-            //    EngineSize = result.EngineSize,
-            //    Mileage = result.Mileage,
-            //    Doors = result.Doors,
-            //    Description = result.Description,
-            //    MiniDescription = result.MiniDescription,
-            //    IsOwner = result.IsOwner,
-            //    SellerId = result.SellerId,
-            //    Seller = result.Seller.Name.ToSring(),
-            //    Seller = result.Seller.Name,
-            //    Seller = result.Seller.Name,
+           
 
             //    //result.Include(),
             //    //result.Seller.Select()
@@ -169,7 +165,126 @@ namespace Car_Dealership_API.Controllers
             return new JsonResult(NoContent());
         }
 
+        [HttpGet]
+        public async Task<JsonResult> GetMake()
+        {
+            var result = await _context.Cars
+                .Select(m => m.Make)
+                .Distinct()
+                .ToListAsync();
+               
 
+            return new JsonResult(Ok(result));
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetModel()//string make
+        {
+            var result = await _context.Cars
+                //.Where(m=>m.Make == make)
+                .Select(m => m.Model)
+                .Distinct()
+                .ToListAsync();
+
+
+            return new JsonResult(Ok(result));
+        }
+
+        [HttpGet]
+        public JsonResult GetStatistics()
+        {
+            var countCars = _context.Cars.Count();
+            var countUsers = _context.Users.Count();
+
+            var result = new
+            {
+                CarsCount = countCars,
+                UsersCount = countUsers,
+            };
+
+            return new JsonResult(Ok(result));
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> SortBy(string criteria)
+        {
+            var result = new List<Car>();
+
+            if(criteria == "desc")
+            {
+                result = await _context.Cars
+               .OrderByDescending(x=>x.Id)
+               .ToListAsync();
+
+               return new JsonResult(Ok(result));
+            }
+            else if(criteria == "asc")
+            {
+                 result = await _context.Cars
+                 .OrderBy(x => x.Id)
+                    .ToListAsync();
+
+                return new JsonResult(Ok(result));
+            }
+            else if(criteria == "priceHighest")
+            {
+                 result = await _context.Cars
+              .OrderByDescending(x => x.Price)
+              .ToListAsync();
+
+                return new JsonResult(Ok(result));
+            }
+            else if (criteria == "priceLowest")
+            {
+                result = await _context.Cars
+              .OrderBy(x => x.Price)
+              .ToListAsync();
+
+                return new JsonResult(Ok(result));
+            }
+
+
+            return new JsonResult(Ok(result));
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetCarsByCriteria(string make, string model)
+        {
+            if(make == null && model ==null)
+            {
+                return new JsonResult(NotFound());
+            }
+
+            var result = await  _context.Cars
+                .Where(
+                c => c.Make.Contains(make)
+                && c.Model.Contains(model))
+                .ToListAsync();
+               
+
+            return new JsonResult(Ok(result));
+        }
+
+        //[HttpGet]
+        //public JsonResult AllCarsSortedPaginated([FromQuery] AllCarsApiRequestModel query)
+        //    => _context.Cars.All(
+        //        query.Sorting,
+        //        query.CurrentPage,
+        //        query.CarsPerPage);
+
+        //[HttpGet]
+        //public async Task<ActionResult<List<Car>>> Search(Car car)
+        //{
+        //    //var result = await _context.Cars
+        //    //    .Where(c => c.Condition == car.Condition
+        //    //    )
+        //    //    .ToListAsync();
+
+        //   var result = await _context.Cars.ContainsAsync(car);
+
+
+        //    return new JsonResult(Ok(result));
+        //}
 
     }
 }

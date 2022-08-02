@@ -33,7 +33,7 @@ const carFilterSubmitHandler = (e) =>{
   //   ...formData,
   //   ...search
   //  }
-
+      
       console.log(search)
 }
 
@@ -68,7 +68,7 @@ const selectMakeHandler = (e) =>{
           </div>
 
 
-          <div className={styles.container}>
+          {/* <div className={styles.container}>
             <label htmlFor="type">Vehicle Type:</label>
             <select name="type" id="" className={styles.group}>
               <option value="all">All</option>
@@ -76,7 +76,7 @@ const selectMakeHandler = (e) =>{
               <option value="truck">Truck</option>
               <option value="Motorcycle">Motorcycle</option>
             </select>
-          </div>
+          </div> */}
 
           <div className={styles.container}>
             <label htmlFor="make">Make:</label>

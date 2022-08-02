@@ -17,9 +17,8 @@ namespace Car_Dealership_API.Data
         }
 
         public DbSet<Car> Cars { get; set; }
-        public DbSet<Truck> Trucks { get; set; }
-        public DbSet<Motorcycle> Motorcycles { get; set; }
         
         public DbSet<Seller> Sellers { get; set; }
+
     }
 }

@@ -1,13 +1,14 @@
 import {useState} from "react";
-import React from 'react'
 
 
  const useCarData = () => {
     const[condition,setCondition] = useState('');
-    const[type,setType] = useState('');
     const[make,setMake] = useState('');
     const[model,setModel] = useState('');
     const[imageUrl,setImageUrl] = useState('');
+    const[firstLowerImgUrl,setFirstLowerImgUrl] = useState('');
+    const[secondLowerImgUrl,setSecondLowerImgUrl] = useState('');
+    const[thirdLowerImgUrl,setThirdLowerImgUrl] = useState('');
     const[year,setYear] = useState(0);
     const[price,setPrice] = useState(0);
     const[gearbox,setGearbox] = useState('');
@@ -20,7 +21,7 @@ import React from 'react'
     const[description,setDescription] = useState('');
     const[miniDescription,setMiniDescription] = useState('');
     const[isOwner,setIsOwner] = useState(Boolean);
-    const[name,setName] = useState('');
+    const[fullName,setFullname] = useState('');
     const[phone,setPhone] = useState(0);
     const[email,setEmail] = useState('');
     const[address,setAddress] = useState('');
@@ -28,10 +29,12 @@ import React from 'react'
 
   return (
         condition,
-        type,
         make,
         model,
         imageUrl,
+        firstLowerImgUrl,
+      secondLowerImgUrl,
+      thirdLowerImgUrl,
         year,
         price,
         gearbox,
@@ -44,15 +47,17 @@ import React from 'react'
         description,
         miniDescription,
         isOwner,
-        name,
+        fullName,
         phone,
         email,
         address,
         setCondition,
-        setType,
         setMake,
         setModel,
         setImageUrl,
+        setFirstLowerImgUrl,
+        setSecondLowerImgUrl,
+        setThirdLowerImgUrl,
         setYear,
         setPrice,
         setGearbox,
@@ -65,7 +70,7 @@ import React from 'react'
         setDescription,
         setMiniDescription,
         setIsOwner,
-        setName,
+        setFullname,
         setPhone,
         setEmail,
         setAddress

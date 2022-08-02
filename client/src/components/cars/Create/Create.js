@@ -2,19 +2,25 @@ import React from "react";
 import { useState } from "react";
 import useCarData from "../../../hooks/carData.js";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from '../../../context/authContext.js';
 
 import styles from "../Create/Create.module.css";
 import * as carService from "../../../services/carService.js";
 
 function Create() {
   const navigate = useNavigate();
-  
+  const {user} = useContext(AuthContext);
+  const UserId = user.id;
+
   const{ 
     condition,
-    type,
     make,
     model,
     imageUrl,
+    firstLowerImgUrl,
+    secondLowerImgUrl,
+    thirdLowerImgUrl,
     year,
     price,
     gearbox,
@@ -27,15 +33,17 @@ function Create() {
     description,
     miniDescription,
     isOwner,
-    name,
+    fullName,
     phone,
     email,
     address,
     setCondition,
-    setType,
     setMake,
     setModel,
     setImageUrl,
+    setFirstLowerImgUrl,
+    setSecondLowerImgUrl,
+    setThirdLowerImgUrl,
     setYear,
     setPrice,
     setGearbox,
@@ -48,7 +56,7 @@ function Create() {
     setDescription,
     setMiniDescription,
     setIsOwner,
-    setName,
+    setFullname,
     setPhone,
     setEmail,
     setAddress
@@ -57,10 +65,12 @@ function Create() {
   const carCreateSubmitHandler = (e) => {
     e.preventDefault();
     let {condition,
-      type,
       make,
       model,
       imageUrl,
+      firstLowerImgUrl,
+      secondLowerImgUrl,
+      thirdLowerImgUrl,
       year,
       price,
       gearbox,
@@ -73,7 +83,7 @@ function Create() {
       description,
       miniDescription,
       isOwner}= Object.fromEntries(new FormData(e.currentTarget));
-    let {name,address,email,phone}= Object.fromEntries(new FormData(e.currentTarget));
+    let {fullName,address,email,phone}= Object.fromEntries(new FormData(e.currentTarget));
    
      year = Number(year);
      price= Number(price);
@@ -82,14 +92,16 @@ function Create() {
       doors = Number(doors);
      mileage = Number(mileage);
      isOwner = Boolean(isOwner);
-      phone = Number(phone);
+      // phone = Number(phone);
 
     let carData = {
       condition,
-      type,
       make,
       model,
       imageUrl,
+      firstLowerImgUrl,
+      secondLowerImgUrl,
+      thirdLowerImgUrl,
       year,
       price,
       gearbox,
@@ -105,7 +117,8 @@ function Create() {
     }
 
       let seller ={
-        name,
+        UserId,
+        fullName,
         address,
         email,
         phone
@@ -147,6 +160,10 @@ function Create() {
                   {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                   {/* <label  htmlFor="" className={styles['form-span']}>First Picture</label>
                                    <input type="text" id="firstImage" name="firstImage"/> */}
+               <label htmlFor="firstLowerImgUrl" className={styles["form-span"]}>
+                First Lower Image
+              </label>
+              <input type="text" id="firstLowerImgUrl" name="firstLowerImgUrl"  value={firstLowerImgUrl} onChange={setFirstLowerImgUrl}/>
                 </div>
 
                 <br />
@@ -154,9 +171,10 @@ function Create() {
 
               <div className={styles["columns-photos"]}>
                 <div className={styles["little-pics"]}>
-                  {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
-                  {/* <label htmlFor="" className={styles['form-span']}>Second Picture</label>
-                              <input type="text"  id="secondImage" name="secondImage"/> */}
+                <label htmlFor="secondLowerImgUrl" className={styles["form-span"]}>
+                Second Lower Image
+              </label>
+              <input type="text" id="secondLowerImgUrl" name="secondLowerImgUrl"  value={secondLowerImgUrl} onChange={setSecondLowerImgUrl}/>
                 </div>
 
                 <br />
@@ -164,9 +182,10 @@ function Create() {
 
               <div className={styles["columns-photos"]}>
                 <div className={styles["little-pics"]}>
-                  {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
-                  {/* <label htmlFor="" className={styles['form-span']}>Third Picture</label>
-                              <input type="text" id="thirdImage" name="thirdImage"/> */}
+                <label htmlFor="secondLowerImgUrl" className={styles["form-span"]}>
+                Third Lower Image
+              </label>
+              <input type="text" id="thirdLowerImgUrl" name="thirdLowerImgUrl"  value={thirdLowerImgUrl} onChange={setThirdLowerImgUrl}/>
                 </div>
                 <br />
               </div>
@@ -196,7 +215,7 @@ function Create() {
               <input type="number" id="price" name="price" value={price} onChange={setPrice} />
 
               <div className={styles.row}>
-                <div className={styles["info-col-1"]}>
+                {/* <div className={styles["info-col-1"]}>
                   <p className={styles["form-text"]}>
                     <span className={styles["form-span"]}>Type</span>
 
@@ -211,7 +230,7 @@ function Create() {
                       value={type} onChange={setType}
                     />
                   </p>
-                </div>
+                </div> */}
 
                 <div className={styles["info-col-1"]}>
                   <p className={styles["form-text"]}>
@@ -443,10 +462,10 @@ function Create() {
                   <input
                     type="text"
                     className={styles["contact-info"]}
-                    name="name"
-                    id="name"
-                    value={name} 
-                    onChange={setName}
+                    name="fullName"
+                    id="fullName"
+                    value={fullName} 
+                    onChange={setFullname}
                   />
                 </p>
 

@@ -21,10 +21,12 @@ function Edit() {
           e.preventDefault();
 
           let {condition,
-               type,
                make,
                model,
                imageUrl,
+               firstLowerImgUrl,
+                secondLowerImgUrl,
+                thirdLowerImgUrl,
                year,
                price,
                gearbox,
@@ -37,7 +39,7 @@ function Edit() {
                description,
                miniDescription,
                isOwner}= Object.fromEntries(new FormData(e.currentTarget));
-             let {name,address,email,phone}= Object.fromEntries(new FormData(e.currentTarget));
+             let {fullName,address,email,phone}= Object.fromEntries(new FormData(e.currentTarget));
             
               year = Number(year);
               price= Number(price);
@@ -46,14 +48,16 @@ function Edit() {
                doors = Number(doors);
               mileage = Number(mileage);
               isOwner = Boolean(isOwner);
-               phone = Number(phone);
+              //  phone = Number(phone);
           
              let carData = {
                condition,
-               type,
                make,
                model,
                imageUrl,
+               firstLowerImgUrl,
+               secondLowerImgUrl,
+               thirdLowerImgUrl,
                year,
                price,
                gearbox,
@@ -69,7 +73,7 @@ function Edit() {
              }
          
                let seller ={
-                 name,
+                fullName,
                  address,
                  email,
                  phone
@@ -109,9 +113,9 @@ function Edit() {
            <div className={styles.row}>
              <div className={styles["columns-photos"]}>
                <div className={styles["little-pics"]}>
-                 {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
-                 {/* <label  htmlFor="" className={styles['form-span']}>First Picture</label>
-                                  <input type="text" id="firstImage" name="firstImage"/> */}
+                  {/* <img src={car.} alt="" loading="lazy" className={styles['img-responsive']}/>  */}
+                  <label  htmlFor="firstLowerImgUrl" className={styles['form-span']}>First Lower Picture</label>
+                  <input type="text" id="firstLowerImgUrl" name="firstLowerImgUrl"  defaultValue={car.firstLowerImgUrl} />
                </div>
 
                <br />
@@ -119,9 +123,8 @@ function Edit() {
 
              <div className={styles["columns-photos"]}>
                <div className={styles["little-pics"]}>
-                 {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
-                 {/* <label htmlFor="" className={styles['form-span']}>Second Picture</label>
-                             <input type="text"  id="secondImage" name="secondImage"/> */}
+               <label  htmlFor="secondLowerImgUrl" className={styles['form-span']}>Second Lower Picture</label>
+                  <input type="text" id="secondLowerImgUrl" name="secondLowerImgUrl"  defaultValue={car.secondLowerImgUrl} />
                </div>
 
                <br />
@@ -129,6 +132,8 @@ function Edit() {
 
              <div className={styles["columns-photos"]}>
                <div className={styles["little-pics"]}>
+               <label  htmlFor="thirdLowerImgUrl" className={styles['form-span']}>Third Lower Picture</label>
+                  <input type="text" id="thirdLowerImgUrl" name="thirdLowerImgUrl"  defaultValue={car.thirdLowerImgUrl} />
                  {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
                  {/* <label htmlFor="" className={styles['form-span']}>Third Picture</label>
                              <input type="text" id="thirdImage" name="thirdImage"/> */}
@@ -160,7 +165,7 @@ function Edit() {
              <input type="number" id="price" name="price" defaultValue={car.price}  />
 
              <div className={styles.row}>
-               <div className={styles["info-col-1"]}>
+               {/* <div className={styles["info-col-1"]}>
                  <p className={styles["form-text"]}>
                    <span className={styles["form-span"]}>Type</span>
 
@@ -175,7 +180,7 @@ function Edit() {
                      defaultValue={car.type} 
                    />
                  </p>
-               </div>
+               </div> */}
 
                <div className={styles["info-col-1"]}>
                  <p className={styles["form-text"]}>
@@ -407,9 +412,9 @@ function Edit() {
                  <input
                    type="text"
                    className={styles["contact-info"]}
-                   name="name"
-                   id="name"
-                   defaultValue={car.seller ? car.seller.name : ""} 
+                   name="fullName"
+                   id="fullName"
+                   defaultValue={car.seller ? car.seller.fullName : ""} 
                   
                  />
                </p>

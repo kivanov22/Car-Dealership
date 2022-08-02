@@ -43,7 +43,7 @@ const carDeleteHandler = async () => {
                    <div className={styles.row}>
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                                  {/* <img src={car.imageUrl} alt="" loading="lazy" className={styles['img-responsive']}/> */}
+                                  <img src={car.firstLowerImgUrl} alt="" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              
                              <br/>
@@ -51,7 +51,7 @@ const carDeleteHandler = async () => {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             {/* <img src={car.imageUrl} alt="" loading="lazy" className={styles['img-responsive']}/> */}
+                             <img src={car.secondLowerImgUrl} alt="" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              
                              <br/>
@@ -59,7 +59,7 @@ const carDeleteHandler = async () => {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             {/* <img src={car.imageUrl} alt="" loading="lazy" className={styles['img-responsive']}/> */}
+                             <img src={car.thirdLowerImgUrl} alt="" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              <br/>
                         </div>
@@ -75,7 +75,7 @@ const carDeleteHandler = async () => {
                         <p className="lead"><small><del> $11999.00</del></small> <strong className={styles['span-color']}>${car.price}</strong></p>
 
                         <div className={styles.row}>
-                             <div className={styles['info-col-1']}>
+                             {/* <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
                                        <span className={styles['form-span']}>Type</span>
 
@@ -83,7 +83,7 @@ const carDeleteHandler = async () => {
 
                                        <strong className={styles['form-strong']}>{car.type}</strong>
                                   </p>
-                             </div>
+                             </div> */}
 
                              <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
@@ -237,7 +237,7 @@ const carDeleteHandler = async () => {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}>{car.seller.name}</strong>
+                                  <strong className={styles['contact-info']}>{car.seller.fullName}</strong>
                              </p>
 
                              <p>

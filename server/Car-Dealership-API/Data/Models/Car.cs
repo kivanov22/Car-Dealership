@@ -6,24 +6,31 @@ namespace Car_Dealership_API.Data.Models
     public class Car
     {
         [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } 
 
         [Required]
         
         public string Condition { get; set; }
 
-        [Required]
-        public string Type { get; set; }
 
         [Required]
         public string Make { get; set; }
+
         [Required]
         public string Model { get; set; }
 
         [Required]
         public string ImageUrl { get; set; }
 
-        
+        [Required]
+        public string firstLowerImgUrl { get; set; }
+
+        [Required]
+        public string secondLowerImgUrl { get; set; }
+
+        [Required]
+        public string thirdLowerImgUrl { get; set; }
+
         public int Year { get; set; }
 
         public double Price { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Car_Dealership_API.Data.Auth;
 using Car_Dealership_API.Data.Static;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -53,19 +54,23 @@ namespace Car_Dealership_API.Controllers
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
+                    user.Id,
+                    user.Email,
+                    user.UserName,
                     expiration = token.ValidTo
                 });
             }
 
             return Unauthorized();
         }
-
+        [Authorize]
         [HttpPost]
         [Route("logout")]
         public async Task<IActionResult> Logout()
         {
+            //var userName = User.Identity.Name;
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("/","/dashboard");
         }
 
         [HttpPost]
