@@ -1,8 +1,10 @@
 ﻿using Car_Dealership_API.CarPagination;
 using Car_Dealership_API.Data;
 using Car_Dealership_API.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Car_Dealership_API.Controllers
 {
@@ -11,12 +13,19 @@ namespace Car_Dealership_API.Controllers
     public class CarController : ControllerBase
     {
         private readonly CarDealershipDbContext _context;
+        private readonly IHttpContextAccessor _httpContext;
+        private readonly UserManager<IdentityUser> _userManager;
 
-
-        public CarController(CarDealershipDbContext context)
+        public CarController(CarDealershipDbContext context,
+            IHttpContextAccessor httpContext,
+            UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _httpContext = httpContext;
+            _userManager = userManager;
         }
+
+
 
         [HttpPost]
         public async Task<JsonResult> Create(Car car)
@@ -89,8 +98,15 @@ namespace Car_Dealership_API.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> MyCars(string userId)
+        [Route("{userId}")]
+        public async Task<JsonResult> MyCars([FromRoute]string userId)
         {
+            //var user = await _userManager.FindByNameAsync(model.Username);
+            //var findUser = await _context.Users.
+            //var userId = _userManager.GetUserIdAsync();
+
+            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             var result = await _context.Cars
                 .Where(x => x.Seller.UserId == userId)
                 .ToListAsync();
@@ -112,6 +128,7 @@ namespace Car_Dealership_API.Controllers
             var pageCount = Math.Ceiling(_context.Cars.Count() / pageResults);
 
             var cars = await _context.Cars
+                .Include(s=>s.Seller)
                 .Skip((page -1) * (int)pageResults)
                 .Take((int)pageResults)
                 .ToListAsync();
@@ -134,7 +151,8 @@ namespace Car_Dealership_API.Controllers
         {
             //var result = _context.Cars.Find(id);
 
-            var result = await _context.Cars.Where(c => c.Id == id)
+            var result = await _context.Cars
+                .Where(c => c.Id == id)
                 .Include(c => c.Seller)
                 .FirstOrDefaultAsync();
 

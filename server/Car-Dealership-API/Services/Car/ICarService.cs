@@ -11,5 +11,10 @@ namespace Car_Dealership_API.Services.Car
         //   int carsPerPage = int.MaxValue);
 
         IEnumerable<AllCarsServiceModel> ByUser(string userId);
+
+        Task<AllCarsServiceModel> GetCarByIdAsync(int id);
+
+        Task AddNewCarAsync(AllCarsServiceModel car);
+        Task UpdateCarAsync(AllCarsServiceModel car);
     }
 }

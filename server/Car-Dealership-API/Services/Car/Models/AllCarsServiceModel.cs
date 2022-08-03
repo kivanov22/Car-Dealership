@@ -14,15 +14,15 @@ namespace Car_Dealership_API.Services.Car.Models
 
         public string ImageUrl { get; set; }
 
-        public string firstLowerImg { get; set; }
+        public string firstLowerImgUrl { get; set; }
 
-        public string secondLowerImg { get; set; }
+        public string secondLowerImgUrl { get; set; }
 
-        public string thirdLowerImg { get; set; }
+        public string thirdLowerImgUrl { get; set; }
 
         public int Year { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public string Gearbox { get; set; }
 
@@ -43,6 +43,8 @@ namespace Car_Dealership_API.Services.Car.Models
         public string MiniDescription { get; set; }
 
         public bool IsOwner { get; set; }
+
+        public int SellerId { get; set; }
 
         public SellerViewModel Seller { get; set; }
     }

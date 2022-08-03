@@ -19,6 +19,7 @@ namespace Car_Dealership_API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
 
+
         public AuthenticateController(
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager,
@@ -28,6 +29,7 @@ namespace Car_Dealership_API.Controllers
             _roleManager = roleManager;
             _configuration = configuration;
         }
+
 
         [HttpPost]
         [Route("login")]
@@ -139,6 +141,7 @@ namespace Car_Dealership_API.Controllers
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
+
 
             return token;
         }
