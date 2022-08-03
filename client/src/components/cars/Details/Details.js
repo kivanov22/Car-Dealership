@@ -15,13 +15,14 @@ function Details() {
      const { carId } = useParams();
 
 // const car = cars.find(x => x.id == carId);
-// console.log(car);
+console.log(carId);
 const [car, setCar] = useState({});
 
 useEffect(()=>{
   carService.getOne(carId)
   .then(carData =>setCar(carData));// console.log(carData)
 },[]);
+
 
 const carDeleteHandler = async () => {
  await carService.deleteCar(car.id)
@@ -72,7 +73,7 @@ const carDeleteHandler = async () => {
 
                         <p className={styles.description}>{car.miniDescription}</p>
                         
-                        <p className="lead"><small><del> $11999.00</del></small> <strong className={styles['span-color']}>${car.price}</strong></p>
+                        <p className="lead"><strong className={styles['span-color']}>${car.price}</strong></p>
 
                         <div className={styles.row}>
                              {/* <div className={styles['info-col-1']}>
@@ -166,7 +167,7 @@ const carDeleteHandler = async () => {
                                   </p>
                              </div>
 
-                             <div className={styles['info-col-1']}>
+                             {/* <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
                                        <span className={styles['form-span']}>Number of seats</span>
 
@@ -174,7 +175,7 @@ const carDeleteHandler = async () => {
 
                                        <strong className={styles['form-strong']}>{car.seats}</strong>
                                   </p>
-                             </div>
+                             </div> */}
 
                              <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
@@ -237,7 +238,7 @@ const carDeleteHandler = async () => {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}>{car.seller.fullName}</strong>
+                                  <strong className={styles['contact-info']}>{car.seller ? car.seller.fullName : ''}</strong>
                              </p>
 
                              <p>
@@ -245,7 +246,7 @@ const carDeleteHandler = async () => {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >{car.seller.phone}</a></strong>
+                                  <strong className={styles['contact-info']}><a >{car.seller ? car.seller.phone : ''}</a></strong>
                              </p>
 
 
@@ -254,7 +255,7 @@ const carDeleteHandler = async () => {
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >{car.seller.address}</a></strong>
+                                  <strong className={styles['contact-info']}><a >{car.seller ? car.seller.address : ''}</a></strong>
                              </p>
 
                              <p>
@@ -262,7 +263,7 @@ const carDeleteHandler = async () => {
 
                                   <br/>
 
-                                  <strong><a  className={styles['contact-info']}>{car.seller.email}</a></strong>
+                                  <strong><a  className={styles['contact-info']}>{car.seller ? car.seller.email : ''}</a></strong>
                              </p>
                         </div>
                    </div>

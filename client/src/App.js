@@ -31,12 +31,13 @@ const userLogout = () => {
     setAuth({});
 };
 
+let page = Number(1);
   useEffect(()=>{
-    carService.getAll()
+    carService.getAll(page)
     .then(carData =>setCars(carData));
   },[]);
 
-
+  console.log(cars);
 
   return (
     <AuthContext.Provider value={{user: auth, userLogin,userLogout}}>

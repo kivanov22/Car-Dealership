@@ -9,7 +9,7 @@ import Filter from "../../layout/Filter/Filter.js";
 // import { createAPIEndpoint } from "../../../api/serverApi.js";
 
 function CatalogCars({cars,search}) {
-
+console.log(cars);
   // const [filteredCars,setFilteredCars] = useState({})
   // const filterCars = cars.filter(option =>{
   //   if(!option.includes(search.condition)) return false;
@@ -127,6 +127,7 @@ function CatalogCars({cars,search}) {
       </div>
 
       <div className={styles.rightSide}>
+        
         <ul className={styles['cars-list']}>
         {/* {games.length > 0
                 ? games.map(x => <CatalogItem key={x._id} game={x} />)

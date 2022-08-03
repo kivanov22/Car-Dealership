@@ -11,7 +11,7 @@ import * as carService from "../../../services/carService.js";
 function Create() {
   const navigate = useNavigate();
   const {user} = useContext(AuthContext);
-  const UserId = user.id;
+  const userId = user.id;
 
   const{ 
     condition,
@@ -117,7 +117,7 @@ function Create() {
     }
 
       let seller ={
-        UserId,
+        userId,
         fullName,
         address,
         email,

@@ -11,8 +11,8 @@ import { AuthContext } from '../../../context/authContext.js';
 function MyListings() {
   const [cars, setCars] = useState([]);
   const {user} = useContext(AuthContext);
-  const userId = user.id;
-  console.log(userId);
+ const userId = user.id;
+  //console.log(userId);
 
   useEffect(()=>{
     carService.myCars(userId)

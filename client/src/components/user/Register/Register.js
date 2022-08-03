@@ -11,6 +11,7 @@ import { useState } from "react";
 import * as authService from "../../../services/authService.js";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/authContext.js";
+import { Link} from 'react-router-dom';
 
 function Register() {
   
@@ -59,7 +60,7 @@ function Register() {
             method="POST"
             onSubmit={registerSubmitHandler}
           >
-            <h1 className={styles["form-headings"]}>Register:</h1>
+            <h1 className={styles["form-headings"]}>Register</h1>
             <div className={styles["social-container"]}>
               <a href="#" className={styles.social}>
                 <FontAwesomeIcon
@@ -80,53 +81,56 @@ function Register() {
                 ></FontAwesomeIcon>
               </a>
             </div>
-            <span className={styles["form-spans"]}>or use your account</span>
+            <span className={styles["form-spans"]}>or create your account</span>
             <input
-               id="username"
-              type="text"
+              id="username"
               name="username"
+              type="text"
               placeholder="Username"
+              className={styles["input-txt"]}
               value={values.username}
               onChange={changeHandler}
-              className={styles["input-txt"]}
             />
             <input
-             id="email"
               type="email"
-              name="email"
               placeholder="Email"
+              className={styles["input-txt"]}
               value={values.email}
               onChange={changeHandler}
-              className={styles["input-txt"]}
             />
             <input
-             id="password"
-              type="password"
+              id="password"
               name="password"
+              type="password"
               placeholder="Password"
+              className={styles["input-txt"]}
               value={values.password}
               onChange={changeHandler}
-              className={styles["input-txt"]}
             />
-            {/* <input type="password" placeholder="Confirm Password" className={styles['input-txt']}/> */}
+            <Link to={'/login'} className={styles["form-anchors"]}>
+              Already got an account?
+            </Link>
             <input type="submit" className={styles.btn} value="Register" />
-            {/* <button className={styles.btn} >Register</button> */}
           </form>
         </div>
-        {/* <div className={styles["overlay-container"]}>
+        <div className={styles["overlay-container"]}>
           <div className={styles.overlay}>
-            <div className={styles["overlay-left"]}></div>
+            <div className={styles["overlay-left"]}>
+              <h1 className={styles["form-headings"]}>Welcome Back!</h1>
+              {/* <p className={styles['form-text']}>To keep connected with us please login with your personal info</p> */}
+              <button className={styles.ghost} id="register">
+                Register
+              </button>
+            </div>
             <div className={styles["overlay-right"]}>
               <h1 className={styles["overlay-headings"]}>Hello, Friend!</h1>
               <p className={styles["overlay-text"]}>
-                Enter your personal details and start journey with us
+                Register to create car posts
               </p>
-              <button className={styles["overlay-btn"]} id="signUp">
-                Log In
-              </button>
+              {/* <input type="submit" className={styles.btn} value="Login" /> */}
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
