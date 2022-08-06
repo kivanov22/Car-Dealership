@@ -4,18 +4,19 @@ const baseUrl = 'https://localhost:7213/api';
 export const getAll = async (page) => {
     const response = await fetch(`${baseUrl}/Car/GetAll/${page}`);
     const result = await response.json();
-    // console.log(result);
-    return result.value;
+
+    return result;
 }
 
 //Get:ID
 export const getOne = async (carId)=> {
 const response = await fetch(`${baseUrl}/Car/GetOne/${carId}`);
-// ${carId}
 const result = await response.json();
 
 return result.value;
 }
+
+
 
 //Post / Create 
 export const create = async (carData) => {

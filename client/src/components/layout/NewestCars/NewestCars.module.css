@@ -18,6 +18,10 @@
     list-style-type: none;
 }
 
+.title {
+    color: #4883ff;
+}
+
 .item {
     /* flex: 1 0 25%; */
     flex: 0 0 33.333333%;

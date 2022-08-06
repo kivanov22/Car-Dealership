@@ -18,7 +18,7 @@ function NewestCars() {
 
   return (
     <section className={styles['section-new-cars']}>
-      <h2>Newest Cars:</h2>
+      <h2 className={styles.title}>Newest Cars:</h2>
 
       <ul className={styles.list}>
       {cars.map((car) => (

@@ -1,15 +1,37 @@
 import React from "react";
 import styles from "../Catalog/CatalogCars.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import * as carService from "../../../services/carService.js";
 import Filter from "../../layout/Filter/Filter.js";
 
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../../../firebase.js";
 // import { createAPIEndpoint } from "../../../api/serverApi.js";
 
-function CatalogCars({cars,search}) {
-console.log(cars);
+function CatalogCars() {
+  const [value, setValue] = useState({
+    cars:[],
+    pages:0,
+    currentPage:0,
+  });
+
+  //const [value,setValue] = useState([]);
+  const page = Number(1);
+
+  useEffect(()=>{
+    carService.getAll(page)
+    .then(res=>setValue(res))
+   
+
+    // const {
+    //   cars,
+    //   pages,
+    //   currentPage
+    // } = reposnse;
+    
+  },[page]);
+
   // const [filteredCars,setFilteredCars] = useState({})
   // const filterCars = cars.filter(option =>{
   //   if(!option.includes(search.condition)) return false;
@@ -24,7 +46,6 @@ console.log(cars);
     
   }
  
-
   return (
     <section className={styles.catalog}>
       <div className={styles.row}>
@@ -127,13 +148,17 @@ console.log(cars);
       </div>
 
       <div className={styles.rightSide}>
-        
+        <div>
+        <label htmlFor="sort">Sort By:</label>
+            <select name="sort" id="sort" className={styles["form-control"]}>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+              <option value="lower">Price lower</option>
+              <option value="higher">Price higher</option>
+            </select>
+        </div>
         <ul className={styles['cars-list']}>
-        {/* {games.length > 0
-                ? games.map(x => <CatalogItem key={x._id} game={x} />)
-                : <h3 className="no-articles">No articles yet</h3>
-            } */}
-          {cars.map((car) => (
+          {value.cars.map((car) => (
             <li key={car.id}>
               <div className={styles["cars-container"]}>
                 <div className={styles["car-img"]}>
@@ -156,6 +181,12 @@ console.log(cars);
             </li>
           ))}
         </ul>
+        <div>
+          {/* <button>forward</button>
+          <p>Current Page{currentPage}</p>
+          <p>Total Pages {value.pages}</p>
+          <button>backward</button> */}
+        </div>
       </div>
     </section>
   );

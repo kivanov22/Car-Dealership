@@ -46,19 +46,25 @@ export const login = async (username,password)=>{
 
 
 export const logout = async (token) => {
-    try {
-        const response = await fetch(`${serverUrl}/api/Authenticate/logout`,{
-            method:'POST',
-            headers: {
-            Authorization:`Bearer ${token}`
-            }
-        });
-        localStorage.removeItem('user')
-        //localStorage.clear();
-        return response;
-    } catch (error) {
-        console.log(error);
-    }
+    // console.log(token)
+
+    // try {
+    //     const response = await fetch(`${serverUrl}/api/Authenticate/logout`,{
+    //         method:'POST',
+    //         headers: {
+    //         Authorization:`Bearer ${token}`
+    //         }
+    //     });
+    //     console.log(token);
+    //     localStorage.removeItem('user')
+    //     console.log(response);
+
+    //     //localStorage.clear();
+    //     return response;
+    // } catch (error) {
+    //     console.log(error);
+    // }
+    localStorage.clear();
 };
 
 

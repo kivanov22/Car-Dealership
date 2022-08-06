@@ -18,10 +18,10 @@ import {useLocalStorage} from './hooks/useLocalStorage.js';
 import Logout from './components/user/Logout/Logout.js';
 
 function App() {
-  const [cars, setCars] = useState([]);
+ // const [cars, setCars] = useState([]);
   const[auth, setAuth] = useLocalStorage('auth',{});
   const [search,setSearch] = useState({});
-
+ // const page = Number(1);
 
   const userLogin = (authData) => {
     setAuth(authData);
@@ -31,13 +31,12 @@ const userLogout = () => {
     setAuth({});
 };
 
-let page = Number(1);
-  useEffect(()=>{
-    carService.getAll(page)
-    .then(carData =>setCars(carData));
-  },[]);
 
-  console.log(cars);
+  // useEffect(()=>{
+  //   carService.getAll(page)
+  //   .then(carData =>setCars(carData));
+  // },[page]);
+
 
   return (
     <AuthContext.Provider value={{user: auth, userLogin,userLogout}}>
@@ -45,13 +44,13 @@ let page = Number(1);
         <Navigation />
         <main>
         <Routes>
-          <Route path="/" element={<Dashboard cars={cars} search={search}/>} />
-          <Route path='/catalogCars' element={<CatalogCars cars={cars} search={search}/>}/>
+          <Route path="/" element={<Dashboard  search={search}/>} />
+          <Route path='/catalogCars' element={<CatalogCars  search={search}/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/details/:carId" element={<Details />} />
-          <Route path="/edit/:carId" element={<Edit cars={cars}/>} />
+          <Route path="/edit/:carId" element={<Edit/>} />
           <Route path='/create' element={<Create />}/>
           <Route path='/myCars' element={<MyListings />} />
         </Routes>
