@@ -2,27 +2,46 @@ import React from "react";
 import styles from '../Details/Details.module.css';
 
 import * as carService from '../../../services/carService.js';
-// import * as dotenv from 'dotenv'
 
 import { Link} from 'react-router-dom';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
-
+import ReactMapGL,{Marker,Popup} from 'react-map-gl';
+import getCenter from 'geolib/es/getCenter';
+import {places} from '../../../api/cities.js';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 
 function Details() {
+     const [car, setCar] = useState({});
+     const[selectedCity,setSelectedCity]= useState(null);
      const { carId } = useParams();
 
-// const car = cars.find(x => x.id == carId);
-console.log(carId);
-const [car, setCar] = useState({});
+     // const coordinates = car.seller.address.map(city => ({
+     //      longitude: city.long,
+     //      latitude: city.lat,
+     // }));
+
+     //const center = getCenter(coordinates);
+
+     const[viewport, setViewport] = useState({
+          latitude:43.00,
+          longitude:25.00,
+          width:'100%',
+          height:'100%',
+          zoom:10,
+
+     });
 
 useEffect(()=>{
   carService.getOne(carId)
   .then(carData =>setCar(carData));// console.log(carData)
 },[]);
 
+//const findCity = places.find(c => c.city == car.seller.address);
+//console.log(findCity);
 
 const carDeleteHandler = async () => {
  await carService.deleteCar(car.id)
@@ -270,6 +289,30 @@ const carDeleteHandler = async () => {
               </div>
          </div>
     </div>
+
+     <ReactMapGL 
+     mapStyle="mapbox://styles/techwithchris7767/cl6i3lrjy006i16pk4ycgzskj"
+     mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+     {...viewport}
+     onViewportChange={viewport =>{setViewport(viewport)}}
+     >
+          {places.map(city =>(
+               <Marker
+               key={city.id}
+               latitude={city.lat}
+               longitude={city.lng}
+               >
+                    <p
+                    onClick={() =>setSelectedCity(city.city)}
+                    className={styles.markLocation}
+                    >
+                    <FontAwesomeIcon icon={faLocationDot} />
+                    </p>
+               </Marker>
+          ))
+
+          }
+     </ReactMapGL >
 </section>
   );
 }

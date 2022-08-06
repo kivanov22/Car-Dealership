@@ -4,6 +4,7 @@ import {useState} from 'react';
 import {useEffect} from 'react';
 import * as carService from '../../../services/carService.js';
 
+
 function Filter({search}) {
 
   const [makeList, setMakeList] = useState([]);
@@ -33,7 +34,7 @@ const carFilterSubmitHandler = (e) =>{
   //   ...formData,
   //   ...search
   //  }
-      
+      //router
       console.log(search)
 }
 
@@ -67,16 +68,6 @@ const selectMakeHandler = (e) =>{
             </select>
           </div>
 
-
-          {/* <div className={styles.container}>
-            <label htmlFor="type">Vehicle Type:</label>
-            <select name="type" id="" className={styles.group}>
-              <option value="all">All</option>
-              <option value="car">Car</option>
-              <option value="truck">Truck</option>
-              <option value="Motorcycle">Motorcycle</option>
-            </select>
-          </div> */}
 
           <div className={styles.container}>
             <label htmlFor="make">Make:</label>
