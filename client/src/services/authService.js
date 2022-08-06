@@ -45,7 +45,7 @@ export const login = async (username,password)=>{
 };
 
 
-export const logout = async (token) => {
+export const logout = async () => {
     // console.log(token)
 
     // try {

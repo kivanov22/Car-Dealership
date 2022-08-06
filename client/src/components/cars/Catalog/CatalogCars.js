@@ -22,14 +22,6 @@ function CatalogCars() {
   useEffect(()=>{
     carService.getAll(page)
     .then(res=>setValue(res))
-   
-
-    // const {
-    //   cars,
-    //   pages,
-    //   currentPage
-    // } = reposnse;
-    
   },[page]);
 
   // const [filteredCars,setFilteredCars] = useState({})
@@ -148,9 +140,9 @@ function CatalogCars() {
       </div>
 
       <div className={styles.rightSide}>
-        <div>
-        <label htmlFor="sort">Sort By:</label>
-            <select name="sort" id="sort" className={styles["form-control"]}>
+        <div className={styles.sortingContainer}>
+        <label htmlFor="sort" className={styles.sort}>Sort By:</label>
+            <select name="sort" id="sort" className={styles["sorting-criteria"]}>
               <option value="asc">Ascending</option>
               <option value="desc">Descending</option>
               <option value="lower">Price lower</option>
@@ -181,11 +173,11 @@ function CatalogCars() {
             </li>
           ))}
         </ul>
-        <div>
-          {/* <button>forward</button>
-          <p>Current Page{currentPage}</p>
-          <p>Total Pages {value.pages}</p>
-          <button>backward</button> */}
+        <div className={styles.pageContainer}>
+          <button className={styles.forwardBtn}>forward</button>
+          <p>{value.currentPage}</p>
+          {/* <p>Total Pages {value.pages}</p> */}
+          <button className={styles.backwardBtn}>backward</button>
         </div>
       </div>
     </section>

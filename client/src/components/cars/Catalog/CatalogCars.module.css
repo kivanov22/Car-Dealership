@@ -168,3 +168,67 @@
 .cars-list {
     list-style-type: none;
 }
+
+.sortingContainer {
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* margin-left: 5rem; */
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.sort {
+    margin: 10px;
+}
+
+.sorting-criteria {
+    width: 20%;
+    border-radius: 0px;
+    padding-left: 15px;
+    font-size: 13px;
+    color: #aaa;
+    background-color: #f4f4f4;
+    border: 1px solid #eee;
+     outline: none;
+     box-shadow: none;
+    line-height: 40px;
+ height: 40px;
+  margin-bottom: 25px;
+}
+
+.pageContainer {
+    position: relative;
+    display: flex;
+    left:50%;
+}
+
+.forwardBtn{
+    border-color: #09f;
+    color: #09f;
+    width: 15%;
+    border-radius: 15px;
+    padding: 15px 30px;
+    margin-right: 20px;
+}
+
+.backwardBtn {
+    border-color: #09f;
+    color: #09f;
+    width: 15%;
+    border-radius: 15px;
+    padding: 15px 30px;
+    margin-left: 20px;
+}
+
+.forwardBtn:focus,
+.backwardBtn:focus,
+.forwardBtn:hover,
+.backwardBtn:hover,
+.forwardBtn:active,
+.backwardBtn:active,
+.forwardBtn:focus:active,
+.backwardBtn:focus:active{
+    background: #09f; 
+    color: #fff; 
+    border-color: #09f; 
+}

@@ -74,8 +74,8 @@ export const myCars = async (userId) => {
 }
 
 export const getMakes = async () => {
-    const response = await fetch(`${baseUrl}/Car/GetMake`)
-
+     const response = await fetch(`${baseUrl}/Car/GetMake`)
+   
     const result = await response.json();
 
     return result.value;
@@ -88,6 +88,11 @@ export const getModels = async () => {
 
     return result.value;
 }
+
+
+
+
+
     // export const update = (petId, petData) => request.put(`${baseUrl}/pets/${petId}`, petData);
 
 // export const getOne = (id) => fetch(`${baseUrl}/games/${id}`).then(res => res.json());

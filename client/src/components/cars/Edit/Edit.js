@@ -5,9 +5,15 @@ import { useState } from "react";
 // import { Link} from 'react-router-dom';
 import * as carService from '../../../services/carService.js';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from '../../../context/authContext.js';
 
 function Edit() {
      const [car, setCar] = useState({});
+     const {user} = useContext(AuthContext);
+     const userId = user.id;
+     const navigate = useNavigate();
 
      const { carId } = useParams();
      
@@ -73,6 +79,7 @@ function Edit() {
              }
          
                let seller ={
+                userId,
                 fullName,
                  address,
                  email,
@@ -83,10 +90,11 @@ function Edit() {
                  ...carData,
                  seller
                  }
-       
+                
+
            carService.edit(carId,sendData)
            .catch(err => console.log(err.message))
-           
+           navigate('/catalogCars')
      }
 
   return (

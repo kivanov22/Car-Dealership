@@ -4,6 +4,10 @@ import * as carService from '../../../services/carService.js';
 import {useEffect} from 'react';
 import {useState} from 'react';
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  
+import { faGauge,faGear,faCube } from "@fortawesome/free-solid-svg-icons";
+
 
 function NewestCars() {
 
@@ -31,20 +35,20 @@ function NewestCars() {
                 </div>
                 <div className={styles['overlay-content']}>
                   <strong className={styles['strong-fields']}>
-                    <i className="fa fa-dashboard"></i> {car.mileage}km
+                  <FontAwesomeIcon icon={faGauge} /> {car.mileage}km
                   </strong>{" "}
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <strong className={styles['strong-fields']}>
-                    <i className="fa fa-cube"></i> {car.engizeSize} cc
+                  <FontAwesomeIcon icon={faCube} /> {car.engineSize} cc
                   </strong>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <strong className={styles['strong-fields']}>
-                    <i className="fa fa-cog"></i> {car.gearbox}
+                  <FontAwesomeIcon icon={faGear} /> {car.gearbox}
                   </strong>
                 </div>
               </div>
               <div className={styles['down-content']}>
-                <h4>{car.miniDescription}</h4>
+                <h4 className={styles.descMin}>{car.miniDescription}</h4>
 
                 <br />
 
