@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import * as authService from "../../../services/authService.js";
 import { useContext } from "react";
-import { AuthContext } from "../../../context/authContext.js";
+import { AuthContext } from "../../../context/AuthContext.js";
 import { Link} from 'react-router-dom';
 
 function Register() {
@@ -36,19 +36,12 @@ function Register() {
     e.preventDefault();
 
     let{username,email,password} = Object.fromEntries(new FormData(e.currentTarget));
-   
+ 
       authService.register(username,email,password)
       .then(authData =>{
         userLogin(authData);
         navigate('/login')
       })
-    // let {username,email,password} = Object.fromEntries(new FormData(e.currentTarget));
-
-    // authService.register(username,email,password);
-    // createAPIEndpoint("Authenticate/register")
-    //   .post(values)
-    //   .then((res) => res.json())
-    //   .catch((err) => console.log(err));
   };
 
   return (
@@ -92,6 +85,8 @@ function Register() {
               onChange={changeHandler}
             />
             <input
+              id="email"
+              name="email"
               type="email"
               placeholder="Email"
               className={styles["input-txt"]}

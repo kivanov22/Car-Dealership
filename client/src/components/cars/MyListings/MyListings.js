@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import * as carService from '../../../services/carService.js';
 import * as auth from '../../common/userLocalStorage.js';
 import { useContext } from "react";
-import { AuthContext } from '../../../context/authContext.js';
+import { AuthContext } from '../../../context/AuthContext.js';
 
 function MyListings() {
   const [cars, setCars] = useState([]);

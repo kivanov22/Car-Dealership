@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from "react";
-import useCarData from "../../../hooks/carData.js";
+import useCarData from "../../../hooks/useCarData.js";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from '../../../context/authContext.js';
+import { AuthContext } from '../../../context/AuthContext.js';
 
 import styles from "../Create/Create.module.css";
 import * as carService from "../../../services/carService.js";
@@ -92,7 +91,7 @@ function Create() {
       doors = Number(doors);
      mileage = Number(mileage);
      isOwner = Boolean(isOwner);
-      // phone = Number(phone);
+ 
 
     let carData = {
       condition,
@@ -128,7 +127,7 @@ function Create() {
         ...carData,
         seller
         }
-      console.log(sendData)
+      
       
      carService.create(sendData);
      navigate('/myCars')
@@ -145,7 +144,6 @@ function Create() {
         <div className={styles.row}>
           <div className={styles.firstCol}>
             <div className={styles["container-upper-pic"]}>
-              {/* <img src={car} alt="" loading="lazy" className={styles.upperPic}/> */}
               <label htmlFor="" className={styles["form-span"]}>
                 Main Picture
               </label>
@@ -157,9 +155,6 @@ function Create() {
             <div className={styles.row}>
               <div className={styles["columns-photos"]}>
                 <div className={styles["little-pics"]}>
-                  {/* <img src={car} alt="" loading="lazy" className={styles['img-responsive']}/> */}
-                  {/* <label  htmlFor="" className={styles['form-span']}>First Picture</label>
-                                   <input type="text" id="firstImage" name="firstImage"/> */}
                <label htmlFor="firstLowerImgUrl" className={styles["form-span"]}>
                 First Lower Image
               </label>
@@ -200,7 +195,6 @@ function Create() {
               <input
                 name="miniDescription"
                 id="miniDescription"
-               //  defaultValue={car.miniDescription}
                 value={miniDescription} onChange={setMiniDescription}
               />
 
@@ -215,23 +209,6 @@ function Create() {
               <input type="number" id="price" name="price" value={price} onChange={setPrice} />
 
               <div className={styles.row}>
-                {/* <div className={styles["info-col-1"]}>
-                  <p className={styles["form-text"]}>
-                    <span className={styles["form-span"]}>Type</span>
-
-                    <br />
-
-                    <input
-                      type="text"
-                      className={styles["form-strong"]}
-                      name="type"
-                      id="type"
-                    //   defaultValue={car.type}
-                      value={type} onChange={setType}
-                    />
-                  </p>
-                </div> */}
-
                 <div className={styles["info-col-1"]}>
                   <p className={styles["form-text"]}>
                     <span className={styles["form-span"]}>Make</span>
@@ -243,7 +220,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="make"
                       id="make"
-                    //   defaultValue={car.make}
                     value={make} onChange={setMake}
                     />
                   </p>
@@ -260,7 +236,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="model"
                       id="model"
-                    //   defaultValue={car.model}
                     value={model} onChange={setModel}
                     />
                   </p>
@@ -279,7 +254,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="year"
                       id="year"
-                    //   defaultValue={car.year}
                     value={year} onChange={setYear}
                     />
                   </p>
@@ -296,7 +270,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="mileage"
                       id="mileage"
-                    //   defaultValue={car.mileage}
                     value={mileage} onChange={setMileage}
                     />
                   </p>
@@ -313,7 +286,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="fuel"
                       id="fuel"
-                    //   defaultValue={car.fuel}
                     value={fuel} onChange={setFuel}
                     />
                   </p>
@@ -330,7 +302,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="engineSize"
                       id="engineSize"
-                    //   defaultValue={car.engineSize}
                     value={engineSize} onChange={setEngineSize}
                     />
                   </p>
@@ -347,7 +318,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="power"
                       id="power"
-                    //   defaultValue={car.power}
                     value={power} onChange={setPower}
                     />
                   </p>
@@ -364,7 +334,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="gearbox"
                       id="gearbox"
-                    //   defaultValue={car.gearbox}
                     value={gearbox} onChange={setGearbox}
                     />
                   </p>
@@ -381,7 +350,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="isOwner"
                       id="isOwner"
-                    //   defaultValue={car.isOwner}
                     value={isOwner} onChange={setIsOwner}
                     />
                   </p>
@@ -398,7 +366,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="doors"
                       id="doors"
-                    //   defaultValue={car.doors}
                     value={doors} onChange={setDoors}
                     />
                   </p>
@@ -415,7 +382,6 @@ function Create() {
                       className={styles["form-strong"]}
                       name="color"
                       id="color"
-                    //   defaultValue={car.color}
                     value={color} onChange={setColor}
                     />
                   </p>
@@ -516,7 +482,7 @@ function Create() {
             </div>
           </div>
         </div>
-        <input className="" type="submit" value="Create" />
+        <input className={styles.createBtn} type="submit" value="Create" />
       </form>
     </section>
   );

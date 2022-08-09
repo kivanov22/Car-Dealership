@@ -2,7 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SOCIAL_MEDIA_ACCOUNTS } from "../../../utils/constants.js";
 import styles from "../Footer/Footer.module.css";
-import logo from "../../../assets/cars.png";
 
 function Footer() {
   return (

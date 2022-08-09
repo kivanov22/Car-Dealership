@@ -270,3 +270,23 @@
     /* align-content: center; */
     /* justify-items: center; */
 }
+
+.createBtn {
+    border-color: #09f;
+    color: #09f;
+    width: 15%;
+    border-radius: 15px;
+    padding: 15px 30px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.createBtn:focus,
+.createBtn:hover,
+.createBtn:active,
+.createBtn:focus:active{
+    background: #09f; 
+    color: #fff; 
+    border-color: #09f; 
+}

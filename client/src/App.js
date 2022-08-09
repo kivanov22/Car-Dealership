@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import Navigation from './components/layout/Navigation/Navigation.js';
 import {Route, Routes} from 'react-router-dom';
 import Login from './components/user/Login/Login.js';
@@ -8,27 +8,16 @@ import Register from './components/user/Register/Register.js';
 import Details from './components/cars/Details/Details.js';
 import Edit from './components/cars/Edit/Edit.js';
 import Create from './components/cars/Create/Create.js';
-import * as carService from './services/carService.js';
-import { useState } from "react";
+import { lazy,Suspense } from "react";
 import MyListings from './components/cars/MyListings/MyListings.js';
-import {AuthContext} from './context/authContext.js';
-import {useLocalStorage} from './hooks/useLocalStorage.js';
+import {AuthProvider} from './context/AuthContext.js';
 import Logout from './components/user/Logout/Logout.js';
+import {  CarsProvider } from './context/CarsContext.js';
+import PrivateRoute from './components/common/PrivateRoute.js';
+import PrivateGuard from './components/common/PrivateGuard.js';
+
 
 function App() {
- // const [cars, setCars] = useState([]);
-  const[auth, setAuth] = useLocalStorage('auth',{});
-  const [search,setSearch] = useState({});
- // const page = Number(1);
-
-  const userLogin = (authData) => {
-    setAuth(authData);
-};
-
-const userLogout = () => {
-    setAuth({});
-};
-
 
   // useEffect(()=>{
   //   carService.getAll(page)
@@ -37,24 +26,28 @@ const userLogout = () => {
 
 
   return (
-    <AuthContext.Provider value={{user: auth, userLogin,userLogout}}>
+    <AuthProvider >
     <div className="App">
         <Navigation />
+        <CarsProvider>
         <main>
         <Routes>
-          <Route path="/" element={<Dashboard  search={search}/>} />
-          <Route path='/catalogCars' element={<CatalogCars  search={search}/>}/>
+          <Route path="/" element={<Dashboard />} />
+          <Route path='/catalogCars' element={<CatalogCars/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/details/:carId" element={<Details />} />
+
           <Route path="/edit/:carId" element={<Edit/>} />
+
           <Route path='/create' element={<Create />}/>
           <Route path='/myCars' element={<MyListings />} />
         </Routes>
         </main>
+        </CarsProvider>
     </div>
-    </AuthContext.Provider>
+    </AuthProvider>
 
   );
 }

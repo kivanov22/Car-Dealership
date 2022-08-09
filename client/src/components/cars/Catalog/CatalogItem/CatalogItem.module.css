@@ -2,8 +2,6 @@
 .catalog {
     display: flex;
     margin: 30px auto;
-    align-content: center;
-    justify-content: center;
     /* flex-direction: column; */
     /* flex-wrap: wrap; */
     font-size: 14px;
@@ -200,10 +198,8 @@
 
 .pageContainer {
     position: relative;
-    overflow:hidden;
     display: flex;
-    margin-top: 20px;
-    justify-content: center;
+    left:50%;
 }
 
 .forwardBtn{
@@ -236,6 +232,4 @@
     color: #fff; 
     border-color: #09f; 
 }
-
-
 

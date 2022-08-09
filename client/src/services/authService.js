@@ -1,4 +1,3 @@
-import * as request from '../services/requester.js'
 const serverUrl = 'https://localhost:7213';
 
 //Register as User

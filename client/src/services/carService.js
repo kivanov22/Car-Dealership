@@ -89,9 +89,30 @@ export const getModels = async () => {
     return result.value;
 }
 
+export const filterCars =async (condition,make,model,price,mileage,power,fuel,doors,color,year)=>{
+    const response = await fetch(`${baseUrl}/Car/FilterCars`,
+    condition,make,model,price,mileage,power,fuel,doors,color,year);
 
+    const result = await response.json();
 
+    return result;
+}
 
+export const sortBy = async (criteria) => {
+    const response = await fetch(`${baseUrl}/Car/SortBy/${criteria}`)
+   
+    const result = await response.json();
+    
+    return result.value;
+}
+
+export const getSellerCity = async (id) =>{
+    const response = await fetch(`${baseUrl}/Car/GetSellerCity/${id}`)
+   console.log(response);
+    const result = await response.json();
+    console.log(response);
+    return result.value;
+}
 
     // export const update = (petId, petData) => request.put(`${baseUrl}/pets/${petId}`, petData);
 

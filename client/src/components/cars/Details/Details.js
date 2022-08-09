@@ -7,45 +7,25 @@ import { Link} from 'react-router-dom';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
-import ReactMapGL,{Marker,Popup} from 'react-map-gl';
-import getCenter from 'geolib/es/getCenter';
-import {places} from '../../../api/cities.js';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import Map from "../../common/Map/Map.js";
+
 
 
 function Details() {
      const [car, setCar] = useState({});
-     const[selectedCity,setSelectedCity]= useState(null);
      const { carId } = useParams();
 
-     // const coordinates = car.seller.address.map(city => ({
-     //      longitude: city.long,
-     //      latitude: city.lat,
-     // }));
-
-     //const center = getCenter(coordinates);
-
-     const[viewport, setViewport] = useState({
-          latitude:43.00,
-          longitude:25.00,
-          width:'100%',
-          height:'100%',
-          zoom:10,
-
-     });
 
 useEffect(()=>{
   carService.getOne(carId)
-  .then(carData =>setCar(carData));// console.log(carData)
-},[]);
+  .then(carData =>setCar(carData));
+},[carId]);
 
-//const findCity = places.find(c => c.city == car.seller.address);
-//console.log(findCity);
+
 
 const carDeleteHandler = async () => {
  await carService.deleteCar(car.id)
- .then(carData => setCar(carData.filter(x=>x.id != carId))); // ??
+ .then(carData => setCar(carData.filter(x=>x.id !== carId))); // ??
 }
 
 
@@ -55,7 +35,7 @@ const carDeleteHandler = async () => {
          <div className={styles.row}>
               <div className={styles.firstCol}>
                    <div className={styles['container-upper-pic']}>
-                        <img src={car.imageUrl} alt="image"  className={styles.upperPic}/>
+                        <img src={car.imageUrl} alt="error"  className={styles.upperPic}/>
                    </div>
 
                    <br/>
@@ -63,7 +43,7 @@ const carDeleteHandler = async () => {
                    <div className={styles.row}>
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                                  <img src={car.firstLowerImgUrl} alt="" loading="lazy" className={styles['img-responsive']}/>
+                                  <img src={car.firstLowerImgUrl} alt="error" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              
                              <br/>
@@ -71,7 +51,7 @@ const carDeleteHandler = async () => {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car.secondLowerImgUrl} alt="" loading="lazy" className={styles['img-responsive']}/>
+                             <img src={car.secondLowerImgUrl} alt="error" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              
                              <br/>
@@ -79,7 +59,7 @@ const carDeleteHandler = async () => {
 
                         <div className={styles['columns-photos']}>
                              <div className={styles['little-pics']}>
-                             <img src={car.thirdLowerImgUrl} alt="" loading="lazy" className={styles['img-responsive']}/>
+                             <img src={car.thirdLowerImgUrl} alt="error" loading="lazy" className={styles['img-responsive']}/>
                              </div>
                              <br/>
                         </div>
@@ -95,15 +75,6 @@ const carDeleteHandler = async () => {
                         <p className="lead"><strong className={styles['span-color']}>${car.price}</strong></p>
 
                         <div className={styles.row}>
-                             {/* <div className={styles['info-col-1']}>
-                                  <p className={styles['form-text']}>
-                                       <span className={styles['form-span']}>Type</span>
-
-                                       <br/>
-
-                                       <strong className={styles['form-strong']}>{car.type}</strong>
-                                  </p>
-                             </div> */}
 
                              <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
@@ -186,15 +157,6 @@ const carDeleteHandler = async () => {
                                   </p>
                              </div>
 
-                             {/* <div className={styles['info-col-1']}>
-                                  <p className={styles['form-text']}>
-                                       <span className={styles['form-span']}>Number of seats</span>
-
-                                       <br/>
-
-                                       <strong className={styles['form-strong']}>{car.seats}</strong>
-                                  </p>
-                             </div> */}
 
                              <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
@@ -223,7 +185,6 @@ const carDeleteHandler = async () => {
                               </button>
                                   
                               <button className={styles.deleteBtn} onClick={() => carDeleteHandler(car.id)}>
-                              {/* <Link className={styles.deleteBtn} to={`/delete/${car.id}`}>Delete</Link> */}
                               Delete
                               </button>
                              </div>
@@ -290,29 +251,10 @@ const carDeleteHandler = async () => {
          </div>
     </div>
 
-     <ReactMapGL 
-     mapStyle="mapbox://styles/techwithchris7767/cl6i3lrjy006i16pk4ycgzskj"
-     mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-     {...viewport}
-     onViewportChange={viewport =>{setViewport(viewport)}}
-     >
-          {places.map(city =>(
-               <Marker
-               key={city.id}
-               latitude={city.lat}
-               longitude={city.lng}
-               >
-                    <p
-                    onClick={() =>setSelectedCity(city.city)}
-                    className={styles.markLocation}
-                    >
-                    <FontAwesomeIcon icon={faLocationDot} />
-                    </p>
-               </Marker>
-          ))
-
-          }
-     </ReactMapGL >
+     <section className={styles.mapContainer}>
+          <Map car={carId}></Map>
+     </section>                        
+     
 </section>
   );
 }

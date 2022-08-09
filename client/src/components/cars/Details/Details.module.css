@@ -271,7 +271,13 @@
     /* justify-items: center; */
 }
 
-.map-container {
-    width: 100%;
-    height: 100%;
+.mapContainer {
+   padding-top: 14px;
+   width: 100%;
+   height: 120%;
+   /* min-width: 600px; */
+}
+
+.mapBox{
+    
 }

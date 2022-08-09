@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../Login/Login.module.css";
 import { useContext } from "react";
-import { AuthContext } from "../../../context/authContext.js";
+import { AuthContext } from "../../../context/AuthContext.js";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

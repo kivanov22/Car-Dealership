@@ -9,6 +9,7 @@ Car-Dealership
 </h4>
 
 <p align="center">
+<!-- after deploy -->
    <!-- <img src="https://airbnb-clone-krisko512-gmailcom.vercel.app" alt="Release" />
    <img src="https://airbnb-clone-krisko512-gmailcom.vercel.app" alt="Deployment" />
    <img src="https://img.shields.io/github/license/kivanov22/Airbnb-Clone" alt="License" /> -->
@@ -16,6 +17,7 @@ Car-Dealership
 
 <p align="center">
   <a href="#demo">Demo</a> •
+  <!-- <a href="#project-screenshots">Project Screenshots</a> • -->
   <a href="#key-features">Key Features</a> •
   <a href="#key-technologies">Key Technologies</a> •
   <a href="#setup">Setup</a> •
@@ -28,6 +30,12 @@ Car-Dealership
 Here is a working live demo ..
 
 ---
+
+<!-- ## Project Screenshots
+
+Here is some project screenshots ..
+
+--- -->
 
 ## Project Architecture
 
@@ -67,7 +75,7 @@ Here is a working live demo ..
 - User Collection of cars
 - Details
 - Real World map in Details showing location of the seller
-- Sorting,Paging,Searching
+- Paging
 
 
 ---

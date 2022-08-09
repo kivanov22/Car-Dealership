@@ -7,7 +7,7 @@ import * as carService from '../../../services/carService.js';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from '../../../context/authContext.js';
+import { AuthContext } from '../../../context/AuthContext.js';
 
 function Edit() {
      const [car, setCar] = useState({});
@@ -473,7 +473,7 @@ function Edit() {
            </div>
          </div>
        </div>
-       <input className="" type="submit" value="Edit" />
+       <input className={styles.editBtn} type="submit" value="Edit" />
      </form>
    </section>
   );
