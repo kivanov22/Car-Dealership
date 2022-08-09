@@ -101,19 +101,10 @@ namespace Car_Dealership_API.Controllers
         [Route("{userId}")]
         public async Task<JsonResult> MyCars([FromRoute]string userId)
         {
-            //var user = await _userManager.FindByNameAsync(model.Username);
-            //var findUser = await _context.Users.
-            //var userId = _userManager.GetUserIdAsync();
-
-            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var result = await _context.Cars
                 .Where(x => x.Seller.UserId == userId)
                 .ToListAsync();
-
-            //var result = _context.Cars
-            //  .Where(x => x.SellerId == x.Seller.Id)
-            //  .ToList();
 
             return new JsonResult(Ok(result));
         }
@@ -208,27 +199,13 @@ namespace Car_Dealership_API.Controllers
             return new JsonResult(Ok(result));
         }
 
-        [HttpGet]
-        public JsonResult GetStatistics()
-        {
-            var countCars = _context.Cars.Count();
-            var countUsers = _context.Users.Count();
 
-            var result = new
-            {
-                CarsCount = countCars,
-                UsersCount = countUsers,
-            };
-
-            return new JsonResult(Ok(result));
-        }
-
-        [HttpGet]
+        [HttpGet("{criteria}")]
         public async Task<JsonResult> SortBy(string criteria)
         {
             var result = new List<Car>();
 
-            if(criteria == "desc")
+            if(criteria == "descending")
             {
                 result = await _context.Cars
                .OrderByDescending(x=>x.Id)
@@ -236,7 +213,7 @@ namespace Car_Dealership_API.Controllers
 
                return new JsonResult(Ok(result));
             }
-            else if(criteria == "asc")
+            else if(criteria == "ascending")
             {
                  result = await _context.Cars
                  .OrderBy(x => x.Id)
@@ -283,26 +260,95 @@ namespace Car_Dealership_API.Controllers
             return new JsonResult(Ok(result));
         }
 
-        //[HttpGet]
-        //public JsonResult AllCarsSortedPaginated([FromQuery] AllCarsApiRequestModel query)
-        //    => _context.Cars.All(
-        //        query.Sorting,
-        //        query.CurrentPage,
-        //        query.CarsPerPage);
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Car>>> FilterCars(string? condition,string? make,string? model,double? price,
+            int? mileage,int? power,string? fuel,int? doors,string? color,int? year)
+        {
 
-        //[HttpGet]
-        //public async Task<ActionResult<List<Car>>> Search(Car car)
-        //{
-        //    //var result = await _context.Cars
-        //    //    .Where(c => c.Condition == car.Condition
-        //    //    )
-        //    //    .ToListAsync();
+            IQueryable<Car> query = _context.Cars;
 
-        //   var result = await _context.Cars.ContainsAsync(car);
+            if (!string.IsNullOrEmpty(condition))
+            {
+                query = query.Where(c => c.Condition==condition);
+            }
+
+            if (!string.IsNullOrEmpty(make))
+            {
+                query = query.Where(c => c.Make==make);
+            }
+
+            if (!string.IsNullOrEmpty(model))
+            {
+                query = query.Where(c => c.Model.Contains(model));
+            }
+
+            if (price!=0)
+            {
+                query = query.Where(c => price <= c.Price);
+            }
+
+            if (mileage != 0)
+            {
+                query = query.Where(c => mileage <= c.Mileage);
+            }
+
+            if (power != 0)//or return all
+            {
+                query = query.Where(c => power <= c.Power);
+            }
+
+            if (!string.IsNullOrEmpty(fuel))
+            {
+                query = query.Where(c => c.Fuel.Contains(fuel));
+            }
+
+            if (!string.IsNullOrEmpty(color))
+            {
+                query = query.Where(c => c.Color.Contains(color));
+            }
+
+            if (doors != 0 && doors<=5)
+            {
+                query = query.Where(c => doors <= c.Doors);
+            }
+
+            if (year != 0 && year >=1950)
+            {
+                query = query.Where(c => year <= c.Year);
+            }
+            //condition
+            //make
+            //model
+            //price
+            //mileage
+            //power
+            //fuel
+            //doors
+            //color
+            //year
 
 
-        //    return new JsonResult(Ok(result));
-        //}
+
+
+
+
+            return await query.ToListAsync();
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<JsonResult> GetSellerCity(int id)
+        {
+            var result = await _context.Cars
+                .Include(s=>s.Seller)
+                .Where(c=>c.Id == id)
+                .FirstOrDefaultAsync();
+
+            var citySeller = result.Seller.Address;
+
+            return new JsonResult(Ok(citySeller));
+        }
+       
 
     }
 }
