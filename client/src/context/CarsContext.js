@@ -21,6 +21,7 @@ export const CarsProvider = ({children}) =>{
 
     const carEdit = (carId, carData) => {
         setCars(state => state.map(x => x.id === carId ? carData : x));
+        navigate('/catalogCars');
     }
 
     useEffect(() => {
@@ -29,7 +30,7 @@ export const CarsProvider = ({children}) =>{
                 setCars(result);
             });
     }, [page]);
-
+    //console.log(cars);
     return (
         <CarsContext.Provider value={{
             cars,

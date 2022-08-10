@@ -101,7 +101,7 @@ export const filterCars =async (condition,make,model,price,mileage,power,fuel,do
 export const sortBy = async (criteria) => {
     const response = await fetch(`${baseUrl}/Car/SortBy/${criteria}`)
    
-    const result = await response.json();
+    const result = await response.json(criteria);
     
     return result.value;
 }
@@ -114,11 +114,5 @@ export const getSellerCity = async (id) =>{
     return result.value;
 }
 
-    // export const update = (petId, petData) => request.put(`${baseUrl}/pets/${petId}`, petData);
 
-// export const getOne = (id) => fetch(`${baseUrl}/games/${id}`).then(res => res.json());
 
-// export const getLatest = () => {
-//     return fetch(`${baseUrl}/games?sortBy=_createdOn%20desc&distinct=category`)
-//         .then(res => res.json())
-//}

@@ -11,6 +11,7 @@ import {places} from '../../../api/cities.js';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import mapboxgl from 'mapbox-gl';
 
 function Map(carId) {
      const[selectedCity,setSelectedCity]= useState({});
@@ -59,7 +60,13 @@ console.log(selectedCity);
           
       });
       
-     
+     //  const map = new mapboxgl.Map({
+     //      container:'map',
+     //      style:'mapbox://styles/techwithchris7767/cl6i3lrjy006i16pk4ycgzskj',
+     //      center:[42.6979,23.3217],
+     //      zoom:13
+     //  });
+     // map.addControl(new mapboxgl.FullscreenControl());
 
   return (
     <ReactMapGL 
@@ -87,7 +94,7 @@ console.log(selectedCity);
                     </p>
                </Marker>
 
-                {selectedCity.longitude===result.lng ? (
+                {selectedCity.lng===result.lng ? (
                 <Popup
                 onClose={()=>setSelectedCity({})}
                closeOnClick={true}

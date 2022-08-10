@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from '../Details/Details.module.css';
 
 import * as carService from '../../../services/carService.js';
 
-import { Link} from 'react-router-dom';
+import { Link, Navigate, useNavigate} from 'react-router-dom';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
 import Map from "../../common/Map/Map.js";
+import { AuthContext } from "../../../context/AuthContext.js";
 
 
 
 function Details() {
+     const navigate = useNavigate();
      const [car, setCar] = useState({});
      const { carId } = useParams();
+     const { user } = useContext(AuthContext);
 
 
 useEffect(()=>{
@@ -21,11 +24,14 @@ useEffect(()=>{
   .then(carData =>setCar(carData));
 },[carId]);
 
+// const isOwner = car.seller.userId === user.id;
+// console.log(isOwner);
 
 
 const carDeleteHandler = async () => {
  await carService.deleteCar(car.id)
  .then(carData => setCar(carData.filter(x=>x.id !== carId))); // ??
+ navigate('/catalogCars')
 }
 
 

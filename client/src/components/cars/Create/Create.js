@@ -195,15 +195,16 @@ function Create() {
               <input
                 name="miniDescription"
                 id="miniDescription"
+                className={styles.miniDescriptionInput}
                 value={miniDescription} onChange={setMiniDescription}
               />
 
-              <label htmlFor="condition" className={styles["form-span"]}>
+              <label htmlFor="condition" className={styles.conditionLabel}>
                 Condition
               </label>
-              <input type="text" id="condition" name="condition" value={condition} onChange={setCondition}/>
+              <input type="text" id="condition" name="condition" className={styles.conditionInput} value={condition} onChange={setCondition}/>
 
-              <label htmlFor="price" className={styles["form-span"]}>
+              <label htmlFor="price" className={styles.priceLabel}>
                 Price
               </label>
               <input type="number" id="price" name="price" value={price} onChange={setPrice} />

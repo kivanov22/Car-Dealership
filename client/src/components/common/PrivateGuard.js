@@ -1,8 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext.js';
 
 const PrivateGuard = ({children}) => {
-    const { isAuthenticated } = useContext();
+    const { isAuthenticated } = useContext(AuthContext);
     
     if (!isAuthenticated) {
         return <Navigate to="/login" replace />
