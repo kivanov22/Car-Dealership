@@ -79,7 +79,6 @@
     /* position: absolute; */
      /* top: 150px;  */
     /* left: 350px;  */
-    display: flex;
     /* flex-basis: 25%; */
     border: 2px solid black;
     width: 850px;
@@ -92,20 +91,26 @@
 }
 
 .car-img {
-    object-fit: cover;
-    height: 50vh;
-    width: 55%;
+    display: flex;
+    justify-content: space-between;
+
+    /* object-fit: cover; */
+    /* height: 50vh;
+    width: 55%; */
 }
 
 .carImage {
-    object-fit: contain;
-    height: 100%;
+    /* object-fit: contain; */
+   
+    height: auto;
     width: 100%;
+    vertical-align: middle;
 }
 
 .desc {
     display: flex;
     flex-direction: column;
+    width: 90%;
     margin: 20px auto;
     padding: 20px;
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import * as carService from "../../../services/carService.js";
 import { CarsContext } from "../../../context/CarsContext.js";
 import CatalogItem from "./CatalogItem/CatalogItem.js";
+import Pagination from "../../common/Pagination/Pagination.js";
 
 
 function CatalogCars() {
@@ -25,7 +26,7 @@ function CatalogCars() {
   // const [searchParam] = useState(['condition','make','model','price','mileage','power','fuel','doors','color','year']);
 
   //const [value,setValue] = useState([]);
-  const page = Number(1);
+  const page = Number(1);//will come from bottom depending on which page we are
 
   useEffect(()=>{
     carService.getAll(page)
@@ -129,14 +130,13 @@ useEffect(()=>{
     //const sorted = [...value.cars].sort((a,b)=>b[sortPropperty] - a[sortPropperty]);
     // setSortedCollection(sortPropperty);
     setSortedCollection(filteredValue);
-    console.log(sortedCollection);
+    // console.log(sortedCollection);
   };
 
   sortArray(selectedSorting);
 },[value.cars,selectedSorting])
 
-  // const criteria = selectedSorting;
-  // const sorted = carService.sortBy(criteria);
+ 
 
   //let filteredCars = value.cars.sortBy(value.cars,selectedSorting);
 
@@ -169,12 +169,7 @@ useEffect(()=>{
         ? sortedCollection.map(x=> <CatalogItem key={x.id} car={x} />)
         : <h1 className={styles.message}>There is no cars in DB !</h1>
         }
-        <div className={styles.pageContainer}>
-          <button className={styles.backwardBtn} >backward</button>
-          <p>{value.currentPage}</p>
-          {/* <p>Total Pages {cars.pages}</p> */}
-          <button className={styles.forwardBtn}>forward</button>
-        </div>
+        <Pagination></Pagination>
       </div>
     </section>
   );

@@ -1,0 +1,72 @@
+.pageContainer {
+    margin-top: 20px;
+    margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+ justify-content: center;
+  /* justify-content: space-between; */
+  list-style-type: none;
+  padding: 0 5rem;
+  border-radius: 8px;
+  align-items: center;
+    /* position: relative;
+    overflow:hidden;
+    display: flex;
+    margin-top: 20px;
+    justify-content: center; */
+    /* background-color: #09f; */
+    background-color: white;
+    /* gap: 10px; */
+}
+
+.pageNumbers{
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 0.1rem 1rem;
+    border: lightgray 1px solid;
+    cursor: pointer;
+    color: #09f;
+    cursor: pointer;
+    width: 20px;
+    height: 35px;
+}
+.pageNumbers:active
+.pageNumbers:hover
+.pageNumbers:focus {
+    background-color: #09f;
+    color: white;
+    /* color: rgba(59,130,246,.5); */
+}
+
+.arrowLefttIcon{
+    cursor: pointer;
+    border-color: #09f;
+    color: #09f;
+    width: 15%;
+    border-radius: 15px;
+    padding: 15px 30px;
+    margin-left: 10px;
+}
+
+.arrowRightIcon {
+    cursor: pointer;
+    border-color: #09f;
+    color: #09f;
+    width: 15%;
+    border-radius: 15px;
+    padding: 15px 30px;
+    margin-right: 10px;
+}
+
+.forwardBtn:focus,
+.backwardBtn:focus,
+.forwardBtn:hover,
+.backwardBtn:hover,
+.forwardBtn:active,
+.backwardBtn:active,
+.forwardBtn:focus:active,
+.backwardBtn:focus:active{
+    background: #09f; 
+    color: #fff; 
+    border-color: #09f; 
+}

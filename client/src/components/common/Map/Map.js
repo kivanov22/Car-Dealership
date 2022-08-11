@@ -17,7 +17,7 @@ function Map(carId) {
      const[selectedCity,setSelectedCity]= useState({});
      const[sellerCity,setSellerCity] = useState('');
   
-console.log(selectedCity);
+//console.log(selectedCity);
 // let {car} = carId;
 // car = Number(car)
 // let id = car;

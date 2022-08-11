@@ -5,7 +5,7 @@ const CatalogItem = ({ car }) => {
     return (
         <div className={styles["cars-container"]}>
         <div className={styles["car-img"]}>
-          <img src={car.imageUrl} alt="" className={styles.carImage} />
+          <img src={car.imageUrl} alt=""  className={styles.carImage} />
         </div>
         <div className={styles.desc}>
           <p className={styles["car-title"]}>{car.make} {car.model}</p>

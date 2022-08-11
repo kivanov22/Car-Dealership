@@ -3,7 +3,7 @@ import styles from '../Details/Details.module.css';
 
 import * as carService from '../../../services/carService.js';
 
-import { Link, Navigate, useNavigate} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
@@ -17,6 +17,8 @@ function Details() {
      const [car, setCar] = useState({});
      const { carId } = useParams();
      const { user } = useContext(AuthContext);
+     const [currentCar,setCurrentCar] = useState('');
+     //const {selectCar} = useContext(CarsContext)
 
 
 useEffect(()=>{
@@ -24,8 +26,15 @@ useEffect(()=>{
   .then(carData =>setCar(carData));
 },[carId]);
 
-// const isOwner = car.seller.userId === user.id;
-// console.log(isOwner);
+useEffect(()=>{
+     carService.getUser(carId)
+     .then(carData =>setCurrentCar(carData));
+   },[carId]);
+
+
+
+const isOwner = currentCar === user.id;
+
 
 
 const carDeleteHandler = async () => {
@@ -184,6 +193,7 @@ const carDeleteHandler = async () => {
                                   </p>
                              </div>
 
+                              {isOwner && 
                              <div className={styles['info-col-buttons']}>
                               
                               <button className={styles.editBtn} >
@@ -194,6 +204,7 @@ const carDeleteHandler = async () => {
                               Delete
                               </button>
                              </div>
+                              }
                         </div>
                    </div>
               </div>

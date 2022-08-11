@@ -7,7 +7,11 @@ export const CarsContext = createContext();
 
 export const CarsProvider = ({children}) =>{
     const navigate = useNavigate();
-    const[cars,setCars] = useState([]);
+    const[cars,setCars] = useState({
+        cars:[],
+        pages:0,
+        currentPage:0,
+    });
     const page = Number(1);
 
     const carAdd = (carData) => {
@@ -24,6 +28,11 @@ export const CarsProvider = ({children}) =>{
         navigate('/catalogCars');
     }
 
+        console.log(cars.cars);
+    const selectCar =(carId) =>{
+        return cars.cars.find(x=>x.id ===carId) || {};
+    }
+
     useEffect(() => {
         carService.getAll(page)
             .then(result => {
@@ -35,7 +44,8 @@ export const CarsProvider = ({children}) =>{
         <CarsContext.Provider value={{
             cars,
             carAdd,
-            carEdit
+            carEdit,
+            selectCar,
             }}>
             {children}
         </CarsContext.Provider>

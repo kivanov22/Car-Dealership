@@ -94,13 +94,13 @@
 }
 
 .car-img {
-    object-fit: cover;
+    /* object-fit: cover; */
     height: 50vh;
     width: 55%;
 }
 
 .carImage {
-    object-fit: contain;
+    /* object-fit: contain; */
     height: 100%;
     width: 100%;
 }
@@ -198,44 +198,7 @@
   margin-bottom: 25px;
 }
 
-.pageContainer {
-    position: relative;
-    overflow:hidden;
-    display: flex;
-    margin-top: 20px;
-    justify-content: center;
-}
 
-.forwardBtn{
-    border-color: #09f;
-    color: #09f;
-    width: 15%;
-    border-radius: 15px;
-    padding: 15px 30px;
-    margin-left: 20px;
-}
-
-.backwardBtn {
-    border-color: #09f;
-    color: #09f;
-    width: 15%;
-    border-radius: 15px;
-    padding: 15px 30px;
-    margin-right: 20px;
-}
-
-.forwardBtn:focus,
-.backwardBtn:focus,
-.forwardBtn:hover,
-.backwardBtn:hover,
-.forwardBtn:active,
-.backwardBtn:active,
-.forwardBtn:focus:active,
-.backwardBtn:focus:active{
-    background: #09f; 
-    color: #fff; 
-    border-color: #09f; 
-}
 
 
 

@@ -114,5 +114,11 @@ export const getSellerCity = async (id) =>{
     return result.value;
 }
 
-
+export const getUser = async (id) =>{
+    const response = await fetch(`${baseUrl}/Car/GetUser/${id}`)
+  
+    const result = await response.json();
+    
+    return result.value;
+}
 
