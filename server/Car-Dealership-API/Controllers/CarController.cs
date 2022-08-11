@@ -115,7 +115,7 @@ namespace Car_Dealership_API.Controllers
             if (_context.Cars == null)
                 return NotFound();
 
-            var pageResults = 10f;
+            var pageResults = 5f;//10
             var pageCount = Math.Ceiling(_context.Cars.Count() / pageResults);
 
             var cars = await _context.Cars
@@ -348,7 +348,24 @@ namespace Car_Dealership_API.Controllers
 
             return new JsonResult(Ok(citySeller));
         }
-       
 
+        [HttpGet("{id}")]
+        //[Route("id")]
+        public async Task<JsonResult> GetUser(int id)
+        {
+
+            var result = await _context.Cars
+                .Where(c => c.Id == id)
+                .Include(c => c.Seller)
+                .FirstOrDefaultAsync();
+
+            if (result == null)
+                return new JsonResult(NotFound());
+
+            var ownerId = result.Seller.UserId;
+           
+          
+            return new JsonResult(Ok(ownerId));
+        }
     }
 }
