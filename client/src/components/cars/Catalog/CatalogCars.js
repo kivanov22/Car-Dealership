@@ -14,8 +14,8 @@ function CatalogCars() {
   // const[filter,setFilter] = useState({});
   const[selectedSorting,setSelectedSorting] = useState('');
   const[sortedCollection,setSortedCollection] = useState([]);
-
-
+  const [page, setPage] = useState(1);
+  const [carsPerPage] = useState(5);
   
   const [value, setValue] = useState({
     cars:[],
@@ -25,8 +25,6 @@ function CatalogCars() {
   // const[q,setQ] = useState('');
   // const [searchParam] = useState(['condition','make','model','price','mileage','power','fuel','doors','color','year']);
 
-  //const [value,setValue] = useState([]);
-  const page = Number(1);//will come from bottom depending on which page we are
 
   useEffect(()=>{
     carService.getAll(page)
@@ -34,33 +32,7 @@ function CatalogCars() {
   },[page]);
   
 
-  // function sortBy(param){
-  //   //let updatedCars = cars.cars;
-  //   console.log(param);
-  //   if(param === 'ascending'){
-  //     return value.cars = value.cars.sort((a,b) => a - b);
-  //   }
-  //   else if(param === 'descending'){
-  //     return value.cars = value.cars.sort((a,b) => b - a);
-  //   }
-  //   else if(param === 'priceLowest'){
-  //     return value.cars = value.cars.price.sort((a,b) => a-b);
-  //   }
-  //   else if(param === 'priceHighest'){
-  //     return value.cars = value.cars.price.sort((a,b) =>b-a);
-  //   }
-  //   return value.cars;
-  // }
-  // function filterArray(array,filters) {
-  //   const filterKeys = Object.keys(filters);
 
-  //   return array.filter(item =>{
-  //     return filterKeys.every(key=>{
-  //       if(typeof filters[key] !== 'function')return true;
-  //       return filters[key](item[key]);
-  //     });
-  //   });
-  // } 
 
   const submitHandler = (e) =>{
     e.preventDefault();
@@ -78,11 +50,7 @@ function CatalogCars() {
     // console.log(collection);
   }
 
-//  const sortBy = (array,criteria) => {
-//     if(criteria === 'priceLowest'){
-//       return [...array].sort((a,b)=> a.price - b.price)
-//     }
-//  }
+
 
 useEffect(()=>{
   const sortArray = type =>{
@@ -147,7 +115,7 @@ useEffect(()=>{
         
   //     }
   // }
-
+const paginate = pageNumber => setPage(pageNumber);
   return (
     <section className={styles.catalog}>
       <div className={styles.rightSide}>
@@ -169,7 +137,12 @@ useEffect(()=>{
         ? sortedCollection.map(x=> <CatalogItem key={x.id} car={x} />)
         : <h1 className={styles.message}>There is no cars in DB !</h1>
         }
-        <Pagination></Pagination>
+        <Pagination 
+        carsPerPage={carsPerPage}
+        totalCars={value.cars.length}
+        totalPages={value.pages}
+        paginate={paginate}        
+        />
       </div>
     </section>
   );
