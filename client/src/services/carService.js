@@ -108,9 +108,7 @@ export const sortBy = async (criteria) => {
 
 export const getSellerCity = async (id) =>{
     const response = await fetch(`${baseUrl}/Car/GetSellerCity/${id}`)
-   console.log(response);
     const result = await response.json();
-    console.log(response);
     return result.value;
 }
 

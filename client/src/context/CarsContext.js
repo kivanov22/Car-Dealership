@@ -28,7 +28,7 @@ export const CarsProvider = ({children}) =>{
         navigate('/catalogCars');
     }
 
-        console.log(cars.cars);
+       
     const selectCar =(carId) =>{
         return cars.cars.find(x=>x.id ===carId) || {};
     }

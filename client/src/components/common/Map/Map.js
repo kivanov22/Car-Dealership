@@ -12,48 +12,43 @@ import {places} from '../../../api/cities.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-function Map(carId) {
-     const[selectedCity,setSelectedCity]= useState({});
+function Map({carId}) {
      const[sellerCity,setSellerCity] = useState('');
+     const[selectedCity,setSelectedCity]= useState({});
   
-//console.log(selectedCity);
-// let {car} = carId;
-// car = Number(car)
-// let id = car;
+
+ let id = carId;
 
 
 
-//      useEffect(()=>{
-//           carService.getSellerCity(id)
-//           .then(res=>setSellerCity(res));
-//      },[id])
-
-     // let cityArr = places.filter(function (e){
-     //      return sellerCity === e.city;
-     // });
-     // console.log(cityArr);
-// console.log(sellerCity);
-
-     // const findCity = places.find(c => {
-     //      return c.city === sellerCity;
-     // });
-     // console.log(findCity);
+     useEffect(()=>{
+          carService.getSellerCity(id)
+          .then(res=>setSellerCity(res));
+     },[id])
+    
+     // let cityToFind = sellerCity;
+     // console.log(cityToFind);
+     // let findCityToCenter = places.find(c=>c.city===cityToFind);
+     // console.log(findCityToCenter);
      
     
-    
      
-     // const coordinates = {
-     //      longitude: findCity.lng,
-     //      latitude: findCity.lat,
-     //    };
+     // const coordinates = places
+     // .filter(c=>c.city=== cityToFind)
+     // .map(result =>({
+     //      longitude: Number(result.latitude),
+     //      latitude: Number(result.longitude),
+     //    }));
+     //   console.log(coordinates);
 
      // const center = getCenter(coordinates);
 
 
      const[viewport, setViewport] = useState({
-          latitude:42.6979,
-          longitude:23.3217,
+          latitude:42.5998,//Number(findCityToCenter.latitude)
+          longitude:23.0308,//Number(findCityToCenter.longitude)
           width:'100%',
           height:'100%',
           zoom:10,
@@ -73,14 +68,15 @@ function Map(carId) {
      mapStyle="mapbox://styles/techwithchris7767/cl6i3lrjy006i16pk4ycgzskj"
      mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
      {...viewport}
+     style={{width: 600, height: 400}}
      onViewportChange={viewport =>{setViewport(viewport)}}
      >
-          {places.filter(c=>c.city === 'Sofia')
+          {places.filter(c=>c.city === "Pernik")//cityToFind
           .map(result =>(
-               <div key={result.lng}>
+               <div key={result.longitude}>
                <Marker
-               longitude={result.lng}
-               latitude={result.lat}
+               longitude={result.longitude}
+               latitude={result.latitude}
                offsetLeft={-20}
                offsetTop={-10}
                //key={result.id}
@@ -94,12 +90,12 @@ function Map(carId) {
                     </p>
                </Marker>
 
-                {selectedCity.lng===result.lng ? (
+                {selectedCity.longtitude===result.longitude ? (
                 <Popup
                 onClose={()=>setSelectedCity({})}
                closeOnClick={true}
-               latitude={result.lat}
-               longitude={result.lng}
+               latitude={result.latitude}
+               longitude={result.longitude}
                >
                {result.city}
                </Popup>

@@ -17,10 +17,10 @@ for (let i = 1; i <=totalPages; i++) {
 return (
     <div className={styles.pageContainer}>
           {/* <FontAwesomeIcon onClick={()=>onPrevious()} className={styles.arrowLefttIcon} icon={faArrowLeft} /> */}
-             <ul>
+             <ul className={styles.pageList}>
               {pageNumbers.map(number=>(
                 <li key={number} >
-                    <a onClick={()=>paginate(number)} href='#'>
+                    <a onClick={()=>paginate(number)} href='#' className={styles.pageNumbers}>
                       {number}
                     </a>
                 </li>

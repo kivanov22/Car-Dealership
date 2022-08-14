@@ -269,7 +269,10 @@ const carDeleteHandler = async () => {
     </div>
 
      <section className={styles.mapContainer}>
-          <Map car={carId}></Map>
+          <Map 
+          carId={carId}
+          style={{width: 600, height: 400}}
+          ></Map>
      </section>                        
      
 </section>
