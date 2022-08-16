@@ -93,7 +93,7 @@
 .car-img {
     display: flex;
     justify-content: space-between;
-
+    flex:2;
     /* object-fit: cover; */
     /* height: 50vh;
     width: 55%; */
@@ -110,6 +110,7 @@
 .desc {
     display: flex;
     flex-direction: column;
+    flex: 1;
     width: 90%;
     margin: 20px auto;
     padding: 20px;

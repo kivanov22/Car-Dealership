@@ -91,6 +91,17 @@ const carDeleteHandler = async () => {
 
                         <div className={styles.row}>
 
+                        <div className={styles['info-col-1']}>
+                                  <p className={styles['form-text']}>
+                                       <span className={styles['form-span']}>Condition</span>
+
+                                       <br/>
+
+                                       <strong className={styles['form-strong']}>{car.condition}</strong>
+                                  </p>
+                             </div>
+
+
                              <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
                                        <span className={styles['form-span']}>Make</span>
@@ -100,6 +111,8 @@ const carDeleteHandler = async () => {
                                        <strong className={styles['form-strong']}>{car.make}</strong>
                                   </p>
                              </div>
+
+                             
 
                              <div className={styles['info-col-1']}>
                                   <p className={styles['form-text']}>
@@ -196,9 +209,9 @@ const carDeleteHandler = async () => {
                               {isOwner && 
                              <div className={styles['info-col-buttons']}>
                               
-                              <button className={styles.editBtn} >
+                              {/* <button className={styles.editBtn} > */}
                               <Link className={styles.editBtn} to={`/edit/${car.id}`}>Edit</Link>
-                              </button>
+                              {/* </button> */}
                                   
                               <button className={styles.deleteBtn} onClick={() => carDeleteHandler(car.id)}>
                               Delete

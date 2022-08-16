@@ -4,7 +4,6 @@ import {useEffect} from 'react';
 import {useState} from 'react';
 import { Link } from "react-router-dom";
 import * as carService from '../../../services/carService.js';
-import * as auth from '../../common/userLocalStorage.js';
 import { useContext } from "react";
 import { AuthContext } from '../../../context/AuthContext.js';
 
@@ -12,14 +11,12 @@ function MyListings() {
   const [cars, setCars] = useState([]);
   const {user} = useContext(AuthContext);
  const userId = user.id;
-  //console.log(userId);
 
   useEffect(()=>{
     carService.myCars(userId)
     .then(carData =>
       setCars(carData));
-      
-  },[]);
+  },[userId]);
 
   return (
     <section className={styles.catalog}>
@@ -39,7 +36,7 @@ function MyListings() {
                     {car.year} / Fuel: {car.fuel} / Gearbox: {car.gearbox}/ Doors:{car.doors} /
                   </p>
                   <button className={styles.detailsBtn}>
-                  <Link className={styles.detailsBtnLink} to={`/details/${car.id}`}>Details</Link>
+                  <Link className={styles.detailsBtn} to={`/details/${car.id}`}>Details</Link>
                   </button>
                 </div>
               </div>

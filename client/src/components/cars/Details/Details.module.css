@@ -218,9 +218,12 @@
 }
 
 .editBtn {
-    border-color: #09f;
+    /* border-color: red; */
+    /* border-color: #09f; */
+    /* border-color: #09f; */
+    /* background-color: #757575; */
     color: #09f;
-    width: 65%;
+    width: 55%;
     border-radius: 15px;
     padding: 15px 30px;
     cursor: pointer;

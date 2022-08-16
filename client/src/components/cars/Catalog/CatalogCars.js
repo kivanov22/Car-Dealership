@@ -1,40 +1,69 @@
-import React, { useContext,useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "../Catalog/CatalogCars.module.css";
 import { useState } from "react";
 import * as carService from "../../../services/carService.js";
 import { CarsContext } from "../../../context/CarsContext.js";
 import CatalogItem from "./CatalogItem/CatalogItem.js";
 import Pagination from "../../common/Pagination/Pagination.js";
-
+import Filter from "../../common/Filter/Filter.js";
+// import {handleFilterMake} from '../../common/Filter/FilterFunctionsHelper.js';
 
 function CatalogCars() {
   //const { cars } = useContext(CarsContext);
 
   // const[collection,setCollection] = useState([]);
   // const[filter,setFilter] = useState({});
-  const[selectedSorting,setSelectedSorting] = useState('');
-  const[sortedCollection,setSortedCollection] = useState([]);
+  const [selectedSorting, setSelectedSorting] = useState("");
+  const [sortedCollection, setSortedCollection] = useState([]);
   const [page, setPage] = useState(1);
   const [carsPerPage] = useState(5);
-  
+
   const [value, setValue] = useState({
-    cars:[],
-    pages:0,
-    currentPage:0,
+    cars: [],
+    pages: 0,
+    currentPage: 0,
   });
-  // const[q,setQ] = useState('');
-  // const [searchParam] = useState(['condition','make','model','price','mileage','power','fuel','doors','color','year']);
 
+  useEffect(() => {
+    carService.getAll(page).then((res) => setValue(res));
+  }, [page]);
 
-  useEffect(()=>{
-    carService.getAll(page)
-    .then(res=>setValue(res))
-  },[page]);
-  
+  // const [newValue,setNewValue] = useState({
+  //   cars:[],
+  //   pages:0,
+  //   currentPage:0,
+  // })
 
+// const filterbyParameter(param) =>{
+//   if(param === '')
 
+// }
 
-  const submitHandler = (e) =>{
+// const filteredMake = handleFilterMake();
+// const handleState = (parameter)=>{
+//   setSortedCollection(parameter);
+// }
+
+const filterAllParams = (filterBy,param) =>{
+  const filteredData = value.cars.filter((item)=>{
+    if(filterBy==='price' || filterBy==='mileage' || filterBy==='year' || filterBy==='power'){
+      if(item[filterBy] <= param){
+        return item;
+      }
+    }
+    else if(item[filterBy].toLowerCase() === param.toLowerCase()){
+      return item;
+    }
+    if(param === 'All' || param === 0 || param === ''){
+      return value.cars;
+    }
+  });
+  setSortedCollection(filteredData);
+};
+
+ 
+
+  const submitHandler = (e) => {
     e.preventDefault();
     //let formData= Object.fromEntries(new FormData(e.currentTarget));
 
@@ -48,101 +77,111 @@ function CatalogCars() {
     // carService.filterCars(condition,make,model,price,mileage,power,fuel,doors,color,year)
     // .then(res=> setCollection(res))
     // console.log(collection);
-  }
+  };
 
+  useEffect(() => {
+    const sortArray = (type) => {
+      let filteredValue = [...value.cars];
+      if (type === "default") {
+        //return or default to be by name
+        filteredValue.sort((a, b) => a - b);
+      } else if (type === "ascending") {
+        filteredValue.sort((a, b) => a.year - b.year);
+      } else if (type === "descending") {
+        filteredValue.sort((a, b) => b.year - a.year);
+      } else if (type === "priceLowest") {
+        filteredValue.sort((a, b) => a.price - b.price);
+      } else if (type === "priceHighest") {
+        filteredValue.sort((a, b) => b.price - a.price);
+      }
+      //let filteredValue = [...value.cars];
+      // const types ={
+      //   default:filteredValue,
+      //   ascending:filteredValue = filteredValue.sort((a,b)=> a.year - b.year),
+      //   descending:filteredValue =filteredValue.sort((a,b)=> b.year - a.year),
+      //   priceLowest:filteredValue =filteredValue.sort((a,b)=> a.price - b.price),
+      //   priceHighest:filteredValue =filteredValue.sort((a,b)=> b.price - a.price),
+      // };
 
-
-useEffect(()=>{
-  const sortArray = type =>{
-    let filteredValue = [...value.cars];
-    if(type ==='default'){
-      filteredValue.sort((a,b)=>a - b);
-    }
-    else if (type==='ascending') {
-      filteredValue.sort((a,b)=>a.year - b.year)
-    }
-    else if (type==='descending') {
-      filteredValue.sort((a,b)=>b.year - a.year)
-    }
-    else if (type==='priceLowest') {
-      filteredValue.sort((a,b)=>a.price - b.price)
-    }
-    else if (type==='priceHighest') {
-      filteredValue.sort((a,b)=>b.price - a.price)
-    }
-    //let filteredValue = [...value.cars];
-    // const types ={
-    //   default:filteredValue,
-    //   ascending:filteredValue = filteredValue.sort((a,b)=> a.year - b.year),
-    //   descending:filteredValue =filteredValue.sort((a,b)=> b.year - a.year),
-    //   priceLowest:filteredValue =filteredValue.sort((a,b)=> a.price - b.price),
-    //   priceHighest:filteredValue =filteredValue.sort((a,b)=> b.price - a.price),
-    // };
-
-    // const types ={
-    //   default:[...value.cars],
-    //   ascending:[...value.cars].year,
-    //   descending:[...value.cars].year,
-    //   priceLowest:[...value.cars].price,
-    //   priceHighest:[...value.cars].price,
-    // };
-    //const sortPropperty =types[type];
-      //filteredValue =filteredValue.filter(sortPropperty); 
+      // const types ={
+      //   default:[...value.cars],
+      //   ascending:[...value.cars].year,
+      //   descending:[...value.cars].year,
+      //   priceLowest:[...value.cars].price,
+      //   priceHighest:[...value.cars].price,
+      // };
+      //const sortPropperty =types[type];
+      //filteredValue =filteredValue.filter(sortPropperty);
       // let sorting = [];
       // if(sortPropperty === 'default') return sorting=[value.cars];
       // if(sortPropperty === 'ascending') return sorting=[value.cars].sort((a,b)=>a[sortPropperty] - b[sortPropperty])
       // if(sortPropperty === 'descending') return sorting=[value.cars].sort((a,b)=>b[sortPropperty] - a[sortPropperty])
       // if(sortPropperty === 'priceLowest') return sorting=[value.cars].sort((a,b)=>a[sortPropperty] - b[sortPropperty])
       // if(sortPropperty === 'priceHighest') return sorting=[value.cars].sort((a,b)=>b[sortPropperty] - a[sortPropperty])
-      
-    //const sorted = [...value.cars].sort((a,b)=>b[sortPropperty] - a[sortPropperty]);
-    // setSortedCollection(sortPropperty);
-    setSortedCollection(filteredValue);
-    // console.log(sortedCollection);
-  };
 
-  sortArray(selectedSorting);
-},[value.cars,selectedSorting])
+      //const sorted = [...value.cars].sort((a,b)=>b[sortPropperty] - a[sortPropperty]);
+      // setSortedCollection(sortPropperty);
+      setSortedCollection(filteredValue);
+      // console.log(sortedCollection);
+    };
 
- 
+    sortArray(selectedSorting);
+  }, [value.cars, selectedSorting]);
 
-  //let filteredCars = value.cars.sortBy(value.cars,selectedSorting);
-
-  //let filteredCars = [...value.cars].sort((a,b) => b.id - a.id);
- 
-  // const chouseCollection = (data) =>{
-  //     if(filter.length > 0){
-        
-  //     }
-  // }
-const paginate = pageNumber => setPage(pageNumber);
+  const paginate = (pageNumber) => setPage(pageNumber);
   return (
     <section className={styles.catalog}>
-      <div className={styles.rightSide}>
-        <div className={styles.sortingContainer}>
-        <label htmlFor="sort" className={styles.sort}>Sort By:</label>
-            <select name="sort"
-             id="sort" 
-             className={styles["sorting-criteria"]} 
-            value={selectedSorting} 
-            onChange={(e) =>setSelectedSorting(e.target.value)}>
-              <option value="default" name="default">All</option>
-              <option value="ascending" name="ascending">Ascending</option>
-              <option value="descending" name="descending">Descending</option>
-              <option value="priceLowest" name="priceLowest">Price lower</option>
-              <option value="priceHighest" name="priceHighest">Price higher</option>
-            </select>
+      <div className={styles.rows}>
+        <div className={styles.leftSide}>
+          <Filter
+            onFilterAllParams={filterAllParams}
+            // onFilterMakes={handleFilterMake}
+            // onFilterMileage={handleFilterMileage}
+            // onFilterCondition={handleFilterCondition}
+          ></Filter>
         </div>
-        {value.cars.length > 0 
-        ? sortedCollection.map(x=> <CatalogItem key={x.id} car={x} />)
-        : <h1 className={styles.message}>There is no cars in DB !</h1>
-        }
-        <Pagination 
-        carsPerPage={carsPerPage}
-        totalCars={value.cars.length}
-        totalPages={value.pages}
-        paginate={paginate}        
-        />
+        <div className={styles.rightSide}>
+          <div className={styles.sortingContainer}>
+            <label htmlFor="sort" className={styles.sort}>
+              Sort By:
+            </label>
+            <select
+              name="sort"
+              id="sort"
+              className={styles["sorting-criteria"]}
+              value={selectedSorting}
+              onChange={(e) => setSelectedSorting(e.target.value)}
+            >
+              <option value="default" name="default">
+                All
+              </option>
+              <option value="ascending" name="ascending">
+                Ascending
+              </option>
+              <option value="descending" name="descending">
+                Descending
+              </option>
+              <option value="priceLowest" name="priceLowest">
+                Price lower
+              </option>
+              <option value="priceHighest" name="priceHighest">
+                Price higher
+              </option>
+            </select>
+          </div>
+          {value.cars.length > 0 ? (
+            sortedCollection.map((x) => <CatalogItem key={x.id} car={x} />)
+          ) : (
+            // : value.cars.map(x=><CatalogItem key={x.id} car={x}/>)
+            <h1 className={styles.message}>There is no cars in DB !</h1>
+          )}
+          <Pagination
+            carsPerPage={carsPerPage}
+            totalCars={value.cars.length}
+            totalPages={value.pages}
+            paginate={paginate}
+          />
+        </div>
       </div>
     </section>
   );

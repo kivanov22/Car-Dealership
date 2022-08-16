@@ -1,5 +1,3 @@
-# Car-Dealership
-
 <h1>
 Car-Dealership
 </h1>
@@ -21,7 +19,7 @@ Car-Dealership
   <a href="#key-features">Key Features</a> •
   <a href="#key-technologies">Key Technologies</a> •
   <a href="#setup">Setup</a> •
-  <a href="#future-improvements">Future Improvements</a> •
+  <!-- <a href="#future-improvements">Future Improvements</a> • -->
   <a href="#license">License</a>
 </p>
 
@@ -40,28 +38,35 @@ Here is some project screenshots ..
 ## Project Architecture
 
 -Components folder:
+<br>
 --cars folder containing everything connected with cars.
 --layout holds everything on mainpage.
 --user contains login,register.
 --common folder holds files used by multiple components.
 
 -Context folder:
+<br>
 --containing all contexts.
 
 -Hooks folder:
+<br>
 --containing all custom hooks.
 
 -Services folder:
+<br>
 --authService containing the login,register,logout requests.
 --carService containing the requests about cars.
 
 -Utils:
+<br>
 --containing some constants about social media.
 
 -Assets:
+<br>
 --containing some pictures used by the app.
 
 -Api:
+<br>
 --contains static data 
 
 ---
@@ -101,12 +106,12 @@ Change the .env.example file to .env.local and fill the empty fields
 
 ---
 
-## Future improvements
+<!-- ## Future improvements
 
 -Responsiveness
 -Add Trucks,Motorcycles category
 -Admin role
--Google,Facebook sign in
+-Google,Facebook sign in -->
 
 ## License
 

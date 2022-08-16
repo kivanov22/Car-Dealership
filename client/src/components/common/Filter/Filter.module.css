@@ -8,6 +8,7 @@
 }
 
 .group {
+
     border-radius: 0px;
     padding-left: 15px;
     font-size: 13px;
@@ -24,11 +25,12 @@
 
 .wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     flex-basis: 100%;
-    width: 970px;
-    height: 405px;
+    width: 300px;
+    /* width: 970px; */
+    /* height: 405px; */
     align-content: center;
     justify-content: center;
     margin: 10px auto;
@@ -54,7 +56,7 @@
     transition: all 0.5s;
 }
 
-label {
+.label-text {
     font-family: 'Raleway',sans-serif;
     color: #2c343b;
     display: inline-block;
@@ -63,4 +65,8 @@ label {
     font-weight: 700;
     font-size: 14px;
     line-height: 1.42857143;
+}
+
+.formHolder{
+    
 }
