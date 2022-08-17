@@ -36,11 +36,14 @@ useEffect(()=>{
 const isOwner = currentCar === user.id;
 
 
-
 const carDeleteHandler = async () => {
+const confirmDeleteCar = window.confirm('Are you sure you want to delete this car?');
+
+if(confirmDeleteCar){
  await carService.deleteCar(car.id)
  .then(carData => setCar(carData.filter(x=>x.id !== carId))); // ??
  navigate('/catalogCars')
+}
 }
 
 
