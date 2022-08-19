@@ -1,3 +1,4 @@
+<h1 align="center">
   <a href="hoster-project">
       <img width="200px" src="https://github.com/kivanov22/Car-Dealership/blob/main/Project-photos/logo.png" alt="Car-Dealership Logo" />
   </a>
@@ -37,7 +38,7 @@ Here is a working live demo ..
 
 Here is some project screenshots ..
 
-![](https://github.com/kivanov22/Car-Dealership/car-dealership-gif.gif)
+![](https://github.com/kivanov22/Car-Dealership/blob/main/Project-photos/car-dealership-gif.gif)
 
 ---
 
