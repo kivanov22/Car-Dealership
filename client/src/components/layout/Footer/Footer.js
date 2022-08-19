@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SOCIAL_MEDIA_ACCOUNTS } from "../../../utils/constants.js";
 import styles from "../Footer/Footer.module.css";
+import Map from "../../common/Map/Map.js";
 
 function Footer() {
   return (
@@ -9,10 +10,8 @@ function Footer() {
       <div className={styles.left}>
         <div className={styles.container}>
         <p className={styles['header-title']}>IVANOV <span className={styles['header-span']}>AUTO</span></p>
-          {/* <img src={logo} className={styles.logoSize} alt="" /> */}
           <p className={styles.text}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-            dolor?
+            Car-dealership come find your dream car.
           </p>
           <ul className={styles.listIcons}>
             {SOCIAL_MEDIA_ACCOUNTS.map(({ key, icon, url }) => (
@@ -68,7 +67,7 @@ function Footer() {
 
       <div className={styles.right}>
         <h2 className={styles.contactInfo}>Contact Information</h2>
-        <p className={styles["contact-address"]}>215 Dubai</p>
+        <p className={styles["contact-address"]}>Sofia</p>
 
         <div className={styles["phone-container"]}>
           <span className={styles.bluespans}>Phone:</span>
@@ -83,6 +82,11 @@ function Footer() {
             ivanov.contact@company.com
           </a>
         </div>
+        <div className={styles.mapContainer}>
+         <Map 
+         style={{width: 500, height: 500}}
+         ></Map>
+    </div>   
       </div>
     </div>
   );

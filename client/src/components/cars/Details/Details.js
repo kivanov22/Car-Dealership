@@ -7,10 +7,7 @@ import { Link, useNavigate} from 'react-router-dom';
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from 'react-router-dom';
-import Map from "../../common/Map/Map.js";
 import { AuthContext } from "../../../context/AuthContext.js";
-
-
 
 function Details() {
      const navigate = useNavigate();
@@ -18,6 +15,7 @@ function Details() {
      const { carId } = useParams();
      const { user } = useContext(AuthContext);
      const [currentCar,setCurrentCar] = useState('');
+
      //const {selectCar} = useContext(CarsContext)
 
 
@@ -45,6 +43,7 @@ if(confirmDeleteCar){
  navigate('/catalogCars')
 }
 }
+
 
 
   return (
@@ -212,9 +211,9 @@ if(confirmDeleteCar){
                               {isOwner && 
                              <div className={styles['info-col-buttons']}>
                               
-                              {/* <button className={styles.editBtn} > */}
+                              <button className={styles.editBtn} >
                               <Link className={styles.editBtn} to={`/edit/${car.id}`}>Edit</Link>
-                              {/* </button> */}
+                              </button>
                                   
                               <button className={styles.deleteBtn} onClick={() => carDeleteHandler(car.id)}>
                               Delete
@@ -259,7 +258,7 @@ if(confirmDeleteCar){
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >{car.seller ? car.seller.phone : ''}</a></strong>
+                                  <strong className={styles['contact-info']}><p >{car.seller ? car.seller.phone : ''}</p></strong>
                              </p>
 
 
@@ -268,7 +267,7 @@ if(confirmDeleteCar){
 
                                   <br/>
 
-                                  <strong className={styles['contact-info']}><a >{car.seller ? car.seller.address : ''}</a></strong>
+                                  <strong className={styles['contact-info']}><p >{car.seller ? car.seller.address : ''}</p></strong>
                              </p>
 
                              <p>
@@ -276,21 +275,13 @@ if(confirmDeleteCar){
 
                                   <br/>
 
-                                  <strong><a  className={styles['contact-info']}>{car.seller ? car.seller.email : ''}</a></strong>
+                                  <strong><p  className={styles['contact-info']}>{car.seller ? car.seller.email : ''}</p></strong>
                              </p>
                         </div>
                    </div>
               </div>
          </div>
     </div>
-
-     <section className={styles.mapContainer}>
-          <Map 
-          carId={carId}
-          style={{width: 600, height: 400}}
-          ></Map>
-     </section>                        
-     
 </section>
   );
 }

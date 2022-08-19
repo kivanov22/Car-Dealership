@@ -21,11 +21,6 @@ const Register = lazy(()=> import('./components/user/Register/Register.js'));
 
 function App() {
   
-  // useEffect(()=>{
-  //   carService.getAll(page)
-  //   .then(carData =>setCars(carData));
-  // },[page]);
-
 
   return (
     <AppLogout>

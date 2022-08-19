@@ -1,4 +1,4 @@
-<h1>
+<h1 align="center">
 Car-Dealership
 </h1>
 
@@ -29,20 +29,31 @@ Here is a working live demo ..
 
 ---
 
-<!-- ## Project Screenshots
+## Project Screenshots
 
 Here is some project screenshots ..
+<h1 align="center">
+  <a href="">
+    <img width="200px" src="https://drive.google.com/file/d/1GZwTwweB9BS4oxhSmSOpFNTpCrCJL0lc/view?usp=sharing" alt="Car-Dealership Logo" />
+  </a>
+  <br />
+  Car-Dealership
+  <br />
+</h1>
 
---- -->
+---
 
 ## Project Architecture
 
 -Components folder:
 <br>
 --cars folder containing everything connected with cars.
+<br>
 --layout holds everything on mainpage.
+<br>
 --user contains login,register.
---common folder holds files used by multiple components.
+<br>
+--common folder holds files that can be reused by other components.
 
 -Context folder:
 <br>
@@ -55,6 +66,7 @@ Here is some project screenshots ..
 -Services folder:
 <br>
 --authService containing the login,register,logout requests.
+<br>
 --carService containing the requests about cars.
 
 -Utils:
@@ -81,6 +93,8 @@ Here is some project screenshots ..
 - Details
 - Real World map in Details showing location of the seller
 - Paging
+- Searching for a car by criteria
+- Auto-Logout if not active on page for 5 mins
 
 
 ---
