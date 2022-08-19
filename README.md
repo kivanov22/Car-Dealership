@@ -34,7 +34,7 @@ Here is a working live demo ..
 Here is some project screenshots ..
 <h1 align="center">
   <a href="">
-    <img width="200px" src="https://drive.google.com/file/d/1GZwTwweB9BS4oxhSmSOpFNTpCrCJL0lc/view?usp=sharing" alt="Car-Dealership Logo" />
+  ![App Signed Screenshot](Project-photos/car-dealership-gif.gif?raw=true "App")
   </a>
   <br />
   Car-Dealership
