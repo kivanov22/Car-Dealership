@@ -1,5 +1,9 @@
-<h1 align="center">
-Car-Dealership
+  <a href="hoster-project">
+      <img width="200px" src="https://drive.google.com/file/d/1vrtPch3Q9QtD3-Wz689HXcyD2fV0n3yc/view?usp=sharing" alt="Car-Dealership Logo" />
+  </a>
+  <br />
+  Car-Dealership
+  <br />
 </h1>
 
 <h4 align="center">
@@ -15,7 +19,7 @@ Car-Dealership
 
 <p align="center">
   <a href="#demo">Demo</a> •
-  <!-- <a href="#project-screenshots">Project Screenshots</a> • -->
+  <a href="#project-screenshots">Project Screenshots</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#key-technologies">Key Technologies</a> •
   <a href="#setup">Setup</a> •
@@ -32,14 +36,8 @@ Here is a working live demo ..
 ## Project Screenshots
 
 Here is some project screenshots ..
-<h1 align="center">
-  <a href="">
-  ![App Signed Screenshot](Project-photos/car-dealership-gif.gif?raw=true "App")
-  </a>
-  <br />
-  Car-Dealership
-  <br />
-</h1>
+
+![](https://github.com/kivanov22/Car-Dealership/Project-photos/car-dealership-gif.gif)
 
 ---
 
