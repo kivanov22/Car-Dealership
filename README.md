@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="hoster-project">
+  <a href="https://car-dealership-app-67302.web.app">
       <img width="200px" src="https://github.com/kivanov22/Car-Dealership/blob/main/Project-photos/logo.png" alt="Car-Dealership Logo" />
   </a>
   <br />
@@ -13,9 +13,9 @@
 
 <p align="center">
 <!-- after deploy -->
-   <!-- <img src="https://airbnb-clone-krisko512-gmailcom.vercel.app" alt="Release" />
-   <img src="https://airbnb-clone-krisko512-gmailcom.vercel.app" alt="Deployment" />
-   <img src="https://img.shields.io/github/license/kivanov22/Airbnb-Clone" alt="License" /> -->
+   <img src="https://car-dealership-app-67302.web.app" alt="Release" />
+   <img src="https://car-dealership-app-67302.web.app" alt="Deployment" />
+   <img src="https://img.shields.io/github/license/kivanov22/" alt="License" />
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@
 
 ## Demo
 
-Here is a working live demo ..
+Here is a working live demo [here](https://car-dealership-app-67302.web.app)
 
 ---
 

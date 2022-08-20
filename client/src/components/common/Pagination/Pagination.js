@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Pagination.module.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 
 function Pagination({paginate,carsPerPage,totalCars,totalPages}) {

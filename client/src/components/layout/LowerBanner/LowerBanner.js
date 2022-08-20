@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../LowerBanner/LowerBanner.module.css";
-import bmw from "../../../assets/img/contact-image-1-1920x700.jpg";
+// import bmw from "../../../assets/img/contact-image-1-1920x700.jpg";
 
 function LowerBanner() {
   return (

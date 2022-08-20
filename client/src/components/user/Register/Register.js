@@ -55,19 +55,19 @@ function Register() {
           >
             <h1 className={styles["form-headings"]}>Register</h1>
             <div className={styles["social-container"]}>
-              <a href="#" className={styles.social}>
+              <a  className={styles.social}>
                 <FontAwesomeIcon
                   className={styles.icon}
                   icon={faFacebookF}
                 ></FontAwesomeIcon>
               </a>
-              <a href="#" className={styles.social}>
+              <a  className={styles.social}>
                 <FontAwesomeIcon
                   className={styles.icon}
                   icon={faGoogle}
                 ></FontAwesomeIcon>
               </a>
-              <a href="#" className={styles.social}>
+              <a  className={styles.social}>
                 <FontAwesomeIcon
                   className={styles.icon}
                   icon={faLinkedin}

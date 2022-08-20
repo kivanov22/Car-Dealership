@@ -4,7 +4,7 @@ import { useState,useEffect } from "react";
 // import FilterHeloper from "../Filter/filterHelper.js";
 import * as carService  from '../../../services/carService.js';
 
-function Filter({onFilterAllParams,onFilterMakes,onFilterMileage,onFilterCondition}) {
+function Filter({onFilterAllParams}) {
   const [makeList, setMakeList] = useState([]);
   const [modelList, setModelList] = useState([]);
   // const [make, setMake] = useState("");
@@ -59,9 +59,9 @@ function Filter({onFilterAllParams,onFilterMakes,onFilterMileage,onFilterConditi
     console.log(search);
   };
 
-  const selectMakeHandler = (e) => {
-    let makeValue = e.currentTarget.value;
-  };
+  // const selectMakeHandler = (e) => {
+  //   let makeValue = e.currentTarget.value;
+  // };
 
   const handleInput = (field) => (e) => {
     const { value } = e.target;

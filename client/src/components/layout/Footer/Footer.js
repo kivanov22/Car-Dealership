@@ -32,22 +32,22 @@ function Footer() {
         <div className={styles.firstMiddle}>
           <ul className={styles.listLinks}>
             <li className={styles['dotted-list']}>
-              <a className={styles["footer-links"]} href="">
+              <a className={styles["footer-links"]} >
                 Home
               </a>
             </li>
             <li className={styles['dotted-list']}>
-              <a className={styles["footer-links"]} href="">
+              <a className={styles["footer-links"]} >
                 About
               </a>
             </li>
             <li className={styles['dotted-list']}> 
-              <a className={styles["footer-links"]} href="">
+              <a className={styles["footer-links"]} >
                 Team
               </a>
             </li>
             <li className={styles['dotted-list']}>
-              <a className={styles["footer-links"]} href="">
+              <a className={styles["footer-links"]} >
                 Contact Us
               </a>
             </li>
@@ -57,10 +57,10 @@ function Footer() {
 
         <div className={styles.secondMiddle}>
         <ul className={styles.listLinks}>
-        <li className={styles['dotted-list']}><a className={styles['footer-links']} href="">Home</a></li>
-        <li className={styles['dotted-list']}><a className={styles['footer-links']} href="">About</a></li>
-        <li className={styles['dotted-list']}><a className={styles['footer-links']} href="">Team</a></li>
-        <li className={styles['dotted-list']}><a className={styles['footer-links']} href="">Contact Us</a></li>
+        <li className={styles['dotted-list']}><a className={styles['footer-links']} >Home</a></li>
+        <li className={styles['dotted-list']}><a className={styles['footer-links']} >About</a></li>
+        <li className={styles['dotted-list']}><a className={styles['footer-links']} >Team</a></li>
+        <li className={styles['dotted-list']}><a className={styles['footer-links']} >Contact Us</a></li>
       </ul>
     </div>
       </div>
@@ -71,14 +71,14 @@ function Footer() {
 
         <div className={styles["phone-container"]}>
           <span className={styles.bluespans}>Phone:</span>
-          <a href="" className={styles.phone}>
+          <a  className={styles.phone}>
             0897560308
           </a>
         </div>
 
         <div className={styles["email-container"]}>
           <span className={styles.bluespans}>Email:</span>
-          <a href="" className={styles.email}>
+          <a  className={styles.email}>
             ivanov.contact@company.com
           </a>
         </div>
